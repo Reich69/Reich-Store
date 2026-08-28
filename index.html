@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,12 +34,19 @@ button{
   cursor:pointer;
 }
 
+button:disabled{
+  cursor:not-allowed;
+  opacity:.5;
+}
+
 a{
   text-decoration:none;
   color:inherit;
 }
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+========================= */
 
 .top{
   background:#111827;
@@ -48,7 +56,9 @@ a{
   font-size:13px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
   background:white;
@@ -98,7 +108,9 @@ nav{
   font-weight:700;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
   max-width:1200px;
@@ -133,7 +145,9 @@ nav{
   opacity:.9;
 }
 
-/* CONTAINER */
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
   max-width:1200px;
@@ -153,7 +167,9 @@ nav{
   margin:0;
 }
 
-/* CATEGORY */
+/* =========================
+   CATEGORY
+========================= */
 
 .category-grid{
   display:grid;
@@ -182,7 +198,9 @@ nav{
   margin-bottom:10px;
 }
 
-/* SUBCATEGORY */
+/* =========================
+   SUBCATEGORY
+========================= */
 
 .subcategory-area{
   margin-top:25px;
@@ -218,7 +236,9 @@ nav{
   border-color:#111827;
 }
 
-/* SEARCH */
+/* =========================
+   SEARCH
+========================= */
 
 .search{
   width:250px;
@@ -232,7 +252,9 @@ nav{
   border-color:#e11d48;
 }
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 .product-grid{
   display:grid;
@@ -246,10 +268,12 @@ nav{
   border-radius:14px;
   overflow:hidden;
   transition:.2s;
+  cursor:pointer;
 }
 
 .product:hover{
   transform:translateY(-3px);
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 
 .product-image{
@@ -257,6 +281,7 @@ nav{
   height:220px;
   object-fit:cover;
   background:#e5e7eb;
+  display:block;
 }
 
 .product-body{
@@ -296,9 +321,18 @@ nav{
   color:#dc2626;
 }
 
-.buy-btn{
-  width:100%;
+.product-buttons{
+  display:flex;
+  gap:8px;
   margin-top:13px;
+}
+
+.product-buttons .btn{
+  flex:1;
+}
+
+.details-btn{
+  background:#111827;
 }
 
 .empty{
@@ -310,14 +344,170 @@ nav{
   border:1px solid #e5e7eb;
 }
 
-/* MODALS */
+/* =========================
+   PRODUCT DETAILS
+========================= */
+
+.details-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:60;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.details-box{
+  width:min(1050px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:white;
+  border-radius:18px;
+  position:relative;
+  padding:25px;
+}
+
+.details-close{
+  position:absolute;
+  right:20px;
+  top:12px;
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:50%;
+  background:#f1f5f9;
+  font-size:26px;
+  z-index:2;
+}
+
+.details-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  margin-top:10px;
+}
+
+.details-image{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  border-radius:14px;
+  background:#f1f5f9;
+}
+
+.details-info{
+  padding:10px 5px;
+}
+
+.details-category{
+  color:#64748b;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+.details-title{
+  font-size:32px;
+  margin:0 0 15px;
+}
+
+.details-price{
+  font-size:28px;
+  font-weight:800;
+  margin:15px 0;
+}
+
+.details-old-price{
+  text-decoration:line-through;
+  color:#64748b;
+  font-size:17px;
+  margin-left:8px;
+}
+
+.details-stock{
+  padding:10px 13px;
+  background:#f0fdf4;
+  color:#15803d;
+  border-radius:8px;
+  display:inline-block;
+  font-weight:700;
+  margin-bottom:18px;
+}
+
+.details-out{
+  background:#fef2f2;
+  color:#dc2626;
+}
+
+.details-description{
+  line-height:1.7;
+  color:#475569;
+  white-space:pre-wrap;
+  margin:20px 0;
+}
+
+.option-label{
+  display:block;
+  font-size:14px;
+  font-weight:700;
+  margin:15px 0 7px;
+}
+
+.details-select{
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:white;
+}
+
+.quantity-box{
+  display:flex;
+  align-items:center;
+  width:150px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.quantity-box button{
+  width:45px;
+  height:42px;
+  border:0;
+  background:#f1f5f9;
+  font-size:20px;
+}
+
+.quantity-box input{
+  width:60px;
+  height:42px;
+  border:0;
+  text-align:center;
+  outline:none;
+  font-weight:700;
+}
+
+.details-actions{
+  display:flex;
+  gap:10px;
+  margin-top:22px;
+}
+
+.details-actions button{
+  flex:1;
+}
+
+/* =========================
+   ORDER MODAL
+========================= */
 
 .modal{
   display:none;
   position:fixed;
   inset:0;
   background:#0008;
-  z-index:50;
+  z-index:70;
   align-items:center;
   justify-content:center;
   padding:20px;
@@ -339,6 +529,8 @@ nav{
   top:10px;
   font-size:28px;
   cursor:pointer;
+  border:0;
+  background:none;
 }
 
 .modal-box h2{
@@ -368,18 +560,20 @@ textarea{
   resize:vertical;
 }
 
-/* CART */
+/* =========================
+   CART
+========================= */
 
 .cart-item{
   display:flex;
   gap:12px;
-  padding:12px 0;
+  padding:14px 0;
   border-bottom:1px solid #e5e7eb;
 }
 
 .cart-item img{
-  width:70px;
-  height:70px;
+  width:80px;
+  height:80px;
   object-fit:cover;
   border-radius:8px;
 }
@@ -397,6 +591,24 @@ textarea{
   background:none;
   color:#dc2626;
   font-weight:700;
+  padding:0;
+  margin-top:6px;
+}
+
+.cart-quantity{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+
+.cart-quantity button{
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:5px;
+  background:#f1f5f9;
+  font-weight:700;
 }
 
 .cart-total{
@@ -405,7 +617,14 @@ textarea{
   font-weight:800;
 }
 
-/* FOOTER */
+.cart-checkout{
+  width:100%;
+  margin-top:15px;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   margin-top:60px;
@@ -426,7 +645,9 @@ footer{
   color:#cbd5e1;
 }
 
-/* LOADING */
+/* =========================
+   LOADING
+========================= */
 
 .loading{
   text-align:center;
@@ -434,7 +655,9 @@ footer{
   color:#64748b;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:900px){
 
@@ -452,6 +675,15 @@ footer{
 
   .footer-grid{
     grid-template-columns:1fr;
+  }
+
+  .details-grid{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+
+  .details-image{
+    height:400px;
   }
 
 }
@@ -497,19 +729,48 @@ footer{
     font-size:22px;
   }
 
+  .product-buttons{
+    flex-direction:column;
+  }
+
+  .details-box{
+    padding:18px;
+  }
+
+  .details-image{
+    height:300px;
+  }
+
+  .details-title{
+    font-size:25px;
+  }
+
+  .details-price{
+    font-size:24px;
+  }
+
+  .details-actions{
+    flex-direction:column;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOP -->
+<!-- =========================
+     TOP BAR
+========================= -->
 
 <div class="top">
 🚚 Cash on Delivery Available • Nationwide Delivery
 </div>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -520,13 +781,29 @@ Reich
 </div>
 
 <nav>
-<a class="nav-link" href="#">Home</a>
-<a class="nav-link" href="#categories">Categories</a>
-<a class="nav-link" href="#products">Products</a>
-<a class="nav-link" href="#contact">Contact</a>
+
+<a class="nav-link" href="#">
+Home
+</a>
+
+<a class="nav-link" href="#categories">
+Categories
+</a>
+
+<a class="nav-link" href="#products">
+Products
+</a>
+
+<a class="nav-link" href="#contact">
+Contact
+</a>
+
 </nav>
 
-<button class="cart-btn" onclick="openCart()">
+<button
+class="cart-btn"
+onclick="openCart()"
+>
 🛒 Cart (<span id="cartCount">0</span>)
 </button>
 
@@ -535,19 +812,26 @@ Reich
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
 <div style="max-width:700px">
 
-<h1>Welcome to Reich</h1>
+<h1>
+Welcome to Reich
+</h1>
 
 <p>
 Clothing, electronics, shoes and more — all in one place.
 </p>
 
-<button class="btn" onclick="goProducts()">
+<button
+class="btn"
+onclick="goProducts()"
+>
 Shop Now
 </button>
 
@@ -556,53 +840,111 @@ Shop Now
 </section>
 
 
-<!-- CATEGORY -->
+<!-- =========================
+     CATEGORY
+========================= -->
 
-<section class="container" id="categories">
+<section
+class="container"
+id="categories"
+>
 
 <div class="title">
-<h2>Shop by Category</h2>
+
+<h2>
+Shop by Category
+</h2>
+
 </div>
+
 
 <div class="category-grid">
 
-<button class="category-card" onclick="selectCategory('Clothing',this)">
-<div class="category-icon">👕</div>
+<button
+class="category-card"
+onclick="selectCategory('Clothing',this)"
+>
+
+<div class="category-icon">
+👕
+</div>
+
 Clothing
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Electronics',this)">
-<div class="category-icon">📱</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Electronics',this)"
+>
+
+<div class="category-icon">
+📱
+</div>
+
 Electronics
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Shoes',this)">
-<div class="category-icon">👟</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Shoes',this)"
+>
+
+<div class="category-icon">
+👟
+</div>
+
 Shoes
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Men',this)">
-<div class="category-icon">👨</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Men',this)"
+>
+
+<div class="category-icon">
+👨
+</div>
+
 Men
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Women',this)">
-<div class="category-icon">👩</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Women',this)"
+>
+
+<div class="category-icon">
+👩
+</div>
+
 Women
+
 </button>
 
 </div>
 
 
-<!-- SUBCATEGORY -->
-
-<div class="subcategory-area" id="subcategoryArea">
+<div
+class="subcategory-area"
+id="subcategoryArea"
+>
 
 <h3 id="subcategoryTitle">
 Subcategories
 </h3>
 
-<div class="subcategory-buttons" id="subcategoryButtons">
+<div
+class="subcategory-buttons"
+id="subcategoryButtons"
+>
 </div>
 
 </div>
@@ -610,9 +952,14 @@ Subcategories
 </section>
 
 
-<!-- PRODUCTS -->
+<!-- =========================
+     PRODUCTS
+========================= -->
 
-<section class="container" id="products">
+<section
+class="container"
+id="products"
+>
 
 <div class="title">
 
@@ -629,7 +976,11 @@ oninput="renderProducts()"
 
 </div>
 
-<div id="productsGrid" class="product-grid">
+
+<div
+id="productsGrid"
+class="product-grid"
+>
 
 <div class="loading">
 Loading products...
@@ -640,45 +991,283 @@ Loading products...
 </section>
 
 
-<!-- ORDER MODAL -->
+<!-- =========================
+     PRODUCT DETAILS
+========================= -->
 
-<div class="modal" id="orderModal">
+<div
+class="details-modal"
+id="detailsModal"
+>
+
+<div class="details-box">
+
+<button
+class="details-close"
+onclick="closeDetails()"
+>
+×
+</button>
+
+
+<div
+class="details-grid"
+>
+
+<div>
+
+<img
+id="detailsImage"
+class="details-image"
+src=""
+alt="Product"
+>
+
+</div>
+
+
+<div class="details-info">
+
+<div
+id="detailsCategory"
+class="details-category"
+>
+</div>
+
+
+<h1
+id="detailsTitle"
+class="details-title"
+>
+Product
+</h1>
+
+
+<div
+id="detailsPrice"
+class="details-price"
+>
+</div>
+
+
+<div
+id="detailsStock"
+class="details-stock"
+>
+</div>
+
+
+<div
+id="detailsDescription"
+class="details-description"
+>
+</div>
+
+
+<div id="detailsOptions">
+
+<label
+class="option-label"
+>
+Size
+</label>
+
+<select
+id="detailsSize"
+class="details-select"
+>
+<option value="">
+Select Size
+</option>
+</select>
+
+
+<label
+class="option-label"
+>
+Color
+</label>
+
+<select
+id="detailsColor"
+class="details-select"
+>
+<option value="">
+Select Color
+</option>
+</select>
+
+</div>
+
+
+<label
+class="option-label"
+>
+Quantity
+</label>
+
+<div class="quantity-box">
+
+<button
+type="button"
+onclick="changeDetailsQuantity(-1)"
+>
+−
+</button>
+
+<input
+id="detailsQuantity"
+type="number"
+value="1"
+min="1"
+readonly
+>
+
+<button
+type="button"
+onclick="changeDetailsQuantity(1)"
+>
++
+</button>
+
+</div>
+
+
+<div class="details-actions">
+
+<button
+class="btn"
+id="detailsCartBtn"
+onclick="addDetailsToCart()"
+>
+🛒 Add to Cart
+</button>
+
+<button
+class="btn"
+id="detailsBuyBtn"
+onclick="buyDetailsProduct()"
+>
+🛍️ Buy Now
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     ORDER MODAL
+========================= -->
+
+<div
+class="modal"
+id="orderModal"
+>
 
 <div class="modal-box">
 
-<div class="close" onclick="closeOrder()">
+<button
+class="close"
+onclick="closeOrder()"
+>
 ×
-</div>
+</button>
 
-<h2>Place Your Order</h2>
+<h2>
+Place Your Order
+</h2>
 
-<form onsubmit="submitOrder(event)">
 
-<input type="hidden" id="orderProductId">
+<form
+onsubmit="submitOrder(event)"
+>
 
-<label>Product</label>
-<input id="orderProductName" readonly>
+<input
+type="hidden"
+id="orderProductId"
+>
 
-<label>Your Name</label>
-<input id="customerName" required>
+<label>
+Product
+</label>
 
-<label>Phone Number</label>
-<input id="customerPhone" required>
+<input
+id="orderProductName"
+readonly
+>
 
-<label>Full Address</label>
-<textarea id="customerAddress" required></textarea>
 
-<label>Size</label>
+<label>
+Your Name
+</label>
+
+<input
+id="customerName"
+required
+placeholder="Your full name"
+>
+
+
+<label>
+Phone Number
+</label>
+
+<input
+id="customerPhone"
+type="tel"
+required
+placeholder="01XXXXXXXXX"
+>
+
+
+<label>
+Full Address
+</label>
+
+<textarea
+id="customerAddress"
+required
+placeholder="Your complete delivery address"
+></textarea>
+
+
+<label>
+Size
+</label>
+
 <select id="customerSize">
-<option value="">Select Size</option>
+
+<option value="">
+Select Size
+</option>
+
 </select>
 
-<label>Color</label>
+
+<label>
+Color
+</label>
+
 <select id="customerColor">
-<option value="">Select Color</option>
+
+<option value="">
+Select Color
+</option>
+
 </select>
 
-<label>Quantity</label>
+
+<label>
+Quantity
+</label>
+
 <input
 id="customerQuantity"
 type="number"
@@ -687,9 +1276,14 @@ value="1"
 required
 >
 
+
 <br>
 
-<button class="btn" type="submit" style="width:100%;margin-top:10px">
+<button
+class="btn"
+type="submit"
+style="width:100%;margin-top:10px"
+>
 Confirm COD Order
 </button>
 
@@ -700,28 +1294,43 @@ Confirm COD Order
 </div>
 
 
-<!-- CART MODAL -->
+<!-- =========================
+     CART MODAL
+========================= -->
 
-<div class="modal" id="cartModal">
+<div
+class="modal"
+id="cartModal"
+>
 
 <div class="modal-box">
 
-<div class="close" onclick="closeCart()">
+<button
+class="close"
+onclick="closeCart()"
+>
 ×
-</div>
+</button>
 
-<h2>🛒 Your Cart</h2>
+<h2>
+🛒 Your Cart
+</h2>
+
 
 <div id="cartItems">
 </div>
 
+
 <div class="cart-total">
-Total: <span id="cartTotal">৳0</span>
+Total:
+<span id="cartTotal">
+৳0
+</span>
 </div>
 
+
 <button
-class="btn"
-style="width:100%;margin-top:15px"
+class="btn cart-checkout"
 onclick="checkoutCart()"
 >
 Checkout
@@ -732,7 +1341,9 @@ Checkout
 </div>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer id="contact">
 
@@ -740,7 +1351,9 @@ Checkout
 
 <div>
 
-<h2>Reich</h2>
+<h2>
+Reich
+</h2>
 
 <p class="muted">
 Your trusted online shopping destination.
@@ -748,9 +1361,12 @@ Your trusted online shopping destination.
 
 </div>
 
+
 <div>
 
-<h3>Customer Support</h3>
+<h3>
+Customer Support
+</h3>
 
 <p class="muted">
 📞 Contact number will be added later.
@@ -762,9 +1378,12 @@ Your trusted online shopping destination.
 
 </div>
 
+
 <div>
 
-<h3>Follow Us</h3>
+<h3>
+Follow Us
+</h3>
 
 <p class="muted">
 Facebook • TikTok • Instagram
@@ -801,18 +1420,7 @@ let activeSubcategory = "All";
 
 let cart = [];
 
-
-/* =========================
-   CATEGORY ICONS
-========================= */
-
-const categoryIcons = {
-  Clothing: "👕",
-  Electronics: "📱",
-  Shoes: "👟",
-  Men: "👨",
-  Women: "👩"
-};
+let selectedDetailsProduct = null;
 
 
 /* =========================
@@ -821,7 +1429,8 @@ const categoryIcons = {
 
 async function loadProducts(){
 
-  const grid = document.getElementById("productsGrid");
+  const grid =
+    document.getElementById("productsGrid");
 
   grid.innerHTML = `
     <div class="loading">
@@ -829,11 +1438,14 @@ async function loadProducts(){
     </div>
   `;
 
-  const { data, error } = await supabaseClient
-    .from("products")
-    .select("*")
-    .eq("published", true)
-    .order("created_at", { ascending:false });
+
+  const { data,error } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .eq("published",true)
+      .order("created_at",{ascending:false});
+
 
   if(error){
 
@@ -841,13 +1453,19 @@ async function loadProducts(){
 
     grid.innerHTML = `
       <div class="empty">
-        <h3>Products could not be loaded.</h3>
-        <p>Please try again later.</p>
+        <h3>
+          Products could not be loaded.
+        </h3>
+
+        <p>
+          Please try again later.
+        </p>
       </div>
     `;
 
     return;
   }
+
 
   products = data || [];
 
@@ -860,21 +1478,27 @@ async function loadProducts(){
    SELECT CATEGORY
 ========================= */
 
-function selectCategory(category, button){
+function selectCategory(category,button){
 
   activeCategory = category;
 
   activeSubcategory = "All";
 
+
   document
     .querySelectorAll(".category-card")
-    .forEach(btn => btn.classList.remove("active"));
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
 
   button.classList.add("active");
+
 
   showSubcategories(category);
 
   renderProducts();
+
 
   setTimeout(() => {
 
@@ -891,7 +1515,6 @@ function selectCategory(category, button){
 
 /* =========================
    SHOW SUBCATEGORIES
-   FROM DATABASE
 ========================= */
 
 function showSubcategories(category){
@@ -909,8 +1532,12 @@ function showSubcategories(category){
   const subs = [
     ...new Set(
       products
-        .filter(p => p.category === category)
-        .map(p => p.subcategory)
+        .filter(p =>
+          p.category === category
+        )
+        .map(p =>
+          p.subcategory
+        )
         .filter(Boolean)
     )
   ];
@@ -925,6 +1552,7 @@ function showSubcategories(category){
 
 
   area.style.display = "block";
+
 
   title.textContent =
     category + " Categories";
@@ -942,9 +1570,11 @@ function showSubcategories(category){
   allButton.textContent =
     "All";
 
+
   allButton.onclick = () => {
 
     activeSubcategory = "All";
+
 
     document
       .querySelectorAll(".sub-btn")
@@ -952,11 +1582,13 @@ function showSubcategories(category){
         btn.classList.remove("active")
       );
 
+
     allButton.classList.add("active");
 
     renderProducts();
 
   };
+
 
   buttons.appendChild(allButton);
 
@@ -972,9 +1604,11 @@ function showSubcategories(category){
     button.textContent =
       sub;
 
+
     button.onclick = () => {
 
       activeSubcategory = sub;
+
 
       document
         .querySelectorAll(".sub-btn")
@@ -982,11 +1616,13 @@ function showSubcategories(category){
           btn.classList.remove("active")
         );
 
+
       button.classList.add("active");
 
       renderProducts();
 
     };
+
 
     buttons.appendChild(button);
 
@@ -1004,47 +1640,70 @@ function renderProducts(){
   const grid =
     document.getElementById("productsGrid");
 
+
   const search =
     (
-      document.getElementById("search").value || ""
-    ).toLowerCase().trim();
+      document.getElementById("search").value ||
+      ""
+    )
+    .toLowerCase()
+    .trim();
 
 
-  let list = products.filter(product => {
+  const list =
+    products.filter(product => {
 
-    const categoryMatch =
-      activeCategory === "All" ||
-      product.category === activeCategory;
-
-
-    const subcategoryMatch =
-      activeSubcategory === "All" ||
-      product.subcategory === activeSubcategory;
+      const categoryMatch =
+        activeCategory === "All" ||
+        product.category === activeCategory;
 
 
-    const searchMatch =
-      (product.name || "").toLowerCase().includes(search) ||
-
-      (product.category || "").toLowerCase().includes(search) ||
-
-      (product.subcategory || "").toLowerCase().includes(search);
+      const subcategoryMatch =
+        activeSubcategory === "All" ||
+        product.subcategory === activeSubcategory;
 
 
-    return (
-      categoryMatch &&
-      subcategoryMatch &&
-      searchMatch
-    );
+      const searchMatch =
 
-  });
+        (product.name || "")
+          .toLowerCase()
+          .includes(search)
+
+        ||
+
+        (product.category || "")
+          .toLowerCase()
+          .includes(search)
+
+        ||
+
+        (product.subcategory || "")
+          .toLowerCase()
+          .includes(search);
+
+
+      return (
+        categoryMatch &&
+        subcategoryMatch &&
+        searchMatch
+      );
+
+    });
 
 
   if(list.length === 0){
 
     grid.innerHTML = `
       <div class="empty">
-        <h3>No products found</h3>
-        <p>Try another category or search.</p>
+
+        <h3>
+          No products found
+        </h3>
+
+        <p>
+          Try another category or search.
+        </p>
+
       </div>
     `;
 
@@ -1052,144 +1711,319 @@ function renderProducts(){
   }
 
 
-  grid.innerHTML = list.map(product => {
+  grid.innerHTML =
+    list.map(product => {
 
-    const price =
-      product.sale_price != null
-      ? product.sale_price
-      : product.price;
-
-
-    const oldPrice =
-      product.sale_price != null
-      ? product.price
-      : null;
+      const price =
+        product.sale_price != null
+        ? Number(product.sale_price)
+        : Number(product.price);
 
 
-    const image =
-      product.image_url ||
-      "https://via.placeholder.com/800x500?text=No+Image";
+      const oldPrice =
+        product.sale_price != null
+        ? Number(product.price)
+        : null;
 
 
-    const stock =
-      Number(product.stock || 0);
+      const image =
+        product.image_url ||
+        "https://via.placeholder.com/800x500?text=No+Image";
 
 
-    return `
+      const stock =
+        Number(product.stock || 0);
 
-      <div class="product">
 
-        <img
-          class="product-image"
-          src="${escapeHTML(image)}"
-          alt="${escapeHTML(product.name || "")}"
-          onerror="this.src='https://via.placeholder.com/800x500?text=No+Image'"
+      return `
+
+        <div
+          class="product"
+          onclick="openDetails('${product.id}')"
         >
 
-        <div class="product-body">
-
-          <h3>
-            ${escapeHTML(product.name || "Product")}
-          </h3>
-
-          <div class="category-name">
-            ${escapeHTML(product.category || "")}
-
-            ${
-              product.subcategory
-              ? " • " + escapeHTML(product.subcategory)
-              : ""
-            }
-
-          </div>
-
-          <div class="price">
-
-            ${STORE.currency}${price}
-
-            ${
-              oldPrice != null
-              ? `
-                <span class="old-price">
-                  ${STORE.currency}${oldPrice}
-                </span>
-              `
-              : ""
-            }
-
-          </div>
-
-          <div class="
-            stock
-            ${stock <= 0 ? "out-stock" : ""}
-          ">
-
-            ${
-              stock > 0
-              ? "✓ In Stock: " + stock
-              : "✕ Out of Stock"
-            }
-
-          </div>
-
-          <button
-            class="btn buy-btn"
-            onclick="openOrder('${product.id}')"
-            ${stock <= 0 ? "disabled" : ""}
+          <img
+            class="product-image"
+            src="${escapeHTML(image)}"
+            alt="${escapeHTML(product.name || "")}"
+            onerror="this.src='https://via.placeholder.com/800x500?text=No+Image'"
           >
-            Buy Now
-          </button>
+
+
+          <div class="product-body">
+
+            <h3>
+              ${escapeHTML(
+                product.name || "Product"
+              )}
+            </h3>
+
+
+            <div class="category-name">
+
+              ${escapeHTML(
+                product.category || ""
+              )}
+
+              ${
+                product.subcategory
+                ? " • " +
+                  escapeHTML(
+                    product.subcategory
+                  )
+                : ""
+              }
+
+            </div>
+
+
+            <div class="price">
+
+              ${STORE.currency}${price}
+
+              ${
+                oldPrice != null
+                ? `
+                  <span class="old-price">
+                    ${STORE.currency}${oldPrice}
+                  </span>
+                `
+                : ""
+              }
+
+            </div>
+
+
+            <div class="
+              stock
+              ${stock <= 0 ? "out-stock" : ""}
+            ">
+
+              ${
+                stock > 0
+                ? "✓ In Stock: " + stock
+                : "✕ Out of Stock"
+              }
+
+            </div>
+
+
+            <div class="product-buttons">
+
+              <button
+                class="btn details-btn"
+                onclick="event.stopPropagation();openDetails('${product.id}')"
+              >
+                View Details
+              </button>
+
+
+              <button
+                class="btn"
+                onclick="event.stopPropagation();openOrder('${product.id}')"
+                ${stock <= 0 ? "disabled" : ""}
+              >
+                Buy Now
+              </button>
+
+            </div>
+
+          </div>
 
         </div>
 
-      </div>
+      `;
 
-    `;
-
-  }).join("");
+    }).join("");
 
 
-  document.getElementById("productTitle").textContent =
+  document
+    .getElementById("productTitle")
+    .textContent =
 
     activeSubcategory !== "All"
 
-    ? activeCategory + " • " + activeSubcategory
+    ? activeCategory +
+      " • " +
+      activeSubcategory
 
     : activeCategory !== "All"
-      ? activeCategory + " Products"
+
+      ? activeCategory +
+        " Products"
+
       : "Featured Products";
 
 }
 
 
 /* =========================
-   OPEN ORDER
+   OPEN PRODUCT DETAILS
 ========================= */
 
-function openOrder(productId){
+function openDetails(productId){
 
   const product =
-    products.find(p => p.id === productId);
+    products.find(
+      p => p.id === productId
+    );
+
 
   if(!product) return;
 
 
-  document.getElementById("orderProductId").value =
-    product.id;
+  selectedDetailsProduct =
+    product;
 
-  document.getElementById("orderProductName").value =
-    product.name;
 
+  const price =
+    product.sale_price != null
+    ? Number(product.sale_price)
+    : Number(product.price);
+
+
+  const image =
+    product.image_url ||
+    "https://via.placeholder.com/800x500?text=No+Image";
+
+
+  const stock =
+    Number(product.stock || 0);
+
+
+  document
+    .getElementById("detailsImage")
+    .src = image;
+
+
+  document
+    .getElementById("detailsImage")
+    .onerror = function(){
+
+      this.src =
+        "https://via.placeholder.com/800x500?text=No+Image";
+
+    };
+
+
+  document
+    .getElementById("detailsTitle")
+    .textContent =
+      product.name || "Product";
+
+
+  document
+    .getElementById("detailsCategory")
+    .textContent =
+
+      (product.category || "") +
+
+      (
+        product.subcategory
+        ? " • " + product.subcategory
+        : ""
+      );
+
+
+  const priceBox =
+    document.getElementById("detailsPrice");
+
+
+  priceBox.innerHTML =
+
+    `${STORE.currency}${price}` +
+
+    (
+      product.sale_price != null
+      ? `
+        <span class="details-old-price">
+          ${STORE.currency}${product.price}
+        </span>
+      `
+      : ""
+    );
+
+
+  const stockBox =
+    document.getElementById("detailsStock");
+
+
+  if(stock > 0){
+
+    stockBox.textContent =
+      "✓ In Stock: " + stock;
+
+    stockBox.className =
+      "details-stock";
+
+  }else{
+
+    stockBox.textContent =
+      "✕ Out of Stock";
+
+    stockBox.className =
+      "details-stock details-out";
+
+  }
+
+
+  document
+    .getElementById("detailsDescription")
+    .textContent =
+      product.description ||
+      "No description available.";
+
+
+  setupDetailsOptions(product);
+
+
+  document
+    .getElementById("detailsQuantity")
+    .value = 1;
+
+
+  const cartButton =
+    document.getElementById("detailsCartBtn");
+
+  const buyButton =
+    document.getElementById("detailsBuyBtn");
+
+
+  cartButton.disabled =
+    stock <= 0;
+
+  buyButton.disabled =
+    stock <= 0;
+
+
+  document
+    .getElementById("detailsModal")
+    .style.display = "flex";
+
+
+  document
+    .querySelector(".details-box")
+    .scrollTop = 0;
+
+}
+
+
+/* =========================
+   SET PRODUCT OPTIONS
+========================= */
+
+function setupDetailsOptions(product){
 
   const sizeSelect =
-    document.getElementById("customerSize");
+    document.getElementById("detailsSize");
 
   const colorSelect =
-    document.getElementById("customerColor");
+    document.getElementById("detailsColor");
 
 
   sizeSelect.innerHTML =
     '<option value="">Select Size</option>';
+
 
   colorSelect.innerHTML =
     '<option value="">Select Color</option>';
@@ -1203,10 +2037,14 @@ function openOrder(productId){
       .filter(Boolean)
       .forEach(size => {
 
-        sizeSelect.innerHTML +=
-          `<option value="${escapeHTML(size)}">
-            ${escapeHTML(size)}
-          </option>`;
+        const option =
+          document.createElement("option");
+
+        option.value = size;
+
+        option.textContent = size;
+
+        sizeSelect.appendChild(option);
 
       });
 
@@ -1221,20 +2059,307 @@ function openOrder(productId){
       .filter(Boolean)
       .forEach(color => {
 
-        colorSelect.innerHTML +=
-          `<option value="${escapeHTML(color)}">
-            ${escapeHTML(color)}
-          </option>`;
+        const option =
+          document.createElement("option");
+
+        option.value = color;
+
+        option.textContent = color;
+
+        colorSelect.appendChild(option);
+
+      });
+
+  }
+
+}
+
+
+/* =========================
+   CLOSE DETAILS
+========================= */
+
+function closeDetails(){
+
+  document
+    .getElementById("detailsModal")
+    .style.display = "none";
+
+
+  selectedDetailsProduct = null;
+
+}
+
+
+/* =========================
+   DETAILS QUANTITY
+========================= */
+
+function changeDetailsQuantity(amount){
+
+  if(!selectedDetailsProduct) return;
+
+
+  const input =
+    document.getElementById("detailsQuantity");
+
+
+  let quantity =
+    Number(input.value || 1);
+
+
+  const stock =
+    Number(
+      selectedDetailsProduct.stock || 0
+    );
+
+
+  quantity += amount;
+
+
+  if(quantity < 1){
+    quantity = 1;
+  }
+
+
+  if(stock > 0 && quantity > stock){
+    quantity = stock;
+  }
+
+
+  input.value = quantity;
+
+}
+
+
+/* =========================
+   ADD DETAILS TO CART
+========================= */
+
+function addDetailsToCart(){
+
+  if(!selectedDetailsProduct) return;
+
+
+  const product =
+    selectedDetailsProduct;
+
+
+  const quantity =
+    Number(
+      document
+        .getElementById("detailsQuantity")
+        .value || 1
+    );
+
+
+  addToCart(
+    product.id,
+    quantity
+  );
+
+
+  alert("✅ Product added to cart!");
+
+}
+
+
+/* =========================
+   BUY DETAILS PRODUCT
+========================= */
+
+function buyDetailsProduct(){
+
+  if(!selectedDetailsProduct) return;
+
+
+  const product =
+    selectedDetailsProduct;
+
+
+  const quantity =
+    Number(
+      document
+        .getElementById("detailsQuantity")
+        .value || 1
+    );
+
+
+  const stock =
+    Number(product.stock || 0);
+
+
+  if(stock <= 0){
+
+    alert("This product is out of stock.");
+
+    return;
+  }
+
+
+  if(quantity > stock){
+
+    alert(
+      "Only " +
+      stock +
+      " item(s) available."
+    );
+
+    return;
+  }
+
+
+  closeDetails();
+
+
+  openOrder(
+    product.id,
+    quantity,
+
+    document
+      .getElementById("detailsSize")
+      .value,
+
+    document
+      .getElementById("detailsColor")
+      .value
+  );
+
+}
+
+
+/* =========================
+   OPEN ORDER
+========================= */
+
+function openOrder(
+  productId,
+  quantity = 1,
+  selectedSize = "",
+  selectedColor = ""
+){
+
+  const product =
+    products.find(
+      p => p.id === productId
+    );
+
+
+  if(!product) return;
+
+
+  const stock =
+    Number(product.stock || 0);
+
+
+  if(stock <= 0){
+
+    alert("This product is out of stock.");
+
+    return;
+  }
+
+
+  document
+    .getElementById("orderProductId")
+    .value =
+      product.id;
+
+
+  document
+    .getElementById("orderProductName")
+    .value =
+      product.name;
+
+
+  const sizeSelect =
+    document.getElementById("customerSize");
+
+
+  const colorSelect =
+    document.getElementById("customerColor");
+
+
+  sizeSelect.innerHTML =
+    '<option value="">Select Size</option>';
+
+
+  colorSelect.innerHTML =
+    '<option value="">Select Color</option>';
+
+
+  if(product.sizes){
+
+    String(product.sizes)
+      .split(",")
+      .map(x => x.trim())
+      .filter(Boolean)
+      .forEach(size => {
+
+        const option =
+          document.createElement("option");
+
+        option.value = size;
+
+        option.textContent = size;
+
+        sizeSelect.appendChild(option);
 
       });
 
   }
 
 
-  document.getElementById("customerQuantity").value = 1;
+  if(product.colors){
 
-  document.getElementById("orderModal").style.display =
-    "flex";
+    String(product.colors)
+      .split(",")
+      .map(x => x.trim())
+      .filter(Boolean)
+      .forEach(color => {
+
+        const option =
+          document.createElement("option");
+
+        option.value = color;
+
+        option.textContent = color;
+
+        colorSelect.appendChild(option);
+
+      });
+
+  }
+
+
+  sizeSelect.value =
+    selectedSize || "";
+
+
+  colorSelect.value =
+    selectedColor || "";
+
+
+  const safeQuantity =
+    Math.min(
+      Math.max(
+        Number(quantity) || 1,
+        1
+      ),
+      stock
+    );
+
+
+  document
+    .getElementById("customerQuantity")
+    .value =
+      safeQuantity;
+
+
+  document
+    .getElementById("orderModal")
+    .style.display =
+      "flex";
 
 }
 
@@ -1245,8 +2370,10 @@ function openOrder(productId){
 
 function closeOrder(){
 
-  document.getElementById("orderModal").style.display =
-    "none";
+  document
+    .getElementById("orderModal")
+    .style.display =
+      "none";
 
 }
 
@@ -1261,11 +2388,15 @@ async function submitOrder(event){
 
 
   const productId =
-    document.getElementById("orderProductId").value;
+    document
+      .getElementById("orderProductId")
+      .value;
 
 
   const product =
-    products.find(p => p.id === productId);
+    products.find(
+      p => p.id === productId
+    );
 
 
   if(!product){
@@ -1278,8 +2409,34 @@ async function submitOrder(event){
 
   const quantity =
     Number(
-      document.getElementById("customerQuantity").value
+      document
+        .getElementById("customerQuantity")
+        .value
     );
+
+
+  const stock =
+    Number(product.stock || 0);
+
+
+  if(quantity < 1){
+
+    alert("Invalid quantity.");
+
+    return;
+  }
+
+
+  if(quantity > stock){
+
+    alert(
+      "Only " +
+      stock +
+      " item(s) available."
+    );
+
+    return;
+  }
 
 
   const unitPrice =
@@ -1294,32 +2451,53 @@ async function submitOrder(event){
 
   const orderData = {
 
-    product_id: product.id,
+    product_id:
+      product.id,
 
-    product_name: product.name,
+    product_name:
+      product.name,
 
     customer_name:
-      document.getElementById("customerName").value.trim(),
+      document
+        .getElementById("customerName")
+        .value
+        .trim(),
 
     phone:
-      document.getElementById("customerPhone").value.trim(),
+      document
+        .getElementById("customerPhone")
+        .value
+        .trim(),
 
     address:
-      document.getElementById("customerAddress").value.trim(),
+      document
+        .getElementById("customerAddress")
+        .value
+        .trim(),
 
     size:
-      document.getElementById("customerSize").value || null,
+      document
+        .getElementById("customerSize")
+        .value ||
+      null,
 
     color:
-      document.getElementById("customerColor").value || null,
+      document
+        .getElementById("customerColor")
+        .value ||
+      null,
 
-    quantity: quantity,
+    quantity:
+      quantity,
 
-    price: unitPrice,
+    price:
+      unitPrice,
 
-    total: total,
+    total:
+      total,
 
-    status: "Pending"
+    status:
+      "Pending"
 
   };
 
@@ -1349,7 +2527,8 @@ async function submitOrder(event){
 
   document
     .getElementById("orderModal")
-    .style.display = "none";
+    .style.display =
+      "none";
 
 
   document
@@ -1363,21 +2542,60 @@ async function submitOrder(event){
    ADD TO CART
 ========================= */
 
-function addToCart(productId){
+function addToCart(
+  productId,
+  quantity = 1
+){
 
   const product =
-    products.find(p => p.id === productId);
+    products.find(
+      p => p.id === productId
+    );
+
 
   if(!product) return;
 
 
+  const stock =
+    Number(product.stock || 0);
+
+
+  if(stock <= 0){
+
+    alert("This product is out of stock.");
+
+    return;
+  }
+
+
   const existing =
-    cart.find(item => item.id === productId);
+    cart.find(
+      item => item.id === productId
+    );
 
 
   if(existing){
 
-    existing.quantity++;
+    const newQuantity =
+      existing.quantity +
+      Number(quantity);
+
+
+    if(newQuantity > stock){
+
+      existing.quantity = stock;
+
+      alert(
+        "Maximum available stock is " +
+        stock
+      );
+
+    }else{
+
+      existing.quantity =
+        newQuantity;
+
+    }
 
   }else{
 
@@ -1385,7 +2603,11 @@ function addToCart(productId){
 
       ...product,
 
-      quantity:1
+      quantity:
+        Math.min(
+          Number(quantity) || 1,
+          stock
+        )
 
     });
 
@@ -1405,13 +2627,16 @@ function updateCartCount(){
 
   const count =
     cart.reduce(
-      (sum,item) => sum + item.quantity,
+      (sum,item) =>
+        sum + item.quantity,
       0
     );
 
 
-  document.getElementById("cartCount").textContent =
-    count;
+  document
+    .getElementById("cartCount")
+    .textContent =
+      count;
 
 }
 
@@ -1424,8 +2649,11 @@ function openCart(){
 
   renderCart();
 
-  document.getElementById("cartModal").style.display =
-    "flex";
+
+  document
+    .getElementById("cartModal")
+    .style.display =
+      "flex";
 
 }
 
@@ -1436,8 +2664,10 @@ function openCart(){
 
 function closeCart(){
 
-  document.getElementById("cartModal").style.display =
-    "none";
+  document
+    .getElementById("cartModal")
+    .style.display =
+      "none";
 
 }
 
@@ -1460,8 +2690,12 @@ function renderCart(){
       </div>
     `;
 
-    document.getElementById("cartTotal").textContent =
-      "৳0";
+
+    document
+      .getElementById("cartTotal")
+      .textContent =
+        "৳0";
+
 
     return;
   }
@@ -1471,64 +2705,153 @@ function renderCart(){
 
 
   container.innerHTML =
-    cart.map((item,index) => {
+    cart.map(
+      (item,index) => {
 
-      const price =
-        item.sale_price != null
-        ? Number(item.sale_price)
-        : Number(item.price);
-
-
-      const itemTotal =
-        price * item.quantity;
+        const price =
+          item.sale_price != null
+          ? Number(item.sale_price)
+          : Number(item.price);
 
 
-      total += itemTotal;
+        const itemTotal =
+          price *
+          item.quantity;
 
 
-      const image =
-        item.image_url ||
-        "https://via.placeholder.com/100";
+        total += itemTotal;
 
 
-      return `
+        const image =
+          item.image_url ||
+          "https://via.placeholder.com/100";
 
-        <div class="cart-item">
 
-          <img
-            src="${escapeHTML(image)}"
-            alt=""
-          >
+        return `
 
-          <div class="cart-info">
+          <div class="cart-item">
 
-            <h4>
-              ${escapeHTML(item.name)}
-            </h4>
-
-            <div>
-              ${STORE.currency}${price}
-              × ${item.quantity}
-            </div>
-
-            <button
-              class="cart-remove"
-              onclick="removeFromCart(${index})"
+            <img
+              src="${escapeHTML(image)}"
+              alt="${escapeHTML(item.name || "")}"
+              onerror="this.src='https://via.placeholder.com/100'"
             >
-              Remove
-            </button>
+
+
+            <div class="cart-info">
+
+              <h4>
+                ${escapeHTML(item.name)}
+              </h4>
+
+
+              <div>
+                ${STORE.currency}${price}
+                × ${item.quantity}
+              </div>
+
+
+              <div class="cart-quantity">
+
+                <button
+                  onclick="changeCartQuantity(${index},-1)"
+                >
+                  −
+                </button>
+
+
+                <strong>
+                  ${item.quantity}
+                </strong>
+
+
+                <button
+                  onclick="changeCartQuantity(${index},1)"
+                >
+                  +
+                </button>
+
+              </div>
+
+
+              <button
+                class="cart-remove"
+                onclick="removeFromCart(${index})"
+              >
+                Remove
+              </button>
+
+            </div>
 
           </div>
 
-        </div>
+        `;
 
-      `;
+      }
+    ).join("");
 
-    }).join("");
+
+  document
+    .getElementById("cartTotal")
+    .textContent =
+      STORE.currency +
+      total;
+
+}
 
 
-  document.getElementById("cartTotal").textContent =
-    STORE.currency + total;
+/* =========================
+   CHANGE CART QUANTITY
+========================= */
+
+function changeCartQuantity(
+  index,
+  amount
+){
+
+  const item =
+    cart[index];
+
+
+  if(!item) return;
+
+
+  const stock =
+    Number(item.stock || 0);
+
+
+  const newQuantity =
+    item.quantity +
+    amount;
+
+
+  if(newQuantity < 1){
+
+    cart.splice(index,1);
+
+  }else if(
+    stock > 0 &&
+    newQuantity > stock
+  ){
+
+    alert(
+      "Maximum available stock is " +
+      stock
+    );
+
+    return;
+
+  }else{
+
+    item.quantity =
+      newQuantity;
+
+  }
+
+
+  updateCartCount();
+
+  renderCart();
 
 }
 
@@ -1562,21 +2885,28 @@ function checkoutCart(){
   }
 
 
-  const firstProduct = cart[0];
+  if(cart.length === 1){
+
+    const item =
+      cart[0];
 
 
-  closeCart();
-
-  openOrder(firstProduct.id);
+    closeCart();
 
 
-  if(cart.length > 1){
-
-    alert(
-      "Cart checkout currently opens the first product. Multi-product checkout will be added in the next version."
+    openOrder(
+      item.id,
+      item.quantity
     );
 
+
+    return;
   }
+
+
+  alert(
+    "Cart checkout currently supports one product at a time. Please checkout each product separately."
+  );
 
 }
 
@@ -1613,32 +2943,76 @@ function escapeHTML(value){
 
 
 /* =========================
-   CLOSE MODALS ON BACKGROUND
+   CLOSE MODALS
 ========================= */
 
-window.addEventListener("click",function(event){
+window.addEventListener(
+  "click",
+  function(event){
 
-  const orderModal =
-    document.getElementById("orderModal");
+    const orderModal =
+      document.getElementById(
+        "orderModal"
+      );
 
-  const cartModal =
-    document.getElementById("cartModal");
+
+    const cartModal =
+      document.getElementById(
+        "cartModal"
+      );
 
 
-  if(event.target === orderModal){
+    const detailsModal =
+      document.getElementById(
+        "detailsModal"
+      );
+
+
+    if(event.target === orderModal){
+
+      closeOrder();
+
+    }
+
+
+    if(event.target === cartModal){
+
+      closeCart();
+
+    }
+
+
+    if(event.target === detailsModal){
+
+      closeDetails();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+window.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key !== "Escape"){
+      return;
+    }
+
 
     closeOrder();
 
-  }
-
-
-  if(event.target === cartModal){
-
     closeCart();
 
-  }
+    closeDetails();
 
-});
+  }
+);
 
 
 /* =========================
@@ -1647,7 +3021,10 @@ window.addEventListener("click",function(event){
 
 loadProducts();
 
+updateCartCount();
+
 </script>
 
 </body>
 </html>
+```
