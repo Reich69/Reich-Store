@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,13 +8,12 @@
 <title>Reich | Admin Panel</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase.js"></script>
 
 <style>
 
-*{
-  box-sizing:border-box
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -22,13 +22,8 @@ body{
   color:#111827;
 }
 
-button,input,textarea,select{
-  font-family:inherit;
-}
-
-button{
-  cursor:pointer;
-}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
 
 header{
   background:#111827;
@@ -56,8 +51,7 @@ header h1{
   align-items:center;
 }
 
-.view-store,
-.logout{
+.view-store,.logout{
   color:#fff;
   text-decoration:none;
   padding:10px 14px;
@@ -66,13 +60,8 @@ header h1{
   border:0;
 }
 
-.view-store{
-  background:#e11d48;
-}
-
-.logout{
-  background:#475569;
-}
+.view-store{background:#e11d48}
+.logout{background:#475569}
 
 .container{
   max-width:1200px;
@@ -88,9 +77,7 @@ header h1{
   margin-bottom:25px;
 }
 
-.card h2{
-  margin-top:0;
-}
+.card h2{margin-top:0}
 
 .form-grid{
   display:grid;
@@ -98,9 +85,7 @@ header h1{
   gap:15px;
 }
 
-.full{
-  grid-column:1/-1;
-}
+.full{grid-column:1/-1}
 
 label{
   display:block;
@@ -109,9 +94,7 @@ label{
   margin-bottom:6px;
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
   width:100%;
   padding:11px;
   border:1px solid #d1d5db;
@@ -119,9 +102,7 @@ textarea{
   outline:none;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
+input:focus,select:focus,textarea:focus{
   border-color:#e11d48;
 }
 
@@ -136,9 +117,7 @@ textarea{
   gap:8px;
 }
 
-.checkbox input{
-  width:auto;
-}
+.checkbox input{width:auto}
 
 .btn{
   background:#e11d48;
@@ -149,9 +128,7 @@ textarea{
   font-weight:700;
 }
 
-.btn:hover{
-  opacity:.9;
-}
+.btn:hover{opacity:.9}
 
 .btn:disabled{
   opacity:.5;
@@ -176,6 +153,9 @@ textarea{
   color:#991b1b;
 }
 
+
+/* PRODUCTS */
+
 .product-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -196,9 +176,7 @@ textarea{
   background:#e5e7eb;
 }
 
-.product-info{
-  padding:14px;
-}
+.product-info{padding:14px}
 
 .product-info h3{
   margin:0 0 7px;
@@ -229,13 +207,8 @@ textarea{
   margin-top:12px;
 }
 
-.edit{
-  background:#111827;
-}
-
-.delete{
-  background:#dc2626;
-}
+.edit{background:#111827}
+.delete{background:#dc2626}
 
 .empty{
   padding:35px;
@@ -262,14 +235,155 @@ textarea{
   background:#f8fafc;
 }
 
-.file-box input{
-  background:white;
-}
+.file-box input{background:white}
 
 .upload-status{
   margin-top:8px;
   font-size:13px;
   color:#64748b;
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+.order-toolbar{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.order-toolbar select,
+.order-toolbar input{
+  max-width:250px;
+}
+
+.orders-list{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.order-card{
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.order-top{
+  padding:15px 18px;
+  background:#f8fafc;
+  border-bottom:1px solid #e5e7eb;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.order-id{
+  font-weight:800;
+}
+
+.order-date{
+  color:#64748b;
+  font-size:13px;
+}
+
+.order-body{
+  padding:18px;
+}
+
+.order-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.order-field{
+  background:#f8fafc;
+  padding:12px;
+  border-radius:8px;
+}
+
+.order-field strong{
+  display:block;
+  font-size:12px;
+  color:#64748b;
+  margin-bottom:4px;
+  text-transform:uppercase;
+}
+
+.order-field span{
+  font-weight:600;
+  word-break:break-word;
+}
+
+.order-total{
+  margin-top:15px;
+  padding:15px;
+  border-radius:10px;
+  background:#fff1f2;
+  font-size:20px;
+  font-weight:800;
+  color:#be123c;
+}
+
+.order-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+  flex-wrap:wrap;
+}
+
+.order-status{
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+  font-weight:700;
+  min-width:160px;
+}
+
+.status-pending{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.status-confirmed{
+  background:#dbeafe;
+  color:#1d4ed8;
+}
+
+.status-shipped{
+  background:#e0e7ff;
+  color:#4338ca;
+}
+
+.status-delivered{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.status-cancelled{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.order-count{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:24px;
+  height:24px;
+  padding:0 7px;
+  border-radius:20px;
+  background:#e11d48;
+  color:#fff;
+  font-size:12px;
+  margin-left:6px;
 }
 
 
@@ -300,9 +414,7 @@ textarea{
   background:#fff;
 }
 
-.customer-item:hover{
-  background:#f1f5f9;
-}
+.customer-item:hover{background:#f1f5f9}
 
 .customer-item.active{
   background:#ffe4e6;
@@ -340,13 +452,8 @@ textarea{
   background:#fff;
 }
 
-.chat-header h3{
-  margin:0 0 4px;
-}
-
-.chat-header small{
-  color:#64748b;
-}
+.chat-header h3{margin:0 0 4px}
+.chat-header small{color:#64748b}
 
 .chat-messages{
   flex:1;
@@ -362,13 +469,8 @@ textarea{
   display:flex;
 }
 
-.chat-message.customer{
-  justify-content:flex-start;
-}
-
-.chat-message.admin{
-  justify-content:flex-end;
-}
+.chat-message.customer{justify-content:flex-start}
+.chat-message.admin{justify-content:flex-end}
 
 .message-bubble{
   max-width:75%;
@@ -464,18 +566,14 @@ textarea{
   color:#64748b;
 }
 
-.login-box label{
-  margin-top:15px;
-}
+.login-box label{margin-top:15px}
 
 .login-btn{
   width:100%;
   margin-top:20px;
 }
 
-#adminApp{
-  display:none;
-}
+#adminApp{display:none}
 
 
 /* RESPONSIVE */
@@ -500,12 +598,14 @@ textarea{
     grid-template-columns:1fr;
   }
 
-  .full{
-    grid-column:auto;
-  }
+  .full{grid-column:auto}
 
   .product-list{
     grid-template-columns:repeat(2,1fr);
+  }
+
+  .order-grid{
+    grid-template-columns:1fr;
   }
 
 }
@@ -526,8 +626,7 @@ textarea{
     flex-wrap:wrap;
   }
 
-  .view-store,
-  .logout{
+  .view-store,.logout{
     flex:1;
     text-align:center;
   }
@@ -540,68 +639,70 @@ textarea{
     width:100%;
   }
 
+  .order-toolbar select,
+  .order-toolbar input{
+    max-width:none;
+  }
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-
-<!-- =========================
-     LOGIN SCREEN
-========================= -->
+<!-- LOGIN -->
 
 <div id="loginScreen" class="login-screen">
 
   <div class="login-box">
 
-    <h1>🔐 Reich Admin</h1>
+```
+<h1>🔐 Reich Admin</h1>
 
-    <p>Sign in to manage your store</p>
+<p>Sign in to manage your store</p>
 
-    <div id="loginStatus" class="status">
-      Please login.
-    </div>
+<div id="loginStatus" class="status">
+  Please login.
+</div>
 
-    <form id="loginForm">
+<form id="loginForm">
 
-      <label>Email</label>
+  <label>Email</label>
 
-      <input
-        id="loginEmail"
-        type="email"
-        required
-        placeholder="Admin email"
-      >
+  <input
+    id="loginEmail"
+    type="email"
+    required
+    placeholder="Admin email"
+  >
 
-      <label>Password</label>
+  <label>Password</label>
 
-      <input
-        id="loginPassword"
-        type="password"
-        required
-        placeholder="Admin password"
-      >
+  <input
+    id="loginPassword"
+    type="password"
+    required
+    placeholder="Admin password"
+  >
 
-      <button
-        class="btn login-btn"
-        id="loginBtn"
-        type="submit"
-      >
-        Login
-      </button>
+  <button
+    class="btn login-btn"
+    id="loginBtn"
+    type="submit"
+  >
+    Login
+  </button>
 
-    </form>
+</form>
+```
 
   </div>
 
 </div>
 
-
-<!-- =========================
-     ADMIN APP
-========================= -->
+<!-- ADMIN APP -->
 
 <div id="adminApp">
 
@@ -609,34 +710,121 @@ textarea{
 
   <div class="header-inner">
 
-    <h1>Reich Admin</h1>
+```
+<h1>Reich Admin</h1>
 
-    <div class="header-actions">
+<div class="header-actions">
 
-      <a
-        class="view-store"
-        href="index.html"
-        target="_blank"
-      >
-        View Store
-      </a>
+  <a
+    class="view-store"
+    href="index.html"
+    target="_blank"
+  >
+    View Store
+  </a>
 
-      <button
-        class="logout"
-        onclick="logout()"
-      >
-        Logout
-      </button>
+  <button
+    class="logout"
+    onclick="logout()"
+  >
+    Logout
+  </button>
 
-    </div>
+</div>
+```
 
   </div>
 
 </header>
 
-
 <div class="container">
 
+<!-- =========================
+     ORDERS
+========================= -->
+
+<div class="card">
+
+  <h2>
+    📦 Customer Orders
+    <span
+      id="orderCount"
+      class="order-count"
+      style="display:none"
+    >
+      0
+    </span>
+  </h2>
+
+  <div
+    id="orderStatus"
+    class="status"
+  >
+    Orders loading...
+  </div>
+
+  <div class="order-toolbar">
+
+```
+<select id="orderFilter">
+
+  <option value="all">
+    All Orders
+  </option>
+
+  <option value="pending">
+    Pending
+  </option>
+
+  <option value="confirmed">
+    Confirmed
+  </option>
+
+  <option value="shipped">
+    Shipped
+  </option>
+
+  <option value="delivered">
+    Delivered
+  </option>
+
+  <option value="cancelled">
+    Cancelled
+  </option>
+
+</select>
+
+<input
+  id="orderSearch"
+  type="search"
+  placeholder="Search name / phone / order..."
+>
+
+<button
+  class="btn"
+  type="button"
+  onclick="loadOrders()"
+>
+  🔄 Refresh
+</button>
+```
+
+  </div>
+
+  <div
+    id="ordersList"
+    class="orders-list"
+  >
+
+```
+<div class="empty">
+  Loading orders...
+</div>
+```
+
+  </div>
+
+</div>
 
 <!-- =========================
      CUSTOMER MESSAGES
@@ -664,76 +852,70 @@ textarea{
 
   <div class="chat-layout">
 
-    <!-- CUSTOMER LIST -->
+```
+<div
+  id="customerList"
+  class="customer-list"
+>
 
-    <div
-      id="customerList"
-      class="customer-list"
-    >
-
-      <div class="no-customer">
-        Loading customers...
-      </div>
-
-    </div>
-
-
-    <!-- CHAT AREA -->
-
-    <div class="chat-area">
-
-      <div
-        id="chatHeader"
-        class="chat-header"
-      >
-
-        <h3>
-          Select a customer
-        </h3>
-
-        <small>
-          Customer conversation will appear here.
-        </small>
-
-      </div>
-
-
-      <div
-        id="chatMessages"
-        class="chat-messages"
-      >
-
-        <div class="no-customer">
-          👈 Select a customer to start conversation.
-        </div>
-
-      </div>
-
-
-      <div class="chat-reply">
-
-        <textarea
-          id="replyInput"
-          placeholder="Type your reply..."
-          disabled
-        ></textarea>
-
-        <button
-          id="replyBtn"
-          class="btn"
-          disabled
-        >
-          Send
-        </button>
-
-      </div>
-
-    </div>
-
+  <div class="no-customer">
+    Loading customers...
   </div>
 
 </div>
 
+<div class="chat-area">
+
+  <div
+    id="chatHeader"
+    class="chat-header"
+  >
+
+    <h3>
+      Select a customer
+    </h3>
+
+    <small>
+      Customer conversation will appear here.
+    </small>
+
+  </div>
+
+  <div
+    id="chatMessages"
+    class="chat-messages"
+  >
+
+    <div class="no-customer">
+      👈 Select a customer to start conversation.
+    </div>
+
+  </div>
+
+  <div class="chat-reply">
+
+    <textarea
+      id="replyInput"
+      placeholder="Type your reply..."
+      disabled
+    ></textarea>
+
+    <button
+      id="replyBtn"
+      class="btn"
+      disabled
+    >
+      Send
+    </button>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+</div>
 
 <!-- =========================
      ADD PRODUCT
@@ -749,218 +931,208 @@ textarea{
 
   <form id="productForm">
 
-    <div class="form-grid">
+```
+<div class="form-grid">
 
-      <div>
+  <div>
 
-        <label>Product Name *</label>
+    <label>Product Name *</label>
 
-        <input
-          id="name"
-          type="text"
-          required
-          placeholder="Premium T-Shirt"
-        >
+    <input
+      id="name"
+      type="text"
+      required
+      placeholder="Premium T-Shirt"
+    >
 
+  </div>
+
+  <div>
+
+    <label>Category *</label>
+
+    <select id="category" required>
+
+      <option value="">
+        Select Category
+      </option>
+
+      <option value="Clothing">
+        Clothing
+      </option>
+
+      <option value="Electronics">
+        Electronics
+      </option>
+
+      <option value="Shoes">
+        Shoes
+      </option>
+
+      <option value="Men">
+        Men
+      </option>
+
+      <option value="Women">
+        Women
+      </option>
+
+    </select>
+
+  </div>
+
+  <div>
+
+    <label>Subcategory *</label>
+
+    <input
+      id="subcategory"
+      type="text"
+      required
+      placeholder="T-Shirt"
+    >
+
+  </div>
+
+  <div>
+
+    <label>Price *</label>
+
+    <input
+      id="price"
+      type="number"
+      min="0"
+      step="0.01"
+      required
+      placeholder="799"
+    >
+
+  </div>
+
+  <div>
+
+    <label>Sale Price</label>
+
+    <input
+      id="sale_price"
+      type="number"
+      min="0"
+      step="0.01"
+      placeholder="599"
+    >
+
+  </div>
+
+  <div>
+
+    <label>Stock *</label>
+
+    <input
+      id="stock"
+      type="number"
+      min="0"
+      value="0"
+      required
+    >
+
+  </div>
+
+  <div>
+
+    <label>Sizes</label>
+
+    <input
+      id="sizes"
+      type="text"
+      placeholder="S, M, L, XL"
+    >
+
+  </div>
+
+  <div>
+
+    <label>Colors</label>
+
+    <input
+      id="colors"
+      type="text"
+      placeholder="Black, White, Red"
+    >
+
+  </div>
+
+  <div class="full">
+
+    <label>Description</label>
+
+    <textarea
+      id="description"
+      placeholder="Product description..."
+    ></textarea>
+
+  </div>
+
+  <div class="full">
+
+    <label>Product Image</label>
+
+    <div class="file-box">
+
+      <input
+        id="imageFile"
+        type="file"
+        accept="image/*"
+      >
+
+      <div
+        id="uploadStatus"
+        class="upload-status"
+      >
+        Choose an image from your PC.
       </div>
 
-
-      <div>
-
-        <label>Category *</label>
-
-        <select id="category" required>
-
-          <option value="">
-            Select Category
-          </option>
-
-          <option value="Clothing">
-            Clothing
-          </option>
-
-          <option value="Electronics">
-            Electronics
-          </option>
-
-          <option value="Shoes">
-            Shoes
-          </option>
-
-          <option value="Men">
-            Men
-          </option>
-
-          <option value="Women">
-            Women
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div>
-
-        <label>Subcategory *</label>
-
-        <input
-          id="subcategory"
-          type="text"
-          required
-          placeholder="T-Shirt"
-        >
-
-      </div>
-
-
-      <div>
-
-        <label>Price *</label>
-
-        <input
-          id="price"
-          type="number"
-          min="0"
-          step="0.01"
-          required
-          placeholder="799"
-        >
-
-      </div>
-
-
-      <div>
-
-        <label>Sale Price</label>
-
-        <input
-          id="sale_price"
-          type="number"
-          min="0"
-          step="0.01"
-          placeholder="599"
-        >
-
-      </div>
-
-
-      <div>
-
-        <label>Stock *</label>
-
-        <input
-          id="stock"
-          type="number"
-          min="0"
-          value="0"
-          required
-        >
-
-      </div>
-
-
-      <div>
-
-        <label>Sizes</label>
-
-        <input
-          id="sizes"
-          type="text"
-          placeholder="S, M, L, XL"
-        >
-
-      </div>
-
-
-      <div>
-
-        <label>Colors</label>
-
-        <input
-          id="colors"
-          type="text"
-          placeholder="Black, White, Red"
-        >
-
-      </div>
-
-
-      <div class="full">
-
-        <label>Description</label>
-
-        <textarea
-          id="description"
-          placeholder="Product description..."
-        ></textarea>
-
-      </div>
-
-
-      <div class="full">
-
-        <label>Product Image</label>
-
-        <div class="file-box">
-
-          <input
-            id="imageFile"
-            type="file"
-            accept="image/*"
-          >
-
-          <div
-            id="uploadStatus"
-            class="upload-status"
-          >
-            Choose an image from your PC.
-          </div>
-
-          <img
-            id="imagePreview"
-            class="image-preview"
-            alt="Image Preview"
-          >
-
-        </div>
-
-      </div>
-
-
-      <div>
-
-        <label class="checkbox">
-
-          <input
-            id="published"
-            type="checkbox"
-            checked
-          >
-
-          Published
-
-        </label>
-
-      </div>
+      <img
+        id="imagePreview"
+        class="image-preview"
+        alt="Image Preview"
+      >
 
     </div>
 
+  </div>
 
-    <br>
+  <div>
 
-    <button
-      class="btn"
-      id="submitBtn"
-      type="submit"
-    >
-      Add Product
-    </button>
+    <label class="checkbox">
+
+      <input
+        id="published"
+        type="checkbox"
+        checked
+      >
+
+      Published
+
+    </label>
+
+  </div>
+
+</div>
+
+<br>
+
+<button
+  class="btn"
+  id="submitBtn"
+  type="submit"
+>
+  Add Product
+</button>
+```
 
   </form>
 
 </div>
-
 
 <!-- =========================
      PRODUCTS
@@ -975,9 +1147,11 @@ textarea{
     class="product-list"
   >
 
-    <div class="empty">
-      Loading products...
-    </div>
+```
+<div class="empty">
+  Loading products...
+</div>
+```
 
   </div>
 
@@ -986,7 +1160,6 @@ textarea{
 </div>
 
 </div>
-
 
 <script>
 
@@ -1001,54 +1174,47 @@ let selectedCustomerId = null;
 let chatMessagesData = [];
 let chatRealtimeChannel = null;
 
+let ordersData = [];
+let orderRealtimeChannel = null;
+
 
 /* =========================
-   LOGIN STATUS
+   STATUS
 ========================= */
 
 function showLoginStatus(message,type=""){
 
-  const box =
-    document.getElementById("loginStatus");
+  const box=document.getElementById("loginStatus");
 
-  box.textContent = message;
-
-  box.className =
-    "status " + type;
+  box.textContent=message;
+  box.className="status "+type;
 
 }
-
-
-/* =========================
-   ADMIN STATUS
-========================= */
 
 function showStatus(message,type=""){
 
-  const box =
-    document.getElementById("status");
+  const box=document.getElementById("status");
 
-  box.textContent = message;
-
-  box.className =
-    "status " + type;
+  box.textContent=message;
+  box.className="status "+type;
 
 }
 
-
-/* =========================
-   CHAT STATUS
-========================= */
-
 function showChatStatus(message,type=""){
 
-  const box =
-    document.getElementById("chatStatus");
+  const box=document.getElementById("chatStatus");
 
-  box.textContent = message;
+  box.textContent=message;
+  box.className="status "+type;
 
-  box.className =
-    "status " + type;
+}
+
+function showOrderStatus(message,type=""){
+
+  const box=document.getElementById("orderStatus");
+
+  box.textContent=message;
+  box.className="status "+type;
 
 }
 
@@ -1058,68 +1224,56 @@ function showChatStatus(message,type=""){
 ========================= */
 
 document
-  .getElementById("loginForm")
-  .addEventListener("submit",async function(event){
+.getElementById("loginForm")
+.addEventListener("submit",async function(event){
 
-    event.preventDefault();
+  event.preventDefault();
 
-    const button =
-      document.getElementById("loginBtn");
+  const button=document.getElementById("loginBtn");
 
-    const email =
-      document
-        .getElementById("loginEmail")
-        .value
-        .trim();
+  const email=document
+    .getElementById("loginEmail")
+    .value
+    .trim();
 
-    const password =
-      document
-        .getElementById("loginPassword")
-        .value;
+  const password=document
+    .getElementById("loginPassword")
+    .value;
 
-    button.disabled=true;
+  button.disabled=true;
+  button.textContent="Logging in...";
 
-    button.textContent="Logging in...";
+  showLoginStatus("Signing in...");
 
-    showLoginStatus("Signing in...");
+  const {error}=await supabaseClient.auth.signInWithPassword({
+    email:email,
+    password:password
+  });
 
+  if(error){
 
-    const { error } =
-      await supabaseClient.auth.signInWithPassword({
-        email:email,
-        password:password
-      });
-
-
-    if(error){
-
-      console.error(error);
-
-      showLoginStatus(
-        "Login failed: " + error.message,
-        "error"
-      );
-
-      button.disabled=false;
-
-      button.textContent="Login";
-
-      return;
-    }
-
+    console.error(error);
 
     showLoginStatus(
-      "Login successful!",
-      "success"
+      "Login failed: "+error.message,
+      "error"
     );
 
-
     button.disabled=false;
-
     button.textContent="Login";
 
+    return;
+  }
 
-    await checkAuth();
+  showLoginStatus(
+    "Login successful!",
+    "success"
+  );
+
+  button.disabled=false;
+  button.textContent="Login";
+
+  await checkAuth();
 
 });
 
@@ -1130,39 +1284,31 @@ document
 
 async function checkAuth(){
 
-  const { data } =
-    await supabaseClient.auth.getSession();
+  const {data}=await supabaseClient.auth.getSession();
 
-
-  const session =
-    data.session;
-
+  const session=data.session;
 
   if(session){
 
-    document
-      .getElementById("loginScreen")
-      .style.display="none";
+    document.getElementById("loginScreen").style.display="none";
 
-    document
-      .getElementById("adminApp")
-      .style.display="block";
+    document.getElementById("adminApp").style.display="block";
 
     loadProducts();
 
     loadCustomerMessages();
 
+    loadOrders();
+
     startChatRealtime();
+
+    startOrderRealtime();
 
   }else{
 
-    document
-      .getElementById("loginScreen")
-      .style.display="flex";
+    document.getElementById("loginScreen").style.display="flex";
 
-    document
-      .getElementById("adminApp")
-      .style.display="none";
+    document.getElementById("adminApp").style.display="none";
 
   }
 
@@ -1180,6 +1326,17 @@ async function logout(){
     await supabaseClient
       .removeChannel(chatRealtimeChannel);
 
+    chatRealtimeChannel=null;
+
+  }
+
+  if(orderRealtimeChannel){
+
+    await supabaseClient
+      .removeChannel(orderRealtimeChannel);
+
+    orderRealtimeChannel=null;
+
   }
 
   await supabaseClient.auth.signOut();
@@ -1195,45 +1352,564 @@ async function logout(){
 
 supabaseClient.auth.onAuthStateChange(
   function(){
-
     checkAuth();
-
   }
 );
 
 
-/* =========================
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  const container=document.getElementById("ordersList");
+
+  container.innerHTML=`
+    <div class="empty">
+      Loading orders...
+    </div>
+  `;
+
+  const {data,error}=await supabaseClient
+    .from("orders")
+    .select("*")
+    .order("created_at",{ascending:false});
+
+  if(error){
+
+    console.error(error);
+
+    container.innerHTML=`
+      <div class="empty">
+        ❌ Could not load orders.
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>
+    `;
+
+    showOrderStatus(
+      "Orders error: "+error.message,
+      "error"
+    );
+
+    return;
+  }
+
+  ordersData=data || [];
+
+  renderOrders();
+
+  updateOrderCount();
+
+  showOrderStatus(
+    ordersData.length
+      ? ordersData.length+" order(s) loaded."
+      : "No orders yet.",
+    ordersData.length
+      ? "success"
+      : ""
+  );
+
+}
+
+
+function renderOrders(){
+
+  const container=document.getElementById("ordersList");
+
+  const filter=document.getElementById("orderFilter").value;
+
+  const search=document
+    .getElementById("orderSearch")
+    .value
+    .trim()
+    .toLowerCase();
+
+
+  let filtered=ordersData.filter(order=>{
+
+    const status=String(order.status || "pending").toLowerCase();
+
+    if(filter!=="all" && status!==filter){
+
+      return false;
+
+    }
+
+    if(search){
+
+      const text=[
+        order.id,
+        order.order_id,
+        order.customer_name,
+        order.name,
+        order.customer_phone,
+        order.phone,
+        order.product_name,
+        order.product,
+        order.address
+      ]
+      .join(" ")
+      .toLowerCase();
+
+      if(!text.includes(search)){
+
+        return false;
+
+      }
+
+    }
+
+    return true;
+
+  });
+
+
+  if(!filtered.length){
+
+    container.innerHTML=`
+      <div class="empty">
+        📦 No matching orders found.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML=filtered.map(order=>{
+
+    const status=String(
+      order.status || "pending"
+    ).toLowerCase();
+
+    const statusClass=
+      "status-"+status;
+
+    const orderNumber=
+      order.order_id ||
+      order.id ||
+      "N/A";
+
+    const customerName=
+      order.customer_name ||
+      order.name ||
+      "Customer";
+
+    const phone=
+      order.customer_phone ||
+      order.phone ||
+      "Not provided";
+
+    const productName=
+      order.product_name ||
+      order.product ||
+      "Product";
+
+    const quantity=
+      order.quantity ??
+      1;
+
+    const size=
+      order.size ||
+      order.sizes ||
+      "Not selected";
+
+    const color=
+      order.color ||
+      order.colors ||
+      "Not selected";
+
+    const address=
+      order.address ||
+      order.shipping_address ||
+      "Not provided";
+
+    const price=
+      order.total ??
+      order.total_price ??
+      order.amount ??
+      order.price ??
+      0;
+
+    const date=
+      formatDate(order.created_at);
+
+
+    return`
+
+      <div class="order-card">
+
+        <div class="order-top">
+
+          <div>
+
+            <div class="order-id">
+              📦 Order #${escapeHTML(orderNumber)}
+            </div>
+
+            <div class="order-date">
+              ${escapeHTML(date)}
+            </div>
+
+          </div>
+
+          <div class="order-id">
+            ${escapeHTML(customerName)}
+          </div>
+
+        </div>
+
+
+        <div class="order-body">
+
+          <div class="order-grid">
+
+            <div class="order-field">
+
+              <strong>Customer</strong>
+
+              <span>
+                ${escapeHTML(customerName)}
+              </span>
+
+            </div>
+
+
+            <div class="order-field">
+
+              <strong>Phone</strong>
+
+              <span>
+                ${escapeHTML(phone)}
+              </span>
+
+            </div>
+
+
+            <div class="order-field">
+
+              <strong>Product</strong>
+
+              <span>
+                ${escapeHTML(productName)}
+              </span>
+
+            </div>
+
+
+            <div class="order-field">
+
+              <strong>Quantity</strong>
+
+              <span>
+                ${escapeHTML(quantity)}
+              </span>
+
+            </div>
+
+
+            <div class="order-field">
+
+              <strong>Size</strong>
+
+              <span>
+                ${escapeHTML(size)}
+              </span>
+
+            </div>
+
+
+            <div class="order-field">
+
+              <strong>Color</strong>
+
+              <span>
+                ${escapeHTML(color)}
+              </span>
+
+            </div>
+
+
+            <div class="order-field full">
+
+              <strong>Address</strong>
+
+              <span>
+                ${escapeHTML(address)}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="order-total">
+
+            Total:
+            ৳${escapeHTML(price)}
+
+          </div>
+
+
+          <div class="order-actions">
+
+            <select
+              class="order-status ${statusClass}"
+              onchange="updateOrderStatus('${escapeAttribute(order.id)}',this.value)"
+            >
+
+              <option
+                value="pending"
+                ${status==="pending" ? "selected" : ""}
+              >
+                Pending
+              </option>
+
+              <option
+                value="confirmed"
+                ${status==="confirmed" ? "selected" : ""}
+              >
+                Confirmed
+              </option>
+
+              <option
+                value="shipped"
+                ${status==="shipped" ? "selected" : ""}
+              >
+                Shipped
+              </option>
+
+              <option
+                value="delivered"
+                ${status==="delivered" ? "selected" : ""}
+              >
+                Delivered
+              </option>
+
+              <option
+                value="cancelled"
+                ${status==="cancelled" ? "selected" : ""}
+              >
+                Cancelled
+              </option>
+
+            </select>
+
+
+            <button
+              class="btn delete"
+              type="button"
+              onclick="deleteOrder('${escapeAttribute(order.id)}')"
+            >
+              Delete Order
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+}
+
+
+async function updateOrderStatus(id,newStatus){
+
+  if(!id) return;
+
+  const {error}=await supabaseClient
+    .from("orders")
+    .update({
+      status:newStatus
+    })
+    .eq("id",id);
+
+  if(error){
+
+    console.error(error);
+
+    showOrderStatus(
+      "Status update failed: "+error.message,
+      "error"
+    );
+
+    await loadOrders();
+
+    return;
+
+  }
+
+  const item=ordersData.find(
+    order=>String(order.id)===String(id)
+  );
+
+  if(item){
+
+    item.status=newStatus;
+
+  }
+
+  renderOrders();
+
+  showOrderStatus(
+    "✅ Order status updated to "+newStatus+".",
+    "success"
+  );
+
+}
+
+
+async function deleteOrder(id){
+
+  const confirmed=confirm(
+    "Are you sure you want to delete this order?"
+  );
+
+  if(!confirmed) return;
+
+
+  const {error}=await supabaseClient
+    .from("orders")
+    .delete()
+    .eq("id",id);
+
+
+  if(error){
+
+    alert(
+      "Delete failed: "+error.message
+    );
+
+    return;
+
+  }
+
+
+  showOrderStatus(
+    "✅ Order deleted successfully!",
+    "success"
+  );
+
+  await loadOrders();
+
+}
+
+
+function updateOrderCount(){
+
+  const badge=document.getElementById("orderCount");
+
+  const pending=ordersData.filter(
+    order=>
+      String(order.status || "pending")
+      .toLowerCase()==="pending"
+  ).length;
+
+
+  if(pending>0){
+
+    badge.style.display="inline-flex";
+
+    badge.textContent=
+      pending>99
+      ? "99+"
+      : pending;
+
+  }else{
+
+    badge.style.display="none";
+
+  }
+
+}
+
+
+/* ORDER FILTER */
+
+document
+.getElementById("orderFilter")
+.addEventListener(
+  "change",
+  renderOrders
+);
+
+
+document
+.getElementById("orderSearch")
+.addEventListener(
+  "input",
+  renderOrders
+);
+
+
+/* ORDER REALTIME */
+
+function startOrderRealtime(){
+
+  if(orderRealtimeChannel){
+
+    return;
+
+  }
+
+
+  orderRealtimeChannel=
+    supabaseClient
+      .channel("orders-live")
+      .on(
+        "postgres_changes",
+        {
+          event:"*",
+          schema:"public",
+          table:"orders"
+        },
+        function(){
+
+          loadOrders();
+
+        }
+      )
+      .subscribe();
+
+}
+
+
+/* =========================================================
    CUSTOMER MESSAGES
-========================= */
+========================================================= */
 
 async function loadCustomerMessages(){
 
-  const list =
-    document.getElementById("customerList");
+  const list=document.getElementById("customerList");
 
-
-  list.innerHTML = `
+  list.innerHTML=`
     <div class="no-customer">
       Loading customers...
     </div>
   `;
 
 
-  const { data,error } =
-    await supabaseClient
-      .from("customer_messages")
-      .select("*")
-      .order(
-        "created_at",
-        {ascending:true}
-      );
+  const {data,error}=await supabaseClient
+    .from("customer_messages")
+    .select("*")
+    .order(
+      "created_at",
+      {ascending:true}
+    );
 
 
   if(error){
 
     console.error(error);
 
-    list.innerHTML = `
+    list.innerHTML=`
       <div class="no-customer">
         ❌ Could not load messages.
         <br><br>
@@ -1242,7 +1918,7 @@ async function loadCustomerMessages(){
     `;
 
     showChatStatus(
-      "Chat error: " + error.message,
+      "Chat error: "+error.message,
       "error"
     );
 
@@ -1250,7 +1926,7 @@ async function loadCustomerMessages(){
   }
 
 
-  chatMessagesData = data || [];
+  chatMessagesData=data || [];
 
   renderCustomerList();
 
@@ -1269,7 +1945,11 @@ async function loadCustomerMessages(){
   if(
     selectedCustomerId &&
     chatMessagesData.some(
-      m => String(m.id) === String(selectedCustomerId)
+      m=>String(
+        m.phone ||
+        m.name ||
+        "unknown"
+      )===String(selectedCustomerId)
     )
   ){
 
@@ -1280,39 +1960,35 @@ async function loadCustomerMessages(){
 }
 
 
-/* =========================
-   CUSTOMER LIST
-========================= */
+/* CUSTOMER LIST */
 
 function renderCustomerList(){
 
-  const list =
-    document.getElementById("customerList");
+  const list=document.getElementById("customerList");
 
 
   if(!chatMessagesData.length){
 
-    list.innerHTML = `
+    list.innerHTML=`
       <div class="no-customer">
         💬 No customer messages yet.
       </div>
     `;
 
     return;
+
   }
 
 
-  /*
-    Group messages by phone number.
-  */
-
-  const groups = {};
+  const groups={};
 
 
-  chatMessagesData.forEach(message => {
+  chatMessagesData.forEach(message=>{
 
-    const key =
-      message.phone || message.name || "unknown";
+    const key=
+      message.phone ||
+      message.name ||
+      "unknown";
 
 
     if(!groups[key]){
@@ -1327,49 +2003,50 @@ function renderCustomerList(){
   });
 
 
-  const customers =
+  const customers=
     Object.values(groups)
-      .map(messages => {
+    .map(messages=>{
 
-        const last =
-          messages[messages.length-1];
-
-
-        return {
-          key:
-            last.phone ||
-            last.name ||
-            "unknown",
-
-          name:
-            last.name ||
-            "Customer",
-
-          phone:
-            last.phone ||
-            "",
-
-          lastMessage:
-            last.message ||
-            "",
-
-          messages:messages
-
-        };
-
-      });
+      const last=
+        messages[messages.length-1];
 
 
-  list.innerHTML =
-    customers.map(customer => {
+      return{
 
-      const active =
-        selectedCustomerId === customer.key
+        key:
+          last.phone ||
+          last.name ||
+          "unknown",
+
+        name:
+          last.name ||
+          "Customer",
+
+        phone:
+          last.phone ||
+          "",
+
+        lastMessage:
+          last.message ||
+          "",
+
+        messages:messages
+
+      };
+
+    });
+
+
+  list.innerHTML=
+    customers.map(customer=>{
+
+      const active=
+        selectedCustomerId===customer.key
         ? "active"
         : "";
 
 
-      return `
+      return`
 
         <div
           class="customer-item ${active}"
@@ -1397,15 +2074,11 @@ function renderCustomerList(){
 }
 
 
-/* =========================
-   SELECT CUSTOMER
-========================= */
+/* SELECT CUSTOMER */
 
 function selectCustomer(customerKey){
 
-  selectedCustomerId =
-    customerKey;
-
+  selectedCustomerId=customerKey;
 
   renderCustomerList();
 
@@ -1414,50 +2087,43 @@ function selectCustomer(customerKey){
 }
 
 
-/* =========================
-   RENDER CHAT
-========================= */
+/* RENDER CHAT */
 
 function renderChat(customerKey){
 
-  const messages =
+  const messages=
     chatMessagesData.filter(
-      message =>
+      message=>
         String(
           message.phone ||
           message.name ||
           "unknown"
-        ) === String(customerKey)
+        )===String(customerKey)
     );
 
 
-  const header =
-    document.getElementById("chatHeader");
+  const header=document.getElementById("chatHeader");
 
-  const chat =
-    document.getElementById("chatMessages");
+  const chat=document.getElementById("chatMessages");
 
-  const reply =
-    document.getElementById("replyInput");
+  const reply=document.getElementById("replyInput");
 
-  const replyButton =
-    document.getElementById("replyBtn");
+  const replyButton=document.getElementById("replyBtn");
 
 
   if(!messages.length){
 
-    header.innerHTML = `
+    header.innerHTML=`
       <h3>Select a customer</h3>
     `;
 
-    chat.innerHTML = `
+    chat.innerHTML=`
       <div class="no-customer">
         No messages.
       </div>
     `;
 
     reply.disabled=true;
-
     replyButton.disabled=true;
 
     return;
@@ -1465,11 +2131,10 @@ function renderChat(customerKey){
   }
 
 
-  const customer =
-    messages[0];
+  const customer=messages[0];
 
 
-  header.innerHTML = `
+  header.innerHTML=`
 
     <h3>
       👤 ${escapeHTML(customer.name || "Customer")}
@@ -1482,14 +2147,10 @@ function renderChat(customerKey){
   `;
 
 
-  chat.innerHTML =
-    messages.map(message => {
+  chat.innerHTML=
+    messages.map(message=>{
 
-      /*
-        If reply is filled, show it as admin message.
-      */
-
-      let html = `
+      let html=`
 
         <div class="chat-message customer">
 
@@ -1510,7 +2171,7 @@ function renderChat(customerKey){
 
       if(message.reply){
 
-        html += `
+        html+=`
 
           <div class="chat-message admin">
 
@@ -1519,7 +2180,10 @@ function renderChat(customerKey){
               ${escapeHTML(message.reply)}
 
               <div class="message-time">
-                Admin • ${formatDate(message.replied_at || message.created_at)}
+                Admin • ${formatDate(
+                  message.replied_at ||
+                  message.created_at
+                )}
               </div>
 
             </div>
@@ -1537,41 +2201,36 @@ function renderChat(customerKey){
 
 
   reply.disabled=false;
-
   replyButton.disabled=false;
 
-
-  chat.scrollTop =
-    chat.scrollHeight;
+  chat.scrollTop=chat.scrollHeight;
 
 }
 
 
-/* =========================
-   SEND REPLY
-========================= */
+/* SEND REPLY */
 
 document
-  .getElementById("replyBtn")
-  .addEventListener("click",sendReply);
+.getElementById("replyBtn")
+.addEventListener("click",sendReply);
 
 
 document
-  .getElementById("replyInput")
-  .addEventListener("keydown",function(event){
+.getElementById("replyInput")
+.addEventListener("keydown",function(event){
 
-    if(
-      event.key === "Enter" &&
-      !event.shiftKey
-    ){
+  if(
+    event.key==="Enter" &&
+    !event.shiftKey
+  ){
 
-      event.preventDefault();
+    event.preventDefault();
 
-      sendReply();
+    sendReply();
 
-    }
+  }
 
-  });
+});
 
 
 async function sendReply(){
@@ -1585,76 +2244,55 @@ async function sendReply(){
   }
 
 
-  const input =
-    document.getElementById("replyInput");
+  const input=document.getElementById("replyInput");
 
-  const button =
-    document.getElementById("replyBtn");
+  const button=document.getElementById("replyBtn");
 
 
-  const reply =
-    input.value.trim();
+  const reply=input.value.trim();
 
 
-  if(!reply){
-
-    return;
-
-  }
+  if(!reply) return;
 
 
-  const messages =
+  const messages=
     chatMessagesData.filter(
-      message =>
+      message=>
         String(
           message.phone ||
           message.name ||
           "unknown"
-        ) === String(selectedCustomerId)
+        )===String(selectedCustomerId)
     );
 
 
-  if(!messages.length){
-
-    return;
-
-  }
+  if(!messages.length) return;
 
 
-  /*
-    For now we reply to the latest customer message.
-  */
-
-  const latest =
+  const latest=
     messages[messages.length-1];
 
 
   button.disabled=true;
-
   button.textContent="Sending...";
 
 
   try{
 
-    const { error } =
-      await supabaseClient
-        .from("customer_messages")
-        .update({
+    const {error}=await supabaseClient
+      .from("customer_messages")
+      .update({
 
-          reply:reply,
+        reply:reply,
 
-          replied_at:
-            new Date().toISOString()
+        replied_at:
+          new Date().toISOString()
 
-        })
-        .eq("id",latest.id);
+      })
+      .eq("id",latest.id);
 
 
-    if(error){
-
-      throw error;
-
-    }
+    if(error) throw error;
 
 
     input.value="";
@@ -1674,14 +2312,13 @@ async function sendReply(){
     console.error(error);
 
     showChatStatus(
-      "Reply failed: " + error.message,
+      "Reply failed: "+error.message,
       "error"
     );
 
   }finally{
 
     button.disabled=false;
-
     button.textContent="Send";
 
   }
@@ -1689,9 +2326,7 @@ async function sendReply(){
 }
 
 
-/* =========================
-   REALTIME CHAT
-========================= */
+/* CHAT REALTIME */
 
 function startChatRealtime(){
 
@@ -1702,7 +2337,7 @@ function startChatRealtime(){
   }
 
 
-  chatRealtimeChannel =
+  chatRealtimeChannel=
     supabaseClient
       .channel("customer-messages-live")
       .on(
@@ -1723,34 +2358,26 @@ function startChatRealtime(){
 }
 
 
-/* =========================
-   UNREAD BADGE
-========================= */
+/* UNREAD BADGE */
 
 function updateUnreadBadge(){
 
-  const badge =
+  const badge=
     document.getElementById("unreadBadge");
 
 
-  /*
-    Messages which have no reply
-    are counted as waiting messages.
-  */
-
-  const count =
+  const count=
     chatMessagesData.filter(
-      message =>
-        !message.reply
+      message=>!message.reply
     ).length;
 
 
-  if(count > 0){
+  if(count>0){
 
     badge.style.display="inline-flex";
 
-    badge.textContent =
-      count > 99
+    badge.textContent=
+      count>99
       ? "99+"
       : count;
 
@@ -1763,151 +2390,116 @@ function updateUnreadBadge(){
 }
 
 
-/* =========================
-   DATE FORMAT
-========================= */
+/* =========================================================
+   IMAGE
+========================================================= */
 
-function formatDate(date){
+document
+.getElementById("imageFile")
+.addEventListener("change",function(){
 
-  if(!date) return "";
+  const file=this.files[0];
+
+  const preview=
+    document.getElementById("imagePreview");
+
+  const uploadStatus=
+    document.getElementById("uploadStatus");
 
 
-  try{
+  if(!file){
 
-    return new Date(date)
-      .toLocaleString(
-        "en-BD",
-        {
-          dateStyle:"short",
-          timeStyle:"short"
-        }
-      );
+    selectedImageFile=null;
 
-  }catch(error){
+    preview.style.display="none";
 
-    return "";
+    uploadStatus.textContent=
+      "Choose an image from your PC.";
+
+    return;
 
   }
 
-}
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Please select an image file.");
+
+    this.value="";
+
+    return;
+
+  }
 
 
-/* =========================
-   IMAGE SELECT
-========================= */
+  if(file.size>5*1024*1024){
 
-document
-  .getElementById("imageFile")
-  .addEventListener("change",function(){
+    alert("Image must be smaller than 5MB.");
 
-    const file =
-      this.files[0];
+    this.value="";
 
-    const preview =
-      document.getElementById("imagePreview");
+    return;
 
-    const uploadStatus =
-      document.getElementById("uploadStatus");
+  }
 
 
-    if(!file){
-
-      selectedImageFile=null;
-
-      preview.style.display="none";
-
-      uploadStatus.textContent =
-        "Choose an image from your PC.";
-
-      return;
-    }
+  selectedImageFile=file;
 
 
-    if(!file.type.startsWith("image/")){
+  preview.src=
+    URL.createObjectURL(file);
 
-      alert("Please select an image file.");
-
-      this.value="";
-
-      return;
-    }
+  preview.style.display="block";
 
 
-    if(file.size > 5 * 1024 * 1024){
+  uploadStatus.textContent=
+    "Selected: "+file.name;
 
-      alert("Image must be smaller than 5MB.");
-
-      this.value="";
-
-      return;
-    }
+});
 
 
-    selectedImageFile=file;
-
-
-    preview.src =
-      URL.createObjectURL(file);
-
-    preview.style.display="block";
-
-
-    uploadStatus.textContent =
-      "Selected: " + file.name;
-
-  });
-
-
-/* =========================
-   UPLOAD IMAGE
-========================= */
+/* UPLOAD IMAGE */
 
 async function uploadImage(file){
 
   if(!file) return null;
 
 
-  const fileExtension =
+  const fileExtension=
     file.name
       .split(".")
       .pop()
       .toLowerCase();
 
 
-  const fileName =
-    Date.now() +
-    "-" +
-    crypto.randomUUID() +
-    "." +
+  const fileName=
+    Date.now()+
+    "-"+
+    crypto.randomUUID()+
+    "."+
     fileExtension;
 
 
-  const filePath =
-    fileName;
+  const filePath=fileName;
 
 
-  const { error } =
-    await supabaseClient
-      .storage
-      .from("product-images")
-      .upload(
-        filePath,
-        file,
-        {
-          cacheControl:"3600",
-          upsert:false
-        }
-      );
+  const {error}=await supabaseClient
+    .storage
+    .from("product-images")
+    .upload(
+      filePath,
+      file,
+      {
+        cacheControl:"3600",
+        upsert:false
+      }
+    );
 
 
-  if(error){
-
-    throw error;
-
-  }
+  if(error) throw error;
 
 
-  const { data } =
+  const {data}=
     supabaseClient
       .storage
       .from("product-images")
@@ -1919,215 +2511,213 @@ async function uploadImage(file){
 }
 
 
-/* =========================
-   ADD / UPDATE PRODUCT
-========================= */
+/* =========================================================
+   PRODUCTS
+========================================================= */
 
 document
-  .getElementById("productForm")
-  .addEventListener("submit",async function(event){
+.getElementById("productForm")
+.addEventListener("submit",async function(event){
 
-    event.preventDefault();
-
-
-    const button =
-      document.getElementById("submitBtn");
-
-    const uploadStatus =
-      document.getElementById("uploadStatus");
+  event.preventDefault();
 
 
-    button.disabled=true;
+  const button=
+    document.getElementById("submitBtn");
+
+  const uploadStatus=
+    document.getElementById("uploadStatus");
 
 
-    try{
-
-      let imageUrl = null;
+  button.disabled=true;
 
 
-      if(editingId){
+  try{
 
-        const { data:oldProduct } =
-          await supabaseClient
-            .from("products")
-            .select("image_url")
-            .eq("id",editingId)
-            .single();
+    let imageUrl=null;
 
 
-        imageUrl =
-          oldProduct?.image_url || null;
+    if(editingId){
 
-      }
-
-
-      if(selectedImageFile){
-
-        uploadStatus.textContent =
-          "Uploading image...";
+      const {data:oldProduct}=
+        await supabaseClient
+          .from("products")
+          .select("image_url")
+          .eq("id",editingId)
+          .single();
 
 
-        imageUrl =
-          await uploadImage(
-            selectedImageFile
-          );
-
-
-        uploadStatus.textContent =
-          "✅ Image uploaded successfully.";
-
-      }
-
-
-      const product = {
-
-        name:
-          document
-            .getElementById("name")
-            .value
-            .trim(),
-
-        category:
-          document
-            .getElementById("category")
-            .value,
-
-        subcategory:
-          document
-            .getElementById("subcategory")
-            .value
-            .trim(),
-
-        price:
-          Number(
-            document
-              .getElementById("price")
-              .value
-          ),
-
-        sale_price:
-          document
-            .getElementById("sale_price")
-            .value
-            ? Number(
-                document
-                  .getElementById("sale_price")
-                  .value
-              )
-            : null,
-
-        sizes:
-          document
-            .getElementById("sizes")
-            .value
-            .trim() || null,
-
-        colors:
-          document
-            .getElementById("colors")
-            .value
-            .trim() || null,
-
-        stock:
-          Number(
-            document
-              .getElementById("stock")
-              .value
-          ),
-
-        description:
-          document
-            .getElementById("description")
-            .value
-            .trim() || null,
-
-        image_url:
-          imageUrl,
-
-        published:
-          document
-            .getElementById("published")
-            .checked
-
-      };
-
-
-      let result;
-
-
-      if(editingId){
-
-        result =
-          await supabaseClient
-            .from("products")
-            .update(product)
-            .eq("id",editingId);
-
-      }else{
-
-        result =
-          await supabaseClient
-            .from("products")
-            .insert([product]);
-
-      }
-
-
-      if(result.error){
-
-        throw result.error;
-
-      }
-
-
-      showStatus(
-        editingId
-        ? "✅ Product updated successfully!"
-        : "✅ Product added successfully!",
-        "success"
-      );
-
-
-      resetForm();
-
-      await loadProducts();
-
-    }catch(error){
-
-      console.error(error);
-
-      showStatus(
-        "Error: " + error.message,
-        "error"
-      );
-
-    }finally{
-
-      button.disabled=false;
+      imageUrl=
+        oldProduct?.image_url || null;
 
     }
+
+
+    if(selectedImageFile){
+
+      uploadStatus.textContent=
+        "Uploading image...";
+
+
+      imageUrl=
+        await uploadImage(
+          selectedImageFile
+        );
+
+
+      uploadStatus.textContent=
+        "✅ Image uploaded successfully.";
+
+    }
+
+
+    const product={
+
+      name:
+        document
+          .getElementById("name")
+          .value
+          .trim(),
+
+      category:
+        document
+          .getElementById("category")
+          .value,
+
+      subcategory:
+        document
+          .getElementById("subcategory")
+          .value
+          .trim(),
+
+      price:
+        Number(
+          document
+            .getElementById("price")
+            .value
+        ),
+
+      sale_price:
+        document
+          .getElementById("sale_price")
+          .value
+          ? Number(
+              document
+                .getElementById("sale_price")
+                .value
+            )
+          : null,
+
+      sizes:
+        document
+          .getElementById("sizes")
+          .value
+          .trim() || null,
+
+      colors:
+        document
+          .getElementById("colors")
+          .value
+          .trim() || null,
+
+      stock:
+        Number(
+          document
+            .getElementById("stock")
+            .value
+        ),
+
+      description:
+        document
+          .getElementById("description")
+          .value
+          .trim() || null,
+
+      image_url:imageUrl,
+
+      published:
+        document
+          .getElementById("published")
+          .checked
+
+    };
+
+
+    let result;
+
+
+    if(editingId){
+
+      result=
+        await supabaseClient
+          .from("products")
+          .update(product)
+          .eq("id",editingId);
+
+    }else{
+
+      result=
+        await supabaseClient
+          .from("products")
+          .insert([product]);
+
+    }
+
+
+    if(result.error){
+
+      throw result.error;
+
+    }
+
+
+    showStatus(
+      editingId
+      ? "✅ Product updated successfully!"
+      : "✅ Product added successfully!",
+      "success"
+    );
+
+
+    resetForm();
+
+    await loadProducts();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showStatus(
+      "Error: "+error.message,
+      "error"
+    );
+
+  }finally{
+
+    button.disabled=false;
+
+  }
 
 });
 
 
-/* =========================
-   LOAD PRODUCTS
-========================= */
+/* LOAD PRODUCTS */
 
 async function loadProducts(){
 
-  const container =
+  const container=
     document.getElementById("productsList");
 
 
-  container.innerHTML = `
+  container.innerHTML=`
     <div class="empty">
       Loading products...
     </div>
   `;
 
 
-  const { data,error } =
+  const {data,error}=
     await supabaseClient
       .from("products")
       .select("*")
@@ -2141,7 +2731,7 @@ async function loadProducts(){
 
     console.error(error);
 
-    container.innerHTML = `
+    container.innerHTML=`
       <div class="empty">
         Could not load products.
         <br><br>
@@ -2150,36 +2740,38 @@ async function loadProducts(){
     `;
 
     return;
+
   }
 
 
   if(!data || data.length===0){
 
-    container.innerHTML = `
+    container.innerHTML=`
       <div class="empty">
         No products yet.
       </div>
     `;
 
     return;
+
   }
 
 
-  container.innerHTML =
-    data.map(product => {
+  container.innerHTML=
+    data.map(product=>{
 
-      const price =
-        product.sale_price != null
+      const price=
+        product.sale_price!=null
         ? product.sale_price
         : product.price;
 
 
-      const image =
+      const image=
         product.image_url ||
         "https://via.placeholder.com/800x500?text=No+Image";
 
 
-      return `
+      return`
 
         <div class="product-card">
 
@@ -2199,7 +2791,7 @@ async function loadProducts(){
               ${escapeHTML(product.category)}
               ${
                 product.subcategory
-                ? " • " +
+                ? " • "+
                   escapeHTML(product.subcategory)
                 : ""
               }
@@ -2210,13 +2802,13 @@ async function loadProducts(){
               ৳${price}
 
               ${
-                product.sale_price != null
-                ? `
+                product.sale_price!=null
+                ?`
                   <span class="old">
                     ৳${product.price}
                   </span>
                 `
-                : ""
+                :""
               }
 
             </div>
@@ -2240,14 +2832,14 @@ async function loadProducts(){
 
               <button
                 class="btn edit"
-                onclick="editProduct('${product.id}')"
+                onclick="editProduct('${escapeAttribute(product.id)}')"
               >
                 Edit
               </button>
 
               <button
                 class="btn delete"
-                onclick="deleteProduct('${product.id}')"
+                onclick="deleteProduct('${escapeAttribute(product.id)}')"
               >
                 Delete
               </button>
@@ -2265,13 +2857,11 @@ async function loadProducts(){
 }
 
 
-/* =========================
-   EDIT PRODUCT
-========================= */
+/* EDIT PRODUCT */
 
 async function editProduct(id){
 
-  const { data,error } =
+  const {data,error}=
     await supabaseClient
       .from("products")
       .select("*")
@@ -2284,40 +2874,41 @@ async function editProduct(id){
     alert(error.message);
 
     return;
+
   }
 
 
   editingId=id;
 
 
-  document.getElementById("name").value =
+  document.getElementById("name").value=
     data.name || "";
 
-  document.getElementById("category").value =
+  document.getElementById("category").value=
     data.category || "";
 
-  document.getElementById("subcategory").value =
+  document.getElementById("subcategory").value=
     data.subcategory || "";
 
-  document.getElementById("price").value =
+  document.getElementById("price").value=
     data.price ?? "";
 
-  document.getElementById("sale_price").value =
+  document.getElementById("sale_price").value=
     data.sale_price ?? "";
 
-  document.getElementById("sizes").value =
+  document.getElementById("sizes").value=
     data.sizes || "";
 
-  document.getElementById("colors").value =
+  document.getElementById("colors").value=
     data.colors || "";
 
-  document.getElementById("stock").value =
+  document.getElementById("stock").value=
     data.stock ?? 0;
 
-  document.getElementById("description").value =
+  document.getElementById("description").value=
     data.description || "";
 
-  document.getElementById("published").checked =
+  document.getElementById("published").checked=
     data.published;
 
 
@@ -2326,7 +2917,7 @@ async function editProduct(id){
   document.getElementById("imageFile").value="";
 
 
-  const preview =
+  const preview=
     document.getElementById("imagePreview");
 
 
@@ -2336,25 +2927,25 @@ async function editProduct(id){
 
     preview.style.display="block";
 
-    document.getElementById("uploadStatus").textContent =
+    document.getElementById("uploadStatus").textContent=
       "Current image. Choose a new file to replace it.";
 
   }else{
 
     preview.style.display="none";
 
-    document.getElementById("uploadStatus").textContent =
+    document.getElementById("uploadStatus").textContent=
       "No current image. Choose one from your PC.";
 
   }
 
 
-  document.getElementById("submitBtn").textContent =
+  document.getElementById("submitBtn").textContent=
     "Update Product";
 
 
   showStatus(
-    "Editing: " + data.name
+    "Editing: "+data.name
   );
 
 
@@ -2366,13 +2957,11 @@ async function editProduct(id){
 }
 
 
-/* =========================
-   DELETE PRODUCT
-========================= */
+/* DELETE PRODUCT */
 
 async function deleteProduct(id){
 
-  const confirmed =
+  const confirmed=
     confirm(
       "Are you sure you want to delete this product?"
     );
@@ -2381,7 +2970,7 @@ async function deleteProduct(id){
   if(!confirmed) return;
 
 
-  const { error } =
+  const {error}=
     await supabaseClient
       .from("products")
       .delete()
@@ -2391,11 +2980,12 @@ async function deleteProduct(id){
   if(error){
 
     alert(
-      "Delete failed: " +
+      "Delete failed: "+
       error.message
     );
 
     return;
+
   }
 
 
@@ -2410,9 +3000,7 @@ async function deleteProduct(id){
 }
 
 
-/* =========================
-   RESET FORM
-========================= */
+/* RESET FORM */
 
 function resetForm(){
 
@@ -2426,27 +3014,32 @@ function resetForm(){
     .reset();
 
 
-  document.getElementById("published").checked =
-    true;
+  document
+    .getElementById("published")
+    .checked=true;
 
 
-  document.getElementById("submitBtn").textContent =
-    "Add Product";
+  document
+    .getElementById("submitBtn")
+    .textContent="Add Product";
 
 
-  document.getElementById("imagePreview").style.display =
-    "none";
+  document
+    .getElementById("imagePreview")
+    .style.display="none";
 
 
-  document.getElementById("uploadStatus").textContent =
-    "Choose an image from your PC.";
+  document
+    .getElementById("uploadStatus")
+    .textContent=
+      "Choose an image from your PC.";
 
 }
 
 
-/* =========================
-   ESCAPE HTML
-========================= */
+/* =========================================================
+   SECURITY / ESCAPING
+========================================================= */
 
 function escapeHTML(value){
 
@@ -2469,9 +3062,33 @@ function escapeAttribute(value){
 }
 
 
-/* =========================
-   START
-========================= */
+/* DATE */
+
+function formatDate(date){
+
+  if(!date) return "";
+
+  try{
+
+    return new Date(date)
+      .toLocaleString(
+        "en-BD",
+        {
+          dateStyle:"short",
+          timeStyle:"short"
+        }
+      );
+
+  }catch(error){
+
+    return "";
+
+  }
+
+}
+
+
+/* START */
 
 checkAuth();
 
