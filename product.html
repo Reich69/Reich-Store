@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Product | Reich</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f8fafc;
+  color:#111827;
+}
+
+button,input,select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* HEADER */
+
+header{
+  background:white;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#e11d48;
+}
+
+nav{
+  display:flex;
+  gap:20px;
+  flex:1;
+  justify-content:center;
+  font-size:14px;
+  font-weight:700;
+}
+
+.nav-link:hover{
+  color:#e11d48;
+}
+
+.cart-btn{
+  border:0;
+  background:#111827;
+  color:white;
+  padding:11px 15px;
+  border-radius:9px;
+  font-weight:700;
+}
+
+/* PAGE */
+
+.container{
+  max-width:1200px;
+  margin:35px auto;
+  padding:0 20px;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+  font-weight:700;
+  color:#475569;
+}
+
+.back:hover{
+  color:#e11d48;
+}
+
+/* PRODUCT */
+
+.product-details{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:25px;
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:40px;
+}
+
+.product-image-box{
+  background:#f1f5f9;
+  border-radius:14px;
+  overflow:hidden;
+  min-height:450px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.product-image{
+  width:100%;
+  height:450px;
+  object-fit:cover;
+}
+
+.product-info{
+  padding:10px 0;
+}
+
+.category{
+  color:#64748b;
+  font-size:14px;
+  margin-bottom:10px;
+}
+
+.product-name{
+  font-size:36px;
+  margin:0 0 15px;
+}
+
+.price{
+  font-size:28px;
+  font-weight:800;
+  margin:15px 0;
+}
+
+.old-price{
+  text-decoration:line-through;
+  color:#64748b;
+  font-size:17px;
+  margin-left:8px;
+}
+
+.stock{
+  display:inline-block;
+  padding:7px 11px;
+  border-radius:7px;
+  background:#dcfce7;
+  color:#166534;
+  font-weight:700;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.out-stock{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.description{
+  color:#475569;
+  line-height:1.7;
+  margin:20px 0;
+  white-space:pre-line;
+}
+
+.option{
+  margin-top:18px;
+}
+
+.option label{
+  display:block;
+  font-size:14px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+select,
+.quantity{
+  width:100%;
+  max-width:300px;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  background:white;
+}
+
+.quantity{
+  max-width:120px;
+}
+
+.buttons{
+  display:flex;
+  gap:12px;
+  margin-top:25px;
+}
+
+.btn{
+  border:0;
+  padding:13px 20px;
+  border-radius:9px;
+  font-weight:800;
+  font-size:15px;
+}
+
+.buy{
+  background:#e11d48;
+  color:white;
+  flex:1;
+}
+
+.cart{
+  background:#111827;
+  color:white;
+  flex:1;
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+/* LOADING */
+
+.loading,
+.error,
+.not-found{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:50px 20px;
+  text-align:center;
+}
+
+.error{
+  color:#991b1b;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:60px;
+  background:#111827;
+  color:white;
+  padding:40px 20px;
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+}
+
+.muted{
+  color:#cbd5e1;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .product-details{
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+
+  .product-image-box{
+    min-height:350px;
+  }
+
+  .product-image{
+    height:350px;
+  }
+
+  nav{
+    display:none;
+  }
+
+}
+
+@media(max-width:550px){
+
+  .nav{
+    padding:13px 15px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  .product-details{
+    padding:15px;
+  }
+
+  .product-name{
+    font-size:28px;
+  }
+
+  .product-image-box{
+    min-height:280px;
+  }
+
+  .product-image{
+    height:280px;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="nav">
+
+    <a href="index.html" class="logo">
+      Reich
+    </a>
+
+    <nav>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="index.html#categories">Categories</a>
+      <a class="nav-link" href="index.html#products">Products</a>
+      <a class="nav-link" href="index.html#contact">Contact</a>
+    </nav>
+
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+  <a href="index.html" class="back">
+    ← Back to Store
+  </a>
+
+  <div id="productContainer">
+
+    <div class="loading">
+      Loading product...
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- CART -->
+
+<div
+  id="cartModal"
+  style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#0008;
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  "
+>
+
+  <div
+    style="
+      background:white;
+      width:min(500px,100%);
+      max-height:90vh;
+      overflow:auto;
+      border-radius:16px;
+      padding:25px;
+      position:relative;
+    "
+  >
+
+    <button
+      onclick="closeCart()"
+      style="
+        position:absolute;
+        right:15px;
+        top:10px;
+        border:0;
+        background:none;
+        font-size:28px;
+      "
+    >
+      ×
+    </button>
+
+    <h2>🛒 Your Cart</h2>
+
+    <div id="cartItems"></div>
+
+    <h3>
+      Total: <span id="cartTotal">৳0</span>
+    </h3>
+
+    <button
+      class="btn buy"
+      style="width:100%;margin-top:10px"
+      onclick="checkoutCart()"
+    >
+      Checkout
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-inner">
+
+    <h2>Reich</h2>
+
+    <p class="muted">
+      Your trusted online shopping destination.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   VARIABLES
+========================= */
+
+let product = null;
+
+let cart = [];
+
+
+/* =========================
+   GET PRODUCT ID
+========================= */
+
+function getProductId(){
+
+  const params =
+    new URLSearchParams(window.location.search);
+
+  return params.get("id");
+
+}
+
+
+/* =========================
+   LOAD PRODUCT
+========================= */
+
+async function loadProduct(){
+
+  const container =
+    document.getElementById("productContainer");
+
+  const productId =
+    getProductId();
+
+
+  if(!productId){
+
+    container.innerHTML = `
+      <div class="not-found">
+        <h2>Product not found</h2>
+        <p>No product ID was provided.</p>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const { data,error } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .eq("id",productId)
+      .eq("published",true)
+      .single();
+
+
+  if(error || !data){
+
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="not-found">
+        <h2>Product not found</h2>
+        <p>This product may no longer be available.</p>
+      </div>
+    `;
+
+    return;
+  }
+
+
+  product = data;
+
+  renderProduct();
+
+}
+
+
+/* =========================
+   RENDER PRODUCT
+========================= */
+
+function renderProduct(){
+
+  const container =
+    document.getElementById("productContainer");
+
+
+  const price =
+    product.sale_price != null
+    ? Number(product.sale_price)
+    : Number(product.price);
+
+
+  const hasSale =
+    product.sale_price != null;
+
+
+  const stock =
+    Number(product.stock || 0);
+
+
+  const image =
+    product.image_url ||
+    "https://via.placeholder.com/800x600?text=No+Image";
+
+
+  const sizes =
+    product.sizes
+    ? String(product.sizes)
+        .split(",")
+        .map(x => x.trim())
+        .filter(Boolean)
+    : [];
+
+
+  const colors =
+    product.colors
+    ? String(product.colors)
+        .split(",")
+        .map(x => x.trim())
+        .filter(Boolean)
+    : [];
+
+
+  container.innerHTML = `
+
+    <div class="product-details">
+
+      <div class="product-image-box">
+
+        <img
+          class="product-image"
+          src="${escapeHTML(image)}"
+          alt="${escapeHTML(product.name || "Product")}"
+          onerror="this.src='https://via.placeholder.com/800x600?text=No+Image'"
+        >
+
+      </div>
+
+
+      <div class="product-info">
+
+        <div class="category">
+
+          ${escapeHTML(product.category || "")}
+
+          ${
+            product.subcategory
+            ? " • " + escapeHTML(product.subcategory)
+            : ""
+          }
+
+        </div>
+
+
+        <h1 class="product-name">
+          ${escapeHTML(product.name || "Product")}
+        </h1>
+
+
+        <div class="price">
+
+          ৳${price}
+
+          ${
+            hasSale
+            ? `
+              <span class="old-price">
+                ৳${product.price}
+              </span>
+            `
+            : ""
+          }
+
+        </div>
+
+
+        <div class="
+          stock
+          ${stock <= 0 ? "out-stock" : ""}
+        ">
+
+          ${
+            stock > 0
+            ? "✓ In Stock: " + stock
+            : "✕ Out of Stock"
+          }
+
+        </div>
+
+
+        ${
+          product.description
+          ? `
+            <div class="description">
+              ${escapeHTML(product.description)}
+            </div>
+          `
+          : ""
+        }
+
+
+        ${
+          sizes.length > 0
+          ? `
+            <div class="option">
+
+              <label>Size</label>
+
+              <select id="productSize">
+
+                <option value="">
+                  Select Size
+                </option>
+
+                ${sizes.map(size => `
+                  <option value="${escapeHTML(size)}">
+                    ${escapeHTML(size)}
+                  </option>
+                `).join("")}
+
+              </select>
+
+            </div>
+          `
+          : ""
+        }
+
+
+        ${
+          colors.length > 0
+          ? `
+            <div class="option">
+
+              <label>Color</label>
+
+              <select id="productColor">
+
+                <option value="">
+                  Select Color
+                </option>
+
+                ${colors.map(color => `
+                  <option value="${escapeHTML(color)}">
+                    ${escapeHTML(color)}
+                  </option>
+                `).join("")}
+
+              </select>
+
+            </div>
+          `
+          : ""
+        }
+
+
+        <div class="option">
+
+          <label>Quantity</label>
+
+          <input
+            class="quantity"
+            id="productQuantity"
+            type="number"
+            min="1"
+            max="${stock}"
+            value="1"
+            ${stock <= 0 ? "disabled" : ""}
+          >
+
+        </div>
+
+
+        <div class="buttons">
+
+          <button
+            class="btn cart"
+            onclick="addCurrentProductToCart()"
+            ${stock <= 0 ? "disabled" : ""}
+          >
+            🛒 Add to Cart
+          </button>
+
+          <button
+            class="btn buy"
+            onclick="buyNow()"
+            ${stock <= 0 ? "disabled" : ""}
+          >
+            ⚡ Buy Now
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document.title =
+    product.name + " | Reich";
+
+}
+
+
+/* =========================
+   ADD TO CART
+========================= */
+
+function addCurrentProductToCart(){
+
+  if(!product) return;
+
+
+  const quantity =
+    Number(
+      document.getElementById("productQuantity").value
+    );
+
+
+  const size =
+    document.getElementById("productSize")
+    ?.value || "";
+
+
+  const color =
+    document.getElementById("productColor")
+    ?.value || "";
+
+
+  if(quantity < 1){
+
+    alert("Please select a valid quantity.");
+
+    return;
+  }
+
+
+  if(quantity > Number(product.stock)){
+
+    alert("Not enough stock available.");
+
+    return;
+  }
+
+
+  const existing =
+    cart.find(item =>
+      item.id === product.id &&
+      item.size === size &&
+      item.color === color
+    );
+
+
+  if(existing){
+
+    if(
+      existing.quantity + quantity >
+      Number(product.stock)
+    ){
+
+      alert("Not enough stock available.");
+
+      return;
+    }
+
+    existing.quantity += quantity;
+
+  }else{
+
+    cart.push({
+
+      ...product,
+
+      quantity:quantity,
+
+      size:size,
+
+      color:color
+
+    });
+
+  }
+
+
+  updateCartCount();
+
+  alert("✅ Product added to cart!");
+
+}
+
+
+/* =========================
+   BUY NOW
+========================= */
+
+function buyNow(){
+
+  if(!product) return;
+
+
+  const quantity =
+    Number(
+      document.getElementById("productQuantity").value
+    );
+
+
+  const size =
+    document.getElementById("productSize")
+    ?.value || "";
+
+
+  const color =
+    document.getElementById("productColor")
+    ?.value || "";
+
+
+  if(quantity < 1){
+
+    alert("Please select a valid quantity.");
+
+    return;
+  }
+
+
+  if(quantity > Number(product.stock)){
+
+    alert("Not enough stock available.");
+
+    return;
+  }
+
+
+  const params =
+    new URLSearchParams({
+
+      product:product.id,
+
+      quantity:String(quantity),
+
+      size:size,
+
+      color:color
+
+    });
+
+
+  window.location.href =
+    "index.html?buy=" +
+    encodeURIComponent(params.toString());
+
+}
+
+
+/* =========================
+   CART COUNT
+========================= */
+
+function updateCartCount(){
+
+  const count =
+    cart.reduce(
+      (sum,item) =>
+        sum + Number(item.quantity),
+      0
+    );
+
+
+  document.getElementById("cartCount")
+    .textContent = count;
+
+}
+
+
+/* =========================
+   OPEN CART
+========================= */
+
+function openCart(){
+
+  renderCart();
+
+  document.getElementById("cartModal")
+    .style.display = "flex";
+
+}
+
+
+/* =========================
+   CLOSE CART
+========================= */
+
+function closeCart(){
+
+  document.getElementById("cartModal")
+    .style.display = "none";
+
+}
+
+
+/* =========================
+   RENDER CART
+========================= */
+
+function renderCart(){
+
+  const container =
+    document.getElementById("cartItems");
+
+
+  if(cart.length === 0){
+
+    container.innerHTML = `
+      <p style="color:#64748b">
+        Your cart is empty.
+      </p>
+    `;
+
+    document.getElementById("cartTotal")
+      .textContent = "৳0";
+
+    return;
+  }
+
+
+  let total = 0;
+
+
+  container.innerHTML =
+    cart.map((item,index) => {
+
+      const price =
+        item.sale_price != null
+        ? Number(item.sale_price)
+        : Number(item.price);
+
+
+      const itemTotal =
+        price * Number(item.quantity);
+
+
+      total += itemTotal;
+
+
+      return `
+
+        <div style="
+          display:flex;
+          gap:12px;
+          padding:12px 0;
+          border-bottom:1px solid #e5e7eb;
+        ">
+
+          <img
+            src="${escapeHTML(
+              item.image_url ||
+              "https://via.placeholder.com/100"
+            )}"
+            style="
+              width:70px;
+              height:70px;
+              object-fit:cover;
+              border-radius:8px;
+            "
+          >
+
+          <div style="flex:1">
+
+            <strong>
+              ${escapeHTML(item.name)}
+            </strong>
+
+            <div>
+              ৳${price} × ${item.quantity}
+            </div>
+
+            ${
+              item.size
+              ? `<small>Size: ${escapeHTML(item.size)}</small><br>`
+              : ""
+            }
+
+            ${
+              item.color
+              ? `<small>Color: ${escapeHTML(item.color)}</small>`
+              : ""
+            }
+
+            <br>
+
+            <button
+              onclick="removeFromCart(${index})"
+              style="
+                border:0;
+                background:none;
+                color:#dc2626;
+                font-weight:700;
+                padding:0;
+                margin-top:5px;
+              "
+            >
+              Remove
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("cartTotal")
+    .textContent = "৳" + total;
+
+}
+
+
+/* =========================
+   REMOVE CART
+========================= */
+
+function removeFromCart(index){
+
+  cart.splice(index,1);
+
+  updateCartCount();
+
+  renderCart();
+
+}
+
+
+/* =========================
+   CART CHECKOUT
+========================= */
+
+function checkoutCart(){
+
+  if(cart.length === 0){
+
+    alert("Your cart is empty.");
+
+    return;
+  }
+
+
+  const item = cart[0];
+
+
+  const params =
+    new URLSearchParams({
+
+      product:item.id,
+
+      quantity:String(item.quantity),
+
+      size:item.size || "",
+
+      color:item.color || ""
+
+    });
+
+
+  window.location.href =
+    "index.html?buy=" +
+    encodeURIComponent(params.toString());
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadProduct();
+
+</script>
+
+</body>
+</html>
