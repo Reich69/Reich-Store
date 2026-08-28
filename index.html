@@ -388,6 +388,7 @@ textarea{
   min-height:450px;
   object-fit:cover;
   background:#e5e7eb;
+  cursor:zoom-in;
 }
 
 .details-info{
@@ -443,6 +444,68 @@ textarea{
   flex:1;
 }
 
+/* IMAGE ZOOM */
+
+.image-zoom-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000e;
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.zoom-container{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.zoom-image{
+  max-width:90%;
+  max-height:85%;
+  object-fit:contain;
+  cursor:grab;
+  user-select:none;
+  transition:transform .15s ease;
+}
+
+.zoom-controls{
+  position:absolute;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:10px;
+  z-index:3;
+}
+
+.zoom-btn{
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:50%;
+  background:#fff;
+  color:#111827;
+  font-size:22px;
+  font-weight:800;
+}
+
+.zoom-close{
+  position:absolute;
+  right:25px;
+  top:18px;
+  color:#fff;
+  font-size:35px;
+  cursor:pointer;
+  z-index:3;
+}
+
 /* CART */
 
 .cart-item{
@@ -477,6 +540,101 @@ textarea{
   margin-top:20px;
   font-size:20px;
   font-weight:800;
+}
+
+/* CUSTOMER SERVICE */
+
+.customer-service-button{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:60px;
+  height:60px;
+  border:0;
+  border-radius:50%;
+  background:#e11d48;
+  color:#fff;
+  font-size:27px;
+  box-shadow:0 8px 25px #0004;
+  z-index:70;
+}
+
+.customer-service-button:hover{
+  transform:scale(1.05);
+}
+
+.support-box{
+  position:fixed;
+  right:22px;
+  bottom:92px;
+  width:min(360px,calc(100vw - 30px));
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 15px 45px #0004;
+  z-index:71;
+  overflow:hidden;
+  display:none;
+}
+
+.support-header{
+  background:#111827;
+  color:#fff;
+  padding:16px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.support-header h3{
+  margin:0;
+  font-size:17px;
+}
+
+.support-close{
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:24px;
+}
+
+.support-body{
+  padding:18px;
+}
+
+.support-intro{
+  margin:0 0 15px;
+  color:#64748b;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.support-body label{
+  margin-top:10px;
+}
+
+.support-submit{
+  width:100%;
+  margin-top:15px;
+}
+
+.support-status{
+  display:none;
+  padding:10px;
+  border-radius:8px;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+.support-success{
+  display:block;
+  background:#dcfce7;
+  color:#166534;
+}
+
+.support-error{
+  display:block;
+  background:#fee2e2;
+  color:#991b1b;
 }
 
 /* FOOTER */
@@ -576,6 +734,18 @@ footer{
 
   .detail-actions{
     flex-direction:column;
+  }
+
+  .customer-service-button{
+    right:15px;
+    bottom:15px;
+    width:55px;
+    height:55px;
+  }
+
+  .support-box{
+    right:15px;
+    bottom:82px;
   }
 
 }
@@ -688,7 +858,7 @@ Featured Products
 class="search"
 id="search"
 placeholder="Search products..."
-oninput="renderProducts()"
+oninput="renderProducts"
 
 >
 
@@ -704,7 +874,7 @@ Loading products...
 
 </section>
 
-<!-- PRODUCT DETAILS MODAL -->
+<!-- PRODUCT DETAILS -->
 
 <div class="modal" id="detailsModal">
 
@@ -721,7 +891,45 @@ Loading products...
 
 </div>
 
-<!-- ORDER MODAL -->
+<!-- IMAGE ZOOM -->
+
+<div class="image-zoom-modal" id="imageZoomModal">
+
+<div class="zoom-close" onclick="closeImageZoom()">
+×
+</div>
+
+<div class="zoom-container">
+
+<img
+id="zoomImage"
+class="zoom-image"
+src=""
+alt="Product Image"
+
+>
+
+</div>
+
+<div class="zoom-controls">
+
+<button class="zoom-btn" onclick="zoomOut()">
+−
+</button>
+
+<button class="zoom-btn" onclick="resetZoom()">
+↺
+</button>
+
+<button class="zoom-btn" onclick="zoomIn()">
++
+</button>
+
+</div>
+
+</div>
+
+<!-- ORDER -->
 
 <div class="modal" id="orderModal">
 
@@ -747,17 +955,20 @@ Loading products...
 
 <textarea id="customerAddress" required></textarea>
 
-<label>Size</label> <select id="customerSize">
+<label>Size</label>
 
+<select id="customerSize">
 <option value="">Select Size</option>
 </select>
 
-<label>Color</label> <select id="customerColor">
+<label>Color</label>
 
+<select id="customerColor">
 <option value="">Select Color</option>
 </select>
 
 <label>Quantity</label>
+
 <input
 id="customerQuantity"
 type="number"
@@ -783,7 +994,7 @@ Confirm COD Order </button>
 </div>
 </div>
 
-<!-- CART MODAL -->
+<!-- CART -->
 
 <div class="modal" id="cartModal">
 
@@ -809,6 +1020,93 @@ onclick="checkoutCart()"
 >
 
 Checkout </button>
+
+</div>
+</div>
+
+<!-- CUSTOMER SERVICE -->
+
+<button
+class="customer-service-button"
+onclick="toggleCustomerService()"
+aria-label="Customer Service"
+
+>
+
+💬 </button>
+
+<div class="support-box" id="supportBox">
+
+<div class="support-header">
+
+<h3>💬 Customer Service</h3>
+
+<button
+class="support-close"
+onclick="closeCustomerService()"
+
+>
+
+× </button>
+
+</div>
+
+<div class="support-body">
+
+<p class="support-intro">
+Need help? Send us a message and we will get back to you.
+</p>
+
+<div
+id="supportStatus"
+class="support-status"
+></div>
+
+<form onsubmit="submitCustomerMessage(event)">
+
+<label>
+Your Name *
+</label>
+
+<input
+id="supportName"
+type="text"
+required
+placeholder="Enter your name"
+
+>
+
+<label>
+Phone Number
+</label>
+
+<input
+id="supportPhone"
+type="tel"
+placeholder="Optional"
+
+>
+
+<label>
+Your Message *
+</label>
+
+<textarea
+id="supportMessage"
+required
+placeholder="How can we help you?"
+></textarea>
+
+<button
+class="btn support-submit"
+type="submit"
+id="supportSubmitBtn"
+
+>
+
+Send Message </button>
+
+</form>
 
 </div>
 </div>
@@ -866,6 +1164,8 @@ let products = [];
 let activeCategory = "All";
 let activeSubcategory = "All";
 let cart = [];
+
+let currentZoom = 1;
 
 
 /* LOAD PRODUCTS */
@@ -1247,6 +1547,7 @@ function openProductDetails(productId){
         class="details-image"
         src="${escapeHTML(image)}"
         alt="${escapeHTML(product.name || "")}"
+        onclick="openImageZoom('${escapeHTML(image)}')"
         onerror="this.src='https://via.placeholder.com/900x900?text=No+Image'"
       >
 
@@ -1351,6 +1652,67 @@ function closeDetails(){
 
   document.getElementById("detailsModal").style.display =
     "none";
+}
+
+
+/* IMAGE ZOOM */
+
+function openImageZoom(image){
+
+  const modal =
+    document.getElementById("imageZoomModal");
+
+  const zoomImage =
+    document.getElementById("zoomImage");
+
+  currentZoom = 1;
+
+  zoomImage.src = image;
+
+  zoomImage.style.transform =
+    "scale(1)";
+
+  modal.style.display = "flex";
+}
+
+
+function closeImageZoom(){
+
+  document.getElementById("imageZoomModal").style.display =
+    "none";
+
+}
+
+
+function zoomIn(){
+
+  currentZoom =
+    Math.min(currentZoom + 0.25,3);
+
+  document.getElementById("zoomImage").style.transform =
+    `scale(${currentZoom})`;
+
+}
+
+
+function zoomOut(){
+
+  currentZoom =
+    Math.max(currentZoom - 0.25,0.5);
+
+  document.getElementById("zoomImage").style.transform =
+    `scale(${currentZoom})`;
+
+}
+
+
+function resetZoom(){
+
+  currentZoom = 1;
+
+  document.getElementById("zoomImage").style.transform =
+    "scale(1)";
+
 }
 
 
@@ -1775,6 +2137,169 @@ function checkoutCart(){
 }
 
 
+/* CUSTOMER SERVICE */
+
+function toggleCustomerService(){
+
+  const box =
+    document.getElementById("supportBox");
+
+  if(box.style.display === "block"){
+
+    box.style.display = "none";
+
+  }else{
+
+    box.style.display = "block";
+
+    setTimeout(()=>{
+      document
+        .getElementById("supportName")
+        .focus();
+    },100);
+
+  }
+
+}
+
+
+function closeCustomerService(){
+
+  document.getElementById("supportBox").style.display =
+    "none";
+
+}
+
+
+async function submitCustomerMessage(event){
+
+  event.preventDefault();
+
+  const button =
+    document.getElementById("supportSubmitBtn");
+
+  const status =
+    document.getElementById("supportStatus");
+
+  const name =
+    document
+      .getElementById("supportName")
+      .value
+      .trim();
+
+  const phone =
+    document
+      .getElementById("supportPhone")
+      .value
+      .trim();
+
+  const message =
+    document
+      .getElementById("supportMessage")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    showSupportStatus(
+      "Please enter your name.",
+      "error"
+    );
+
+    return;
+  }
+
+  if(!message){
+
+    showSupportStatus(
+      "Please enter your message.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    "Sending...";
+
+
+  const messageData = {
+
+    name:name,
+
+    phone:phone || null,
+
+    message:message,
+
+    status:"Unread"
+
+  };
+
+
+  const {error} =
+    await supabaseClient
+      .from("customer_messages")
+      .insert([messageData]);
+
+
+  if(error){
+
+    console.error(error);
+
+    showSupportStatus(
+      "Message পাঠাতে সমস্যা হয়েছে। Please try again.",
+      "error"
+    );
+
+    button.disabled = false;
+
+    button.textContent =
+      "Send Message";
+
+    return;
+  }
+
+
+  showSupportStatus(
+    "✅ Message sent successfully! We will contact you soon.",
+    "success"
+  );
+
+
+  document
+    .querySelector("#supportBox form")
+    .reset();
+
+
+  button.disabled = false;
+
+  button.textContent =
+    "Send Message";
+
+}
+
+
+function showSupportStatus(message,type){
+
+  const status =
+    document.getElementById("supportStatus");
+
+  status.textContent =
+    message;
+
+  status.className =
+    "support-status " +
+    (type === "success"
+      ? "support-success"
+      : "support-error");
+
+}
+
+
 /* GO PRODUCTS */
 
 function goProducts(){
@@ -1814,6 +2339,10 @@ window.addEventListener("click",function(event){
   const cartModal =
     document.getElementById("cartModal");
 
+  const imageZoomModal =
+    document.getElementById("imageZoomModal");
+
+
   if(event.target === detailsModal){
 
     closeDetails();
@@ -1829,6 +2358,29 @@ window.addEventListener("click",function(event){
   if(event.target === cartModal){
 
     closeCart();
+
+  }
+
+  if(event.target === imageZoomModal){
+
+    closeImageZoom();
+
+  }
+
+});
+
+
+/* ESC KEY */
+
+window.addEventListener("keydown",function(event){
+
+  if(event.key === "Escape"){
+
+    closeDetails();
+    closeOrder();
+    closeCart();
+    closeImageZoom();
+    closeCustomerService();
 
   }
 
