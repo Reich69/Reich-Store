@@ -1,20 +1,25 @@
 <!doctype html>
-
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Reich | Online Store</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase.js"></script>
 
 <style>
-*{box-sizing:border-box}
 
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
@@ -27,12 +32,19 @@ button,input,textarea,select{
   font-family:inherit;
 }
 
-button{cursor:pointer}
+button{
+  cursor:pointer;
+}
+
+button:disabled{
+  cursor:not-allowed;
+}
 
 a{
   text-decoration:none;
   color:inherit;
 }
+
 
 /* TOP BAR */
 
@@ -43,6 +55,7 @@ a{
   padding:9px;
   font-size:13px;
 }
+
 
 /* HEADER */
 
@@ -68,7 +81,9 @@ header{
   font-weight:800;
 }
 
-.logo span{color:#e11d48}
+.logo span{
+  color:#e11d48;
+}
 
 nav{
   display:flex;
@@ -79,7 +94,9 @@ nav{
   font-weight:700;
 }
 
-.nav-link:hover{color:#e11d48}
+.nav-link:hover{
+  color:#e11d48;
+}
 
 .cart-btn{
   border:0;
@@ -89,6 +106,7 @@ nav{
   border-radius:9px;
   font-weight:700;
 }
+
 
 /* HERO */
 
@@ -112,6 +130,9 @@ nav{
   margin-bottom:25px;
 }
 
+
+/* BUTTON */
+
 .btn{
   background:#e11d48;
   color:#fff;
@@ -121,12 +142,14 @@ nav{
   font-weight:700;
 }
 
-.btn:hover{opacity:.9}
+.btn:hover{
+  opacity:.9;
+}
 
 .btn:disabled{
   opacity:.5;
-  cursor:not-allowed;
 }
+
 
 /* CONTAINER */
 
@@ -144,7 +167,10 @@ nav{
   margin-bottom:20px;
 }
 
-.title h2{margin:0}
+.title h2{
+  margin:0;
+}
+
 
 /* CATEGORY */
 
@@ -175,6 +201,7 @@ nav{
   margin-bottom:10px;
 }
 
+
 /* SUBCATEGORY */
 
 .subcategory-area{
@@ -186,7 +213,10 @@ nav{
   display:none;
 }
 
-.subcategory-area h3{margin-top:0}
+.subcategory-area h3{
+  margin-top:0;
+  margin-bottom:15px;
+}
 
 .subcategory-buttons{
   display:flex;
@@ -209,6 +239,7 @@ nav{
   border-color:#111827;
 }
 
+
 /* SEARCH */
 
 .search{
@@ -219,7 +250,10 @@ nav{
   outline:none;
 }
 
-.search:focus{border-color:#e11d48}
+.search:focus{
+  border-color:#e11d48;
+}
+
 
 /* PRODUCTS */
 
@@ -250,7 +284,9 @@ nav{
   background:#e5e7eb;
 }
 
-.product-body{padding:15px}
+.product-body{
+  padding:15px;
+}
 
 .product-body h3{
   margin:0 0 8px;
@@ -281,7 +317,9 @@ nav{
   color:#16a34a;
 }
 
-.out-stock{color:#dc2626}
+.out-stock{
+  color:#dc2626;
+}
 
 .product-buttons{
   display:flex;
@@ -311,6 +349,7 @@ nav{
   padding:40px;
   color:#64748b;
 }
+
 
 /* MODAL */
 
@@ -344,7 +383,9 @@ nav{
   z-index:2;
 }
 
-.modal-box h2{margin-top:0}
+.modal-box h2{
+  margin-top:0;
+}
 
 label{
   display:block;
@@ -368,6 +409,7 @@ textarea{
   min-height:90px;
   resize:vertical;
 }
+
 
 /* PRODUCT DETAILS */
 
@@ -434,6 +476,32 @@ textarea{
   margin-right:6px;
 }
 
+
+/* DETAILS OPTIONS */
+
+.product-option{
+  margin-top:18px;
+}
+
+.product-option label{
+  margin-top:0;
+  font-size:14px;
+}
+
+.product-option select{
+  margin-top:7px;
+  background:#fff;
+}
+
+.option-required{
+  color:#dc2626;
+  font-size:12px;
+  margin-top:5px;
+}
+
+
+/* DETAIL ACTIONS */
+
 .detail-actions{
   display:flex;
   gap:10px;
@@ -443,6 +511,7 @@ textarea{
 .detail-actions button{
   flex:1;
 }
+
 
 /* IMAGE ZOOM */
 
@@ -506,6 +575,7 @@ textarea{
   z-index:3;
 }
 
+
 /* CART */
 
 .cart-item{
@@ -522,10 +592,18 @@ textarea{
   border-radius:8px;
 }
 
-.cart-info{flex:1}
+.cart-info{
+  flex:1;
+}
 
 .cart-info h4{
   margin:0 0 5px;
+}
+
+.cart-option{
+  font-size:13px;
+  color:#64748b;
+  margin-top:3px;
 }
 
 .cart-remove{
@@ -534,6 +612,7 @@ textarea{
   color:#dc2626;
   font-weight:700;
   padding:0;
+  margin-top:5px;
 }
 
 .cart-total{
@@ -541,6 +620,7 @@ textarea{
   font-size:20px;
   font-weight:800;
 }
+
 
 /* CUSTOMER SERVICE */
 
@@ -637,6 +717,7 @@ textarea{
   color:#991b1b;
 }
 
+
 /* FOOTER */
 
 footer{
@@ -654,7 +735,10 @@ footer{
   gap:30px;
 }
 
-.muted{color:#cbd5e1}
+.muted{
+  color:#cbd5e1;
+}
+
 
 /* MOBILE */
 
@@ -668,7 +752,9 @@ footer{
     grid-template-columns:repeat(3,1fr);
   }
 
-  nav{display:none}
+  nav{
+    display:none;
+  }
 
   .footer-grid{
     grid-template-columns:1fr;
@@ -692,7 +778,9 @@ footer{
     padding:45px 20px;
   }
 
-  .hero h1{font-size:34px}
+  .hero h1{
+    font-size:34px;
+  }
 
   .category-grid{
     grid-template-columns:repeat(2,1fr);
@@ -703,7 +791,9 @@ footer{
     gap:10px;
   }
 
-  .product-image{height:170px}
+  .product-image{
+    height:170px;
+  }
 
   .title{
     align-items:stretch;
@@ -718,7 +808,9 @@ footer{
     padding:13px 15px;
   }
 
-  .logo{font-size:22px}
+  .logo{
+    font-size:22px;
+  }
 
   .product-buttons{
     flex-direction:column;
@@ -749,17 +841,26 @@ footer{
   }
 
 }
+
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- TOP BAR -->
 
 <div class="top">
 🚚 Cash on Delivery Available • Nationwide Delivery
 </div>
 
+
+<!-- HEADER -->
+
 <header>
+
 <div class="nav">
 
 <div class="logo">
@@ -767,30 +868,55 @@ Reich
 </div>
 
 <nav>
-<a class="nav-link" href="#">Home</a>
-<a class="nav-link" href="#categories">Categories</a>
-<a class="nav-link" href="#products">Products</a>
-<a class="nav-link" href="#contact">Contact</a>
+
+<a class="nav-link" href="#">
+Home
+</a>
+
+<a class="nav-link" href="#categories">
+Categories
+</a>
+
+<a class="nav-link" href="#products">
+Products
+</a>
+
+<a class="nav-link" href="#contact">
+Contact
+</a>
+
 </nav>
 
-<button class="cart-btn" onclick="openCart()">
+<button
+class="cart-btn"
+onclick="openCart()"
+>
 🛒 Cart (<span id="cartCount">0</span>)
 </button>
 
 </div>
+
 </header>
+
+
+<!-- HERO -->
 
 <section class="hero">
 
 <div style="max-width:700px">
 
-<h1>Welcome to Reich</h1>
+<h1>
+Welcome to Reich
+</h1>
 
 <p>
 Clothing, electronics, shoes and more — all in one place.
 </p>
 
-<button class="btn" onclick="goProducts()">
+<button
+class="btn"
+onclick="goProducts()"
+>
 Shop Now
 </button>
 
@@ -798,55 +924,127 @@ Shop Now
 
 </section>
 
-<section class="container" id="categories">
+
+<!-- CATEGORY -->
+
+<section
+class="container"
+id="categories"
+>
 
 <div class="title">
-<h2>Shop by Category</h2>
+
+<h2>
+Shop by Category
+</h2>
+
 </div>
+
 
 <div class="category-grid">
 
-<button class="category-card" onclick="selectCategory('Clothing',this)">
-<div class="category-icon">👕</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Clothing',this)"
+>
+
+<div class="category-icon">
+👕
+</div>
+
 Clothing
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Electronics',this)">
-<div class="category-icon">📱</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Electronics',this)"
+>
+
+<div class="category-icon">
+📱
+</div>
+
 Electronics
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Shoes',this)">
-<div class="category-icon">👟</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Shoes',this)"
+>
+
+<div class="category-icon">
+👟
+</div>
+
 Shoes
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Men',this)">
-<div class="category-icon">👨</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Men',this)"
+>
+
+<div class="category-icon">
+👨
+</div>
+
 Men
+
 </button>
 
-<button class="category-card" onclick="selectCategory('Women',this)">
-<div class="category-icon">👩</div>
+
+<button
+class="category-card"
+onclick="selectCategory('Women',this)"
+>
+
+<div class="category-icon">
+👩
+</div>
+
 Women
+
 </button>
+
 
 </div>
 
-<div class="subcategory-area" id="subcategoryArea">
+
+<!-- SUBCATEGORY -->
+
+<div
+class="subcategory-area"
+id="subcategoryArea"
+>
 
 <h3 id="subcategoryTitle">
 Subcategories
 </h3>
 
-<div class="subcategory-buttons" id="subcategoryButtons">
+<div
+class="subcategory-buttons"
+id="subcategoryButtons"
+>
 </div>
 
 </div>
 
 </section>
 
-<section class="container" id="products">
+
+<!-- PRODUCTS -->
+
+<section
+class="container"
+id="products"
+>
 
 <div class="title">
 
@@ -858,13 +1056,16 @@ Featured Products
 class="search"
 id="search"
 placeholder="Search products..."
-oninput="renderProducts"
-
+oninput="renderProducts()"
 >
 
 </div>
 
-<div id="productsGrid" class="product-grid">
+
+<div
+id="productsGrid"
+class="product-grid"
+>
 
 <div class="loading">
 Loading products...
@@ -874,13 +1075,20 @@ Loading products...
 
 </section>
 
+
 <!-- PRODUCT DETAILS -->
 
-<div class="modal" id="detailsModal">
+<div
+class="modal"
+id="detailsModal"
+>
 
 <div class="modal-box details-box">
 
-<div class="close" onclick="closeDetails()">
+<div
+class="close"
+onclick="closeDetails()"
+>
 ×
 </div>
 
@@ -891,11 +1099,18 @@ Loading products...
 
 </div>
 
+
 <!-- IMAGE ZOOM -->
 
-<div class="image-zoom-modal" id="imageZoomModal">
+<div
+class="image-zoom-modal"
+id="imageZoomModal"
+>
 
-<div class="zoom-close" onclick="closeImageZoom()">
+<div
+class="zoom-close"
+onclick="closeImageZoom()"
+>
 ×
 </div>
 
@@ -906,22 +1121,30 @@ id="zoomImage"
 class="zoom-image"
 src=""
 alt="Product Image"
-
 >
 
 </div>
 
 <div class="zoom-controls">
 
-<button class="zoom-btn" onclick="zoomOut()">
+<button
+class="zoom-btn"
+onclick="zoomOut()"
+>
 −
 </button>
 
-<button class="zoom-btn" onclick="resetZoom()">
+<button
+class="zoom-btn"
+onclick="resetZoom()"
+>
 ↺
 </button>
 
-<button class="zoom-btn" onclick="zoomIn()">
+<button
+class="zoom-btn"
+onclick="zoomIn()"
+>
 +
 </button>
 
@@ -929,45 +1152,106 @@ alt="Product Image"
 
 </div>
 
+
 <!-- ORDER -->
 
-<div class="modal" id="orderModal">
+<div
+class="modal"
+id="orderModal"
+>
 
 <div class="modal-box">
 
-<div class="close" onclick="closeOrder()">
+<div
+class="close"
+onclick="closeOrder()"
+>
 ×
 </div>
 
-<h2>Place Your Order</h2>
+<h2>
+Place Your Order
+</h2>
+
 
 <form onsubmit="submitOrder(event)">
 
-<input type="hidden" id="orderProductId">
+<input
+type="hidden"
+id="orderProductId"
+>
 
-<label>Product</label> <input id="orderProductName" readonly>
 
-<label>Your Name</label> <input id="customerName" required>
+<label>
+Product
+</label>
 
-<label>Phone Number</label> <input id="customerPhone" type="tel" required>
+<input
+id="orderProductName"
+readonly
+>
 
-<label>Full Address</label>
 
-<textarea id="customerAddress" required></textarea>
+<label>
+Your Name
+</label>
 
-<label>Size</label>
+<input
+id="customerName"
+required
+>
 
-<select id="customerSize">
-<option value="">Select Size</option>
+
+<label>
+Phone Number
+</label>
+
+<input
+id="customerPhone"
+type="tel"
+required
+>
+
+
+<label>
+Full Address
+</label>
+
+<textarea
+id="customerAddress"
+required
+></textarea>
+
+
+<label>
+Size
+</label>
+
+<select
+id="customerSize"
+>
+<option value="">
+Select Size
+</option>
 </select>
 
-<label>Color</label>
 
-<select id="customerColor">
-<option value="">Select Color</option>
+<label>
+Color
+</label>
+
+<select
+id="customerColor"
+>
+<option value="">
+Select Color
+</option>
 </select>
 
-<label>Quantity</label>
+
+<label>
+Quantity
+</label>
 
 <input
 id="customerQuantity"
@@ -975,54 +1259,69 @@ type="number"
 min="1"
 value="1"
 required
-
 >
 
+
 <br>
+
 
 <button
 class="btn"
 type="submit"
 style="width:100%;margin-top:10px"
-
 >
-
-Confirm COD Order </button>
+Confirm COD Order
+</button>
 
 </form>
 
 </div>
+
 </div>
+
 
 <!-- CART -->
 
-<div class="modal" id="cartModal">
+<div
+class="modal"
+id="cartModal"
+>
 
 <div class="modal-box">
 
-<div class="close" onclick="closeCart()">
+<div
+class="close"
+onclick="closeCart()"
+>
 ×
 </div>
 
-<h2>🛒 Your Cart</h2>
+<h2>
+🛒 Your Cart
+</h2>
 
-<div id="cartItems"></div>
+<div id="cartItems">
+</div>
 
 <div class="cart-total">
-Total: <span id="cartTotal">৳0</span>
+Total:
+<span id="cartTotal">
+৳0
+</span>
 </div>
 
 <button
 class="btn"
 style="width:100%;margin-top:15px"
 onclick="checkoutCart()"
-
 >
-
-Checkout </button>
+Checkout
+</button>
 
 </div>
+
 </div>
+
 
 <!-- CUSTOMER SERVICE -->
 
@@ -1030,26 +1329,31 @@ Checkout </button>
 class="customer-service-button"
 onclick="toggleCustomerService()"
 aria-label="Customer Service"
-
 >
+💬
+</button>
 
-💬 </button>
 
-<div class="support-box" id="supportBox">
+<div
+class="support-box"
+id="supportBox"
+>
 
 <div class="support-header">
 
-<h3>💬 Customer Service</h3>
+<h3>
+💬 Customer Service
+</h3>
 
 <button
 class="support-close"
 onclick="closeCustomerService()"
-
 >
-
-× </button>
+×
+</button>
 
 </div>
+
 
 <div class="support-body">
 
@@ -1062,6 +1366,7 @@ id="supportStatus"
 class="support-status"
 ></div>
 
+
 <form onsubmit="submitCustomerMessage(event)">
 
 <label>
@@ -1073,8 +1378,8 @@ id="supportName"
 type="text"
 required
 placeholder="Enter your name"
-
 >
+
 
 <label>
 Phone Number
@@ -1084,8 +1389,8 @@ Phone Number
 id="supportPhone"
 type="tel"
 placeholder="Optional"
-
 >
+
 
 <label>
 Your Message *
@@ -1097,19 +1402,23 @@ required
 placeholder="How can we help you?"
 ></textarea>
 
+
 <button
 class="btn support-submit"
 type="submit"
 id="supportSubmitBtn"
-
 >
-
-Send Message </button>
+Send Message
+</button>
 
 </form>
 
 </div>
+
 </div>
+
+
+<!-- FOOTER -->
 
 <footer id="contact">
 
@@ -1117,7 +1426,9 @@ Send Message </button>
 
 <div>
 
-<h2>Reich</h2>
+<h2>
+Reich
+</h2>
 
 <p class="muted">
 Your trusted online shopping destination.
@@ -1125,9 +1436,12 @@ Your trusted online shopping destination.
 
 </div>
 
+
 <div>
 
-<h3>Customer Support</h3>
+<h3>
+Customer Support
+</h3>
 
 <p class="muted">
 📞 Contact number will be added later.
@@ -1139,9 +1453,12 @@ Your trusted online shopping destination.
 
 </div>
 
+
 <div>
 
-<h3>Follow Us</h3>
+<h3>
+Follow Us
+</h3>
 
 <p class="muted">
 Facebook • TikTok • Instagram
@@ -1153,19 +1470,34 @@ Facebook • TikTok • Instagram
 
 </footer>
 
+
 <script>
+
+
+/* STORE */
 
 const STORE = {
   name:"Reich",
   currency:"৳"
 };
 
+
 let products = [];
+
 let activeCategory = "All";
+
 let activeSubcategory = "All";
+
 let cart = [];
 
 let currentZoom = 1;
+
+
+/* TEMPORARY SELECTED OPTIONS */
+
+let selectedProductSize = "";
+
+let selectedProductColor = "";
 
 
 /* LOAD PRODUCTS */
@@ -1181,12 +1513,14 @@ async function loadProducts(){
     </div>
   `;
 
+
   const {data,error} =
     await supabaseClient
       .from("products")
       .select("*")
       .eq("published",true)
       .order("created_at",{ascending:false});
+
 
   if(error){
 
@@ -1202,9 +1536,12 @@ async function loadProducts(){
     return;
   }
 
+
   products = data || [];
 
+
   renderProducts();
+
 }
 
 
@@ -1213,26 +1550,39 @@ async function loadProducts(){
 function selectCategory(category,button){
 
   activeCategory = category;
+
   activeSubcategory = "All";
+
 
   document
     .querySelectorAll(".category-card")
-    .forEach(btn => btn.classList.remove("active"));
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
 
   button.classList.add("active");
 
+
   showSubcategories(category);
+
   renderProducts();
 
+
   setTimeout(()=>{
+
     document
       .getElementById("products")
-      .scrollIntoView({behavior:"smooth"});
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
   },100);
+
 }
 
 
-/* SUBCATEGORIES */
+/* SHOW SUBCATEGORIES */
 
 function showSubcategories(category){
 
@@ -1245,28 +1595,56 @@ function showSubcategories(category){
   const buttons =
     document.getElementById("subcategoryButtons");
 
+
   const subs = [
     ...new Set(
+
       products
-        .filter(p => p.category === category)
-        .map(p => p.subcategory)
+
+        .filter(product =>
+          String(product.category || "")
+            .trim()
+            .toLowerCase() ===
+          String(category)
+            .trim()
+            .toLowerCase()
+        )
+
+        .map(product =>
+          String(product.subcategory || "").trim()
+        )
+
         .filter(Boolean)
+
     )
   ];
+
+
+  /* NO SUBCATEGORY */
 
   if(subs.length === 0){
 
     area.style.display = "none";
 
+    buttons.innerHTML = "";
+
     return;
   }
 
+
+  /* SHOW AREA */
+
   area.style.display = "block";
+
 
   title.textContent =
     category + " Categories";
 
+
   buttons.innerHTML = "";
+
+
+  /* ALL BUTTON */
 
   const allButton =
     document.createElement("button");
@@ -1274,52 +1652,96 @@ function showSubcategories(category){
   allButton.className =
     "sub-btn active";
 
-  allButton.textContent = "All";
+  allButton.textContent =
+    "All";
+
 
   allButton.onclick = ()=>{
 
     activeSubcategory = "All";
 
-    document
+
+    buttons
       .querySelectorAll(".sub-btn")
       .forEach(btn =>
         btn.classList.remove("active")
       );
 
+
     allButton.classList.add("active");
 
+
     renderProducts();
+
   };
 
+
   buttons.appendChild(allButton);
+
+
+  /* SUBCATEGORY BUTTONS */
 
   subs.forEach(sub=>{
 
     const button =
       document.createElement("button");
 
-    button.className = "sub-btn";
 
-    button.textContent = sub;
+    button.className =
+      "sub-btn";
+
+
+    button.textContent =
+      sub;
+
 
     button.onclick = ()=>{
 
-      activeSubcategory = sub;
+      activeSubcategory =
+        sub;
 
-      document
+
+      buttons
         .querySelectorAll(".sub-btn")
         .forEach(btn =>
           btn.classList.remove("active")
         );
 
+
       button.classList.add("active");
 
+
       renderProducts();
+
     };
+
 
     buttons.appendChild(button);
 
   });
+
+}
+
+
+/* PARSE OPTIONS */
+
+function parseOptions(value){
+
+  if(!value){
+    return [];
+  }
+
+
+  return String(value)
+
+    .split(",")
+
+    .map(item =>
+      item.trim()
+    )
+
+    .filter(Boolean);
+
 }
 
 
@@ -1330,26 +1752,59 @@ function renderProducts(){
   const grid =
     document.getElementById("productsGrid");
 
+
   const search =
     (
-      document.getElementById("search").value || ""
-    ).toLowerCase().trim();
+      document
+        .getElementById("search")
+        .value || ""
+    )
+      .toLowerCase()
+      .trim();
+
 
   const list =
     products.filter(product=>{
 
+
       const categoryMatch =
         activeCategory === "All" ||
-        product.category === activeCategory;
+        String(product.category || "")
+          .trim()
+          .toLowerCase() ===
+        String(activeCategory)
+          .trim()
+          .toLowerCase();
+
 
       const subcategoryMatch =
         activeSubcategory === "All" ||
-        product.subcategory === activeSubcategory;
+        String(product.subcategory || "")
+          .trim()
+          .toLowerCase() ===
+        String(activeSubcategory)
+          .trim()
+          .toLowerCase();
+
 
       const searchMatch =
-        (product.name || "").toLowerCase().includes(search) ||
-        (product.category || "").toLowerCase().includes(search) ||
-        (product.subcategory || "").toLowerCase().includes(search);
+
+        (product.name || "")
+          .toLowerCase()
+          .includes(search)
+
+        ||
+
+        (product.category || "")
+          .toLowerCase()
+          .includes(search)
+
+        ||
+
+        (product.subcategory || "")
+          .toLowerCase()
+          .includes(search);
+
 
       return (
         categoryMatch &&
@@ -1359,37 +1814,51 @@ function renderProducts(){
 
     });
 
+
   if(list.length === 0){
 
     grid.innerHTML = `
       <div class="empty">
-        <h3>No products found</h3>
-        <p>Try another category or search.</p>
+
+        <h3>
+          No products found
+        </h3>
+
+        <p>
+          Try another category or search.
+        </p>
+
       </div>
     `;
 
     return;
   }
 
+
   grid.innerHTML =
     list.map(product=>{
+
 
       const price =
         product.sale_price != null
         ? Number(product.sale_price)
         : Number(product.price);
 
+
       const oldPrice =
         product.sale_price != null
         ? Number(product.price)
         : null;
 
+
       const image =
         product.image_url ||
         "https://via.placeholder.com/800x500?text=No+Image";
 
+
       const stock =
         Number(product.stock || 0);
+
 
       return `
 
@@ -1405,21 +1874,27 @@ function renderProducts(){
             onerror="this.src='https://via.placeholder.com/800x500?text=No+Image'"
           >
 
+
           <div class="product-body">
 
             <h3>
               ${escapeHTML(product.name || "Product")}
             </h3>
 
+
             <div class="category-name">
+
               ${escapeHTML(product.category || "")}
 
               ${
                 product.subcategory
-                ? " • " + escapeHTML(product.subcategory)
+                ? " • " +
+                  escapeHTML(product.subcategory)
                 : ""
               }
+
             </div>
+
 
             <div class="price">
 
@@ -1427,15 +1902,20 @@ function renderProducts(){
 
               ${
                 oldPrice != null
+
                 ? `
+
                   <span class="old-price">
                     ${STORE.currency}${oldPrice}
                   </span>
+
                 `
+
                 : ""
               }
 
             </div>
+
 
             <div class="
               stock
@@ -1444,28 +1924,40 @@ function renderProducts(){
 
               ${
                 stock > 0
+
                 ? "✓ In Stock: " + stock
+
                 : "✕ Out of Stock"
               }
 
             </div>
 
+
             <div class="product-buttons">
+
 
               <button
                 class="btn details-btn"
-                onclick="event.stopPropagation();openProductDetails('${product.id}')"
+                onclick="
+                  event.stopPropagation();
+                  openProductDetails('${product.id}')
+                "
               >
                 View Details
               </button>
 
+
               <button
                 class="btn"
-                onclick="event.stopPropagation();openOrder('${product.id}')"
+                onclick="
+                  event.stopPropagation();
+                  openOrder('${product.id}')
+                "
                 ${stock <= 0 ? "disabled" : ""}
               >
                 Buy Now
               </button>
+
 
             </div>
 
@@ -1477,13 +1969,22 @@ function renderProducts(){
 
     }).join("");
 
+
   document.getElementById("productTitle").textContent =
 
     activeSubcategory !== "All"
-    ? activeCategory + " • " + activeSubcategory
+
+    ? activeCategory +
+      " • " +
+      activeSubcategory
+
     : activeCategory !== "All"
-      ? activeCategory + " Products"
+
+      ? activeCategory +
+        " Products"
+
       : "Featured Products";
+
 }
 
 
@@ -1492,56 +1993,151 @@ function renderProducts(){
 function openProductDetails(productId){
 
   const product =
-    products.find(p => p.id === productId);
+    products.find(
+      p => p.id === productId
+    );
 
-  if(!product) return;
+
+  if(!product){
+    return;
+  }
+
 
   const price =
     product.sale_price != null
     ? Number(product.sale_price)
     : Number(product.price);
 
+
   const oldPrice =
     product.sale_price != null
     ? Number(product.price)
     : null;
 
+
   const stock =
     Number(product.stock || 0);
+
 
   const image =
     product.image_url ||
     "https://via.placeholder.com/900x900?text=No+Image";
 
-  let sizesHTML = "";
 
-  if(product.sizes){
+  const sizes =
+    parseOptions(product.sizes);
 
-    sizesHTML = `
-      <div class="detail-row">
-        <span class="detail-label">📏 Sizes:</span>
-        ${escapeHTML(product.sizes)}
+
+  const colors =
+    parseOptions(product.colors);
+
+
+  /*
+    Reset selected options
+  */
+
+  selectedProductSize =
+    "";
+
+  selectedProductColor =
+    "";
+
+
+  let optionsHTML = "";
+
+
+  /* SIZE SELECT */
+
+  if(sizes.length > 0){
+
+    optionsHTML += `
+
+      <div class="product-option">
+
+        <label>
+          📏 Select Size *
+        </label>
+
+        <select
+          id="detailsSize"
+          onchange="selectedProductSize=this.value"
+        >
+
+          <option value="">
+            Select Size
+          </option>
+
+          ${
+            sizes.map(size => `
+
+              <option value="${escapeHTML(size)}">
+                ${escapeHTML(size)}
+              </option>
+
+            `).join("")
+          }
+
+        </select>
+
+        <div class="option-required">
+          Please select a size before ordering.
+        </div>
+
       </div>
+
     `;
 
   }
 
-  let colorsHTML = "";
 
-  if(product.colors){
+  /* COLOR SELECT */
 
-    colorsHTML = `
-      <div class="detail-row">
-        <span class="detail-label">🎨 Colors:</span>
-        ${escapeHTML(product.colors)}
+  if(colors.length > 0){
+
+    optionsHTML += `
+
+      <div class="product-option">
+
+        <label>
+          🎨 Select Color *
+        </label>
+
+        <select
+          id="detailsColor"
+          onchange="selectedProductColor=this.value"
+        >
+
+          <option value="">
+            Select Color
+          </option>
+
+          ${
+            colors.map(color => `
+
+              <option value="${escapeHTML(color)}">
+                ${escapeHTML(color)}
+              </option>
+
+            `).join("")
+          }
+
+        </select>
+
+        <div class="option-required">
+          Please select a color before ordering.
+        </div>
+
       </div>
+
     `;
 
   }
+
 
   document.getElementById("detailsContent").innerHTML = `
 
     <div class="details-content">
+
 
       <img
         class="details-image"
@@ -1551,11 +2147,14 @@ function openProductDetails(productId){
         onerror="this.src='https://via.placeholder.com/900x900?text=No+Image'"
       >
 
+
       <div class="details-info">
+
 
         <h2>
           ${escapeHTML(product.name || "Product")}
         </h2>
+
 
         <div class="details-category">
 
@@ -1563,11 +2162,13 @@ function openProductDetails(productId){
 
           ${
             product.subcategory
-            ? " • " + escapeHTML(product.subcategory)
+            ? " • " +
+              escapeHTML(product.subcategory)
             : ""
           }
 
         </div>
+
 
         <div class="details-price">
 
@@ -1575,55 +2176,77 @@ function openProductDetails(productId){
 
           ${
             oldPrice != null
+
             ? `
+
               <span class="details-old">
                 ${STORE.currency}${oldPrice}
               </span>
+
             `
+
             : ""
           }
 
         </div>
 
+
         <div class="detail-row">
 
-          <span class="detail-label">📦 Stock:</span>
+          <span class="detail-label">
+            📦 Stock:
+          </span>
 
           ${
             stock > 0
-            ? "In Stock (" + stock + ")"
+
+            ? "In Stock (" +
+              stock +
+              ")"
+
             : "Out of Stock"
           }
 
         </div>
 
-        ${sizesHTML}
 
-        ${colorsHTML}
+        ${
+          optionsHTML
+        }
+
 
         ${
           product.description
+
           ? `
+
             <div class="details-description">
               ${escapeHTML(product.description)}
             </div>
+
           `
+
           : `
+
             <div class="details-description">
               No description available.
             </div>
+
           `
         }
 
+
         <div class="detail-actions">
+
 
           <button
             class="btn details-btn"
-            onclick="addToCart('${product.id}')"
+            onclick="addToCartFromDetails('${product.id}')"
             ${stock <= 0 ? "disabled" : ""}
           >
             🛒 Add to Cart
           </button>
+
 
           <button
             class="btn"
@@ -1633,7 +2256,9 @@ function openProductDetails(productId){
             🛍️ Buy Now
           </button>
 
+
         </div>
+
 
       </div>
 
@@ -1641,8 +2266,221 @@ function openProductDetails(productId){
 
   `;
 
+
   document.getElementById("detailsModal").style.display =
     "flex";
+
+}
+
+
+/* GET DETAILS OPTIONS */
+
+function getDetailsOptions(){
+
+  const sizeElement =
+    document.getElementById("detailsSize");
+
+  const colorElement =
+    document.getElementById("detailsColor");
+
+
+  return {
+
+    size:
+      sizeElement
+      ? sizeElement.value
+      : "",
+
+    color:
+      colorElement
+      ? colorElement.value
+      : ""
+
+  };
+
+}
+
+
+/* VALIDATE OPTIONS */
+
+function validateProductOptions(product){
+
+  const options =
+    getDetailsOptions();
+
+
+  const sizes =
+    parseOptions(product.sizes);
+
+
+  const colors =
+    parseOptions(product.colors);
+
+
+  if(
+    sizes.length > 0 &&
+    !options.size
+  ){
+
+    alert("Please select a size.");
+
+    return false;
+  }
+
+
+  if(
+    colors.length > 0 &&
+    !options.color
+  ){
+
+    alert("Please select a color.");
+
+    return false;
+  }
+
+
+  return true;
+
+}
+
+
+/* ADD TO CART FROM DETAILS */
+
+function addToCartFromDetails(productId){
+
+  const product =
+    products.find(
+      p => p.id === productId
+    );
+
+
+  if(!product){
+    return;
+  }
+
+
+  if(
+    Number(product.stock || 0) <= 0
+  ){
+
+    alert(
+      "This product is out of stock."
+    );
+
+    return;
+  }
+
+
+  if(
+    !validateProductOptions(product)
+  ){
+
+    return;
+  }
+
+
+  const options =
+    getDetailsOptions();
+
+
+  addToCart(
+    productId,
+    options.size,
+    options.color
+  );
+
+}
+
+
+/* ADD TO CART */
+
+function addToCart(
+  productId,
+  selectedSize = "",
+  selectedColor = ""
+){
+
+  const product =
+    products.find(
+      p => p.id === productId
+    );
+
+
+  if(!product){
+    return;
+  }
+
+
+  if(
+    Number(product.stock || 0) <= 0
+  ){
+
+    alert(
+      "This product is out of stock."
+    );
+
+    return;
+  }
+
+
+  const existing =
+    cart.find(item =>
+
+      item.id === productId &&
+
+      item.size === selectedSize &&
+
+      item.color === selectedColor
+
+    );
+
+
+  if(existing){
+
+    if(
+      existing.quantity <
+      Number(product.stock || 0)
+    ){
+
+      existing.quantity++;
+
+    }else{
+
+      alert(
+        "Maximum available stock reached."
+      );
+
+      return;
+
+    }
+
+  }else{
+
+    cart.push({
+
+      ...product,
+
+      quantity:1,
+
+      size:selectedSize || "",
+
+      color:selectedColor || ""
+
+    });
+
+  }
+
+
+  updateCartCount();
+
+
+  closeDetails();
+
+
+  alert(
+    "✅ Product added to cart!"
+  );
+
 }
 
 
@@ -1652,6 +2490,7 @@ function closeDetails(){
 
   document.getElementById("detailsModal").style.display =
     "none";
+
 }
 
 
@@ -1665,14 +2504,21 @@ function openImageZoom(image){
   const zoomImage =
     document.getElementById("zoomImage");
 
+
   currentZoom = 1;
 
-  zoomImage.src = image;
+
+  zoomImage.src =
+    image;
+
 
   zoomImage.style.transform =
     "scale(1)";
 
-  modal.style.display = "flex";
+
+  modal.style.display =
+    "flex";
+
 }
 
 
@@ -1687,7 +2533,11 @@ function closeImageZoom(){
 function zoomIn(){
 
   currentZoom =
-    Math.min(currentZoom + 0.25,3);
+    Math.min(
+      currentZoom + 0.25,
+      3
+    );
+
 
   document.getElementById("zoomImage").style.transform =
     `scale(${currentZoom})`;
@@ -1698,7 +2548,11 @@ function zoomIn(){
 function zoomOut(){
 
   currentZoom =
-    Math.max(currentZoom - 0.25,0.5);
+    Math.max(
+      currentZoom - 0.25,
+      0.5
+    );
+
 
   document.getElementById("zoomImage").style.transform =
     `scale(${currentZoom})`;
@@ -1710,6 +2564,7 @@ function resetZoom(){
 
   currentZoom = 1;
 
+
   document.getElementById("zoomImage").style.transform =
     "scale(1)";
 
@@ -1720,84 +2575,157 @@ function resetZoom(){
 
 function buyFromDetails(productId){
 
+  const product =
+    products.find(
+      p => p.id === productId
+    );
+
+
+  if(!product){
+    return;
+  }
+
+
+  if(
+    !validateProductOptions(product)
+  ){
+
+    return;
+  }
+
+
+  const options =
+    getDetailsOptions();
+
+
   closeDetails();
 
-  openOrder(productId);
+
+  openOrder(
+    productId,
+    options.size,
+    options.color
+  );
+
 }
 
 
 /* ORDER */
 
-function openOrder(productId){
+function openOrder(
+  productId,
+  selectedSize = "",
+  selectedColor = ""
+){
 
   const product =
-    products.find(p => p.id === productId);
+    products.find(
+      p => p.id === productId
+    );
 
-  if(!product) return;
 
-  if(Number(product.stock || 0) <= 0){
+  if(!product){
+    return;
+  }
 
-    alert("This product is out of stock.");
+
+  if(
+    Number(product.stock || 0) <= 0
+  ){
+
+    alert(
+      "This product is out of stock."
+    );
 
     return;
   }
 
+
   document.getElementById("orderProductId").value =
     product.id;
+
 
   document.getElementById("orderProductName").value =
     product.name;
 
+
   const sizeSelect =
     document.getElementById("customerSize");
+
 
   const colorSelect =
     document.getElementById("customerColor");
 
+
   sizeSelect.innerHTML =
     '<option value="">Select Size</option>';
+
 
   colorSelect.innerHTML =
     '<option value="">Select Color</option>';
 
-  if(product.sizes){
 
-    String(product.sizes)
-      .split(",")
-      .map(x=>x.trim())
-      .filter(Boolean)
-      .forEach(size=>{
+  const sizes =
+    parseOptions(product.sizes);
 
-        sizeSelect.innerHTML +=
-          `<option value="${escapeHTML(size)}">
-            ${escapeHTML(size)}
-          </option>`;
 
-      });
+  const colors =
+    parseOptions(product.colors);
+
+
+  /* SIZES */
+
+  sizes.forEach(size=>{
+
+    sizeSelect.innerHTML += `
+
+      <option value="${escapeHTML(size)}">
+        ${escapeHTML(size)}
+      </option>
+
+    `;
+
+  });
+
+
+  /* COLORS */
+
+  colors.forEach(color=>{
+
+    colorSelect.innerHTML += `
+
+      <option value="${escapeHTML(color)}">
+        ${escapeHTML(color)}
+      </option>
+
+    `;
+
+  });
+
+
+  if(selectedSize){
+
+    sizeSelect.value =
+      selectedSize;
 
   }
 
-  if(product.colors){
 
-    String(product.colors)
-      .split(",")
-      .map(x=>x.trim())
-      .filter(Boolean)
-      .forEach(color=>{
+  if(selectedColor){
 
-        colorSelect.innerHTML +=
-          `<option value="${escapeHTML(color)}">
-            ${escapeHTML(color)}
-          </option>`;
-
-      });
+    colorSelect.value =
+      selectedColor;
 
   }
 
-  document.getElementById("customerQuantity").value = 1;
+
+  document.getElementById("customerQuantity").value =
+    1;
+
 
   document.getElementById("orderModal").style.display =
     "flex";
+
 }
 
 
@@ -1807,6 +2735,7 @@ function closeOrder(){
 
   document.getElementById("orderModal").style.display =
     "none";
+
 }
 
 
@@ -1816,32 +2745,47 @@ async function submitOrder(event){
 
   event.preventDefault();
 
+
   const productId =
     document.getElementById("orderProductId").value;
 
+
   const product =
-    products.find(p => p.id === productId);
+    products.find(
+      p => p.id === productId
+    );
+
 
   if(!product){
 
-    alert("Product not found.");
+    alert(
+      "Product not found."
+    );
 
     return;
   }
+
 
   const quantity =
     Number(
       document.getElementById("customerQuantity").value
     );
 
+
   if(quantity < 1){
 
-    alert("Quantity must be at least 1.");
+    alert(
+      "Quantity must be at least 1."
+    );
 
     return;
   }
 
-  if(quantity > Number(product.stock || 0)){
+
+  if(
+    quantity >
+    Number(product.stock || 0)
+  ){
 
     alert(
       "Only " +
@@ -1852,19 +2796,66 @@ async function submitOrder(event){
     return;
   }
 
+
+  const sizes =
+    parseOptions(product.sizes);
+
+
+  const colors =
+    parseOptions(product.colors);
+
+
+  const selectedSize =
+    document.getElementById("customerSize").value;
+
+
+  const selectedColor =
+    document.getElementById("customerColor").value;
+
+
+  if(
+    sizes.length > 0 &&
+    !selectedSize
+  ){
+
+    alert(
+      "Please select a size."
+    );
+
+    return;
+  }
+
+
+  if(
+    colors.length > 0 &&
+    !selectedColor
+  ){
+
+    alert(
+      "Please select a color."
+    );
+
+    return;
+  }
+
+
   const unitPrice =
     product.sale_price != null
     ? Number(product.sale_price)
     : Number(product.price);
 
+
   const total =
     unitPrice * quantity;
 
+
   const orderData = {
 
-    product_id:product.id,
+    product_id:
+      product.id,
 
-    product_name:product.name,
+    product_name:
+      product.name,
 
     customer_name:
       document
@@ -1885,27 +2876,33 @@ async function submitOrder(event){
         .trim(),
 
     size:
-      document.getElementById("customerSize").value ||
+      selectedSize ||
       null,
 
     color:
-      document.getElementById("customerColor").value ||
+      selectedColor ||
       null,
 
-    quantity:quantity,
+    quantity:
+      quantity,
 
-    price:unitPrice,
+    price:
+      unitPrice,
 
-    total:total,
+    total:
+      total,
 
-    status:"Pending"
+    status:
+      "Pending"
 
   };
+
 
   const {error} =
     await supabaseClient
       .from("orders")
       .insert([orderData]);
+
 
   if(error){
 
@@ -1918,67 +2915,22 @@ async function submitOrder(event){
     return;
   }
 
+
   alert(
     "✅ Order successfully placed!"
   );
 
+
   document
     .getElementById("orderModal")
-    .style.display = "none";
+    .style.display =
+    "none";
+
 
   document
     .querySelector("#orderModal form")
     .reset();
-}
 
-
-/* CART */
-
-function addToCart(productId){
-
-  const product =
-    products.find(p => p.id === productId);
-
-  if(!product) return;
-
-  if(Number(product.stock || 0) <= 0){
-
-    alert("This product is out of stock.");
-
-    return;
-  }
-
-  const existing =
-    cart.find(item => item.id === productId);
-
-  if(existing){
-
-    if(
-      existing.quantity <
-      Number(product.stock || 0)
-    ){
-
-      existing.quantity++;
-
-    }else{
-
-      alert("Maximum available stock reached.");
-
-      return;
-    }
-
-  }else{
-
-    cart.push({
-      ...product,
-      quantity:1
-    });
-
-  }
-
-  updateCartCount();
-
-  alert("✅ Product added to cart!");
 }
 
 
@@ -1988,12 +2940,15 @@ function updateCartCount(){
 
   const count =
     cart.reduce(
-      (sum,item)=>sum + item.quantity,
+      (sum,item) =>
+        sum + item.quantity,
       0
     );
 
+
   document.getElementById("cartCount").textContent =
     count;
+
 }
 
 
@@ -2003,8 +2958,10 @@ function openCart(){
 
   renderCart();
 
+
   document.getElementById("cartModal").style.display =
     "flex";
+
 }
 
 
@@ -2014,6 +2971,7 @@ function closeCart(){
 
   document.getElementById("cartModal").style.display =
     "none";
+
 }
 
 
@@ -2024,58 +2982,106 @@ function renderCart(){
   const container =
     document.getElementById("cartItems");
 
+
   if(cart.length === 0){
 
     container.innerHTML = `
+
       <div class="empty">
         Your cart is empty.
       </div>
+
     `;
+
 
     document.getElementById("cartTotal").textContent =
       "৳0";
 
+
     return;
+
   }
+
 
   let total = 0;
 
+
   container.innerHTML =
     cart.map((item,index)=>{
+
 
       const price =
         item.sale_price != null
         ? Number(item.sale_price)
         : Number(item.price);
 
+
       const itemTotal =
         price * item.quantity;
 
+
       total += itemTotal;
+
 
       const image =
         item.image_url ||
         "https://via.placeholder.com/100";
 
+
       return `
 
         <div class="cart-item">
+
 
           <img
             src="${escapeHTML(image)}"
             alt=""
           >
 
+
           <div class="cart-info">
+
 
             <h4>
               ${escapeHTML(item.name)}
             </h4>
 
+
             <div>
               ${STORE.currency}${price}
               × ${item.quantity}
             </div>
+
+
+            ${
+              item.size
+
+              ? `
+
+                <div class="cart-option">
+                  📏 Size: ${escapeHTML(item.size)}
+                </div>
+
+              `
+
+              : ""
+            }
+
+
+            ${
+              item.color
+
+              ? `
+
+                <div class="cart-option">
+                  🎨 Color: ${escapeHTML(item.color)}
+                </div>
+
+              `
+
+              : ""
+            }
+
 
             <button
               class="cart-remove"
@@ -2083,6 +3089,7 @@ function renderCart(){
             >
               Remove
             </button>
+
 
           </div>
 
@@ -2092,8 +3099,11 @@ function renderCart(){
 
     }).join("");
 
+
   document.getElementById("cartTotal").textContent =
-    STORE.currency + total;
+    STORE.currency +
+    total;
+
 }
 
 
@@ -2101,11 +3111,16 @@ function renderCart(){
 
 function removeFromCart(index){
 
-  cart.splice(index,1);
+  cart.splice(
+    index,
+    1
+  );
+
 
   updateCartCount();
 
   renderCart();
+
 }
 
 
@@ -2115,17 +3130,31 @@ function checkoutCart(){
 
   if(cart.length === 0){
 
-    alert("Your cart is empty.");
+    alert(
+      "Your cart is empty."
+    );
 
     return;
   }
 
+
   const firstProduct =
     cart[0];
 
+
   closeCart();
 
-  openOrder(firstProduct.id);
+
+  openOrder(
+
+    firstProduct.id,
+
+    firstProduct.size || "",
+
+    firstProduct.color || ""
+
+  );
+
 
   if(cart.length > 1){
 
@@ -2134,6 +3163,7 @@ function checkoutCart(){
     );
 
   }
+
 }
 
 
@@ -2144,18 +3174,26 @@ function toggleCustomerService(){
   const box =
     document.getElementById("supportBox");
 
-  if(box.style.display === "block"){
 
-    box.style.display = "none";
+  if(
+    box.style.display === "block"
+  ){
+
+    box.style.display =
+      "none";
 
   }else{
 
-    box.style.display = "block";
+    box.style.display =
+      "block";
+
 
     setTimeout(()=>{
+
       document
         .getElementById("supportName")
         .focus();
+
     },100);
 
   }
@@ -2175,11 +3213,14 @@ async function submitCustomerMessage(event){
 
   event.preventDefault();
 
+
   const button =
     document.getElementById("supportSubmitBtn");
 
+
   const status =
     document.getElementById("supportStatus");
+
 
   const name =
     document
@@ -2187,11 +3228,13 @@ async function submitCustomerMessage(event){
       .value
       .trim();
 
+
   const phone =
     document
       .getElementById("supportPhone")
       .value
       .trim();
+
 
   const message =
     document
@@ -2210,6 +3253,7 @@ async function submitCustomerMessage(event){
     return;
   }
 
+
   if(!message){
 
     showSupportStatus(
@@ -2221,7 +3265,9 @@ async function submitCustomerMessage(event){
   }
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
+
 
   button.textContent =
     "Sending...";
@@ -2229,13 +3275,17 @@ async function submitCustomerMessage(event){
 
   const messageData = {
 
-    name:name,
+    name:
+      name,
 
-    phone:phone || null,
+    phone:
+      phone || null,
 
-    message:message,
+    message:
+      message,
 
-    status:"Unread"
+    status:
+      "Unread"
 
   };
 
@@ -2250,15 +3300,20 @@ async function submitCustomerMessage(event){
 
     console.error(error);
 
+
     showSupportStatus(
       "Message পাঠাতে সমস্যা হয়েছে। Please try again.",
       "error"
     );
 
-    button.disabled = false;
+
+    button.disabled =
+      false;
+
 
     button.textContent =
       "Send Message";
+
 
     return;
   }
@@ -2275,7 +3330,9 @@ async function submitCustomerMessage(event){
     .reset();
 
 
-  button.disabled = false;
+  button.disabled =
+    false;
+
 
   button.textContent =
     "Send Message";
@@ -2283,19 +3340,29 @@ async function submitCustomerMessage(event){
 }
 
 
-function showSupportStatus(message,type){
+function showSupportStatus(
+  message,
+  type
+){
 
   const status =
     document.getElementById("supportStatus");
 
+
   status.textContent =
     message;
 
+
   status.className =
     "support-status " +
-    (type === "success"
+
+    (
+      type === "success"
+
       ? "support-success"
-      : "support-error");
+
+      : "support-error"
+    );
 
 }
 
@@ -2309,6 +3376,7 @@ function goProducts(){
     .scrollIntoView({
       behavior:"smooth"
     });
+
 }
 
 
@@ -2317,10 +3385,15 @@ function goProducts(){
 function escapeHTML(value){
 
   return String(value ?? "")
+
     .replace(/&/g,"&amp;")
+
     .replace(/</g,"&lt;")
+
     .replace(/>/g,"&gt;")
+
     .replace(/"/g,"&quot;")
+
     .replace(/'/g,"&#039;");
 
 }
@@ -2328,63 +3401,90 @@ function escapeHTML(value){
 
 /* CLOSE MODALS */
 
-window.addEventListener("click",function(event){
-
-  const detailsModal =
-    document.getElementById("detailsModal");
-
-  const orderModal =
-    document.getElementById("orderModal");
-
-  const cartModal =
-    document.getElementById("cartModal");
-
-  const imageZoomModal =
-    document.getElementById("imageZoomModal");
+window.addEventListener(
+  "click",
+  function(event){
 
 
-  if(event.target === detailsModal){
+    const detailsModal =
+      document.getElementById("detailsModal");
 
-    closeDetails();
+
+    const orderModal =
+      document.getElementById("orderModal");
+
+
+    const cartModal =
+      document.getElementById("cartModal");
+
+
+    const imageZoomModal =
+      document.getElementById("imageZoomModal");
+
+
+    if(
+      event.target === detailsModal
+    ){
+
+      closeDetails();
+
+    }
+
+
+    if(
+      event.target === orderModal
+    ){
+
+      closeOrder();
+
+    }
+
+
+    if(
+      event.target === cartModal
+    ){
+
+      closeCart();
+
+    }
+
+
+    if(
+      event.target === imageZoomModal
+    ){
+
+      closeImageZoom();
+
+    }
 
   }
-
-  if(event.target === orderModal){
-
-    closeOrder();
-
-  }
-
-  if(event.target === cartModal){
-
-    closeCart();
-
-  }
-
-  if(event.target === imageZoomModal){
-
-    closeImageZoom();
-
-  }
-
-});
+);
 
 
 /* ESC KEY */
 
-window.addEventListener("keydown",function(event){
+window.addEventListener(
+  "keydown",
+  function(event){
 
-  if(event.key === "Escape"){
+    if(
+      event.key === "Escape"
+    ){
 
-    closeDetails();
-    closeOrder();
-    closeCart();
-    closeImageZoom();
-    closeCustomerService();
+      closeDetails();
+
+      closeOrder();
+
+      closeCart();
+
+      closeImageZoom();
+
+      closeCustomerService();
+
+    }
 
   }
-
-});
+);
 
 
 /* START */
@@ -2394,4 +3494,5 @@ loadProducts();
 </script>
 
 </body>
+
 </html>
