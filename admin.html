@@ -19,6 +19,14 @@ body{
   color:#111827;
 }
 
+button,input,textarea,select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
 header{
   background:#111827;
   color:#fff;
@@ -39,13 +47,28 @@ header h1{
   font-size:24px;
 }
 
-.view-store{
-  background:#e11d48;
+.header-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.view-store,
+.logout{
   color:#fff;
   text-decoration:none;
   padding:10px 14px;
   border-radius:8px;
   font-weight:700;
+  border:0;
+}
+
+.view-store{
+  background:#e11d48;
+}
+
+.logout{
+  background:#475569;
 }
 
 .container{
@@ -91,18 +114,17 @@ textarea{
   border:1px solid #d1d5db;
   border-radius:8px;
   outline:none;
-  font-family:inherit;
-}
-
-textarea{
-  min-height:100px;
-  resize:vertical;
 }
 
 input:focus,
 select:focus,
 textarea:focus{
   border-color:#e11d48;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
 }
 
 .checkbox{
@@ -122,7 +144,6 @@ textarea:focus{
   padding:12px 18px;
   border-radius:8px;
   font-weight:700;
-  cursor:pointer;
 }
 
 .btn:hover{
@@ -205,12 +226,12 @@ textarea:focus{
   margin-top:12px;
 }
 
-.delete{
-  background:#dc2626;
-}
-
 .edit{
   background:#111827;
+}
+
+.delete{
+  background:#dc2626;
 }
 
 .empty{
@@ -223,10 +244,71 @@ textarea:focus{
 
 .image-preview{
   margin-top:10px;
-  width:150px;
-  height:100px;
+  width:180px;
+  height:120px;
   object-fit:cover;
   border-radius:8px;
+  display:none;
+  border:1px solid #e5e7eb;
+}
+
+.file-box{
+  border:2px dashed #cbd5e1;
+  padding:18px;
+  border-radius:10px;
+  background:#f8fafc;
+}
+
+.file-box input{
+  background:white;
+}
+
+.upload-status{
+  margin-top:8px;
+  font-size:13px;
+  color:#64748b;
+}
+
+/* LOGIN */
+
+.login-screen{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:#f8fafc;
+}
+
+.login-box{
+  width:min(420px,100%);
+  background:#fff;
+  padding:30px;
+  border-radius:16px;
+  border:1px solid #e5e7eb;
+  box-shadow:0 10px 30px #0001;
+}
+
+.login-box h1{
+  margin-top:0;
+  text-align:center;
+}
+
+.login-box p{
+  text-align:center;
+  color:#64748b;
+}
+
+.login-box label{
+  margin-top:15px;
+}
+
+.login-btn{
+  width:100%;
+  margin-top:20px;
+}
+
+#adminApp{
   display:none;
 }
 
@@ -257,247 +339,365 @@ textarea:focus{
     align-items:flex-start;
   }
 
+  .header-actions{
+    width:100%;
+    flex-wrap:wrap;
+  }
+
+  .view-store,
+  .logout{
+    flex:1;
+    text-align:center;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="header-inner">
 
-    <h1>Reich Admin</h1>
+<!-- =========================
+     LOGIN SCREEN
+========================= -->
 
-    <a
-      class="view-store"
-      href="index.html"
-      target="_blank"
-    >
-      View Store
-    </a>
+<div id="loginScreen" class="login-screen">
 
-  </div>
-</header>
+  <div class="login-box">
 
+    <h1>🔐 Reich Admin</h1>
 
-<div class="container">
+    <p>Sign in to manage your store</p>
 
-  <!-- ADD PRODUCT -->
-
-  <div class="card">
-
-    <h2>Add Product</h2>
-
-    <div id="status" class="status">
-      Ready
+    <div id="loginStatus" class="status">
+      Please login.
     </div>
 
-    <form id="productForm">
+    <form id="loginForm">
 
-      <div class="form-grid">
+      <label>Email</label>
 
-        <div>
-          <label>Product Name *</label>
+      <input
+        id="loginEmail"
+        type="email"
+        required
+        placeholder="Admin email"
+      >
 
-          <input
-            id="name"
-            type="text"
-            required
-            placeholder="Premium T-Shirt"
-          >
-        </div>
+      <label>Password</label>
 
-
-        <div>
-          <label>Category *</label>
-
-          <select id="category" required>
-
-            <option value="">
-              Select Category
-            </option>
-
-            <option value="Clothing">
-              Clothing
-            </option>
-
-            <option value="Electronics">
-              Electronics
-            </option>
-
-            <option value="Shoes">
-              Shoes
-            </option>
-
-            <option value="Men">
-              Men
-            </option>
-
-            <option value="Women">
-              Women
-            </option>
-
-          </select>
-        </div>
-
-
-        <div>
-          <label>Subcategory *</label>
-
-          <input
-            id="subcategory"
-            type="text"
-            required
-            placeholder="T-Shirt"
-          >
-        </div>
-
-
-        <div>
-          <label>Price *</label>
-
-          <input
-            id="price"
-            type="number"
-            min="0"
-            step="0.01"
-            required
-            placeholder="799"
-          >
-        </div>
-
-
-        <div>
-          <label>Sale Price</label>
-
-          <input
-            id="sale_price"
-            type="number"
-            min="0"
-            step="0.01"
-            placeholder="599"
-          >
-        </div>
-
-
-        <div>
-          <label>Stock *</label>
-
-          <input
-            id="stock"
-            type="number"
-            min="0"
-            value="0"
-            required
-          >
-        </div>
-
-
-        <div>
-          <label>Sizes</label>
-
-          <input
-            id="sizes"
-            type="text"
-            placeholder="S, M, L, XL"
-          >
-        </div>
-
-
-        <div>
-          <label>Colors</label>
-
-          <input
-            id="colors"
-            type="text"
-            placeholder="Black, White, Red"
-          >
-        </div>
-
-
-        <div class="full">
-
-          <label>Description</label>
-
-          <textarea
-            id="description"
-            placeholder="Product description..."
-          ></textarea>
-
-        </div>
-
-
-        <div class="full">
-
-          <label>Image URL</label>
-
-          <input
-            id="image_url"
-            type="url"
-            placeholder="https://..."
-          >
-
-          <img
-            id="imagePreview"
-            class="image-preview"
-            alt="Preview"
-          >
-
-        </div>
-
-
-        <div>
-
-          <label class="checkbox">
-
-            <input
-              id="published"
-              type="checkbox"
-              checked
-            >
-
-            Published
-
-          </label>
-
-        </div>
-
-      </div>
-
-
-      <br>
+      <input
+        id="loginPassword"
+        type="password"
+        required
+        placeholder="Admin password"
+      >
 
       <button
-        class="btn"
-        id="submitBtn"
+        class="btn login-btn"
+        id="loginBtn"
         type="submit"
       >
-        Add Product
+        Login
       </button>
 
     </form>
 
   </div>
 
+</div>
 
-  <!-- PRODUCTS -->
 
-  <div class="card">
+<!-- =========================
+     ADMIN APP
+========================= -->
 
-    <h2>Products</h2>
+<div id="adminApp">
 
-    <div
-      id="productsList"
-      class="product-list"
-    >
+<header>
 
-      <div class="empty">
-        Loading products...
-      </div>
+  <div class="header-inner">
+
+    <h1>Reich Admin</h1>
+
+    <div class="header-actions">
+
+      <a
+        class="view-store"
+        href="index.html"
+        target="_blank"
+      >
+        View Store
+      </a>
+
+      <button
+        class="logout"
+        onclick="logout()"
+      >
+        Logout
+      </button>
 
     </div>
 
   </div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- =========================
+     ADD PRODUCT
+========================= -->
+
+<div class="card">
+
+  <h2>Add Product</h2>
+
+  <div id="status" class="status">
+    Ready
+  </div>
+
+  <form id="productForm">
+
+    <div class="form-grid">
+
+      <div>
+
+        <label>Product Name *</label>
+
+        <input
+          id="name"
+          type="text"
+          required
+          placeholder="Premium T-Shirt"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Category *</label>
+
+        <select id="category" required>
+
+          <option value="">
+            Select Category
+          </option>
+
+          <option value="Clothing">
+            Clothing
+          </option>
+
+          <option value="Electronics">
+            Electronics
+          </option>
+
+          <option value="Shoes">
+            Shoes
+          </option>
+
+          <option value="Men">
+            Men
+          </option>
+
+          <option value="Women">
+            Women
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>Subcategory *</label>
+
+        <input
+          id="subcategory"
+          type="text"
+          required
+          placeholder="T-Shirt"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Price *</label>
+
+        <input
+          id="price"
+          type="number"
+          min="0"
+          step="0.01"
+          required
+          placeholder="799"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Sale Price</label>
+
+        <input
+          id="sale_price"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="599"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Stock *</label>
+
+        <input
+          id="stock"
+          type="number"
+          min="0"
+          value="0"
+          required
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Sizes</label>
+
+        <input
+          id="sizes"
+          type="text"
+          placeholder="S, M, L, XL"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Colors</label>
+
+        <input
+          id="colors"
+          type="text"
+          placeholder="Black, White, Red"
+        >
+
+      </div>
+
+
+      <div class="full">
+
+        <label>Description</label>
+
+        <textarea
+          id="description"
+          placeholder="Product description..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- PC IMAGE UPLOAD -->
+
+      <div class="full">
+
+        <label>Product Image</label>
+
+        <div class="file-box">
+
+          <input
+            id="imageFile"
+            type="file"
+            accept="image/*"
+          >
+
+          <div
+            id="uploadStatus"
+            class="upload-status"
+          >
+            Choose an image from your PC.
+          </div>
+
+          <img
+            id="imagePreview"
+            class="image-preview"
+            alt="Image Preview"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <label class="checkbox">
+
+          <input
+            id="published"
+            type="checkbox"
+            checked
+          >
+
+          Published
+
+        </label>
+
+      </div>
+
+    </div>
+
+
+    <br>
+
+    <button
+      class="btn"
+      id="submitBtn"
+      type="submit"
+    >
+      Add Product
+    </button>
+
+  </form>
+
+</div>
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<div class="card">
+
+  <h2>Products</h2>
+
+  <div
+    id="productsList"
+    class="product-list"
+  >
+
+    <div class="empty">
+      Loading products...
+    </div>
+
+  </div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -509,50 +709,306 @@ textarea:focus{
 ========================= */
 
 let editingId = null;
+let selectedImageFile = null;
 
 
 /* =========================
-   STATUS
+   LOGIN STATUS
 ========================= */
 
-function showStatus(message,type=""){
+function showLoginStatus(message,type=""){
 
-  const status =
-    document.getElementById("status");
+  const box =
+    document.getElementById("loginStatus");
 
-  status.textContent = message;
+  box.textContent = message;
 
-  status.className =
+  box.className =
     "status " + type;
 
 }
 
 
 /* =========================
-   IMAGE PREVIEW
+   ADMIN STATUS
+========================= */
+
+function showStatus(message,type=""){
+
+  const box =
+    document.getElementById("status");
+
+  box.textContent = message;
+
+  box.className =
+    "status " + type;
+
+}
+
+
+/* =========================
+   LOGIN
 ========================= */
 
 document
-  .getElementById("image_url")
-  .addEventListener("input",function(){
+  .getElementById("loginForm")
+  .addEventListener("submit",async function(event){
 
-    const url = this.value.trim();
+    event.preventDefault();
 
-    const preview =
-      document.getElementById("imagePreview");
+    const button =
+      document.getElementById("loginBtn");
 
-    if(!url){
+    const email =
+      document
+        .getElementById("loginEmail")
+        .value
+        .trim();
 
-      preview.style.display="none";
+    const password =
+      document
+        .getElementById("loginPassword")
+        .value;
+
+    button.disabled=true;
+
+    button.textContent="Logging in...";
+
+    showLoginStatus("Signing in...");
+
+
+    const { error } =
+      await supabaseClient.auth.signInWithPassword({
+        email:email,
+        password:password
+      });
+
+
+    if(error){
+
+      console.error(error);
+
+      showLoginStatus(
+        "Login failed: " + error.message,
+        "error"
+      );
+
+      button.disabled=false;
+
+      button.textContent="Login";
 
       return;
     }
 
-    preview.src=url;
+
+    showLoginStatus(
+      "Login successful!",
+      "success"
+    );
+
+
+    button.disabled=false;
+
+    button.textContent="Login";
+
+
+    await checkAuth();
+
+});
+
+
+/* =========================
+   CHECK AUTH
+========================= */
+
+async function checkAuth(){
+
+  const { data } =
+    await supabaseClient.auth.getSession();
+
+
+  const session =
+    data.session;
+
+
+  if(session){
+
+    document
+      .getElementById("loginScreen")
+      .style.display="none";
+
+    document
+      .getElementById("adminApp")
+      .style.display="block";
+
+    loadProducts();
+
+  }else{
+
+    document
+      .getElementById("loginScreen")
+      .style.display="flex";
+
+    document
+      .getElementById("adminApp")
+      .style.display="none";
+
+  }
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+  await supabaseClient.auth.signOut();
+
+  location.reload();
+
+}
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+supabaseClient.auth.onAuthStateChange(
+  function(){
+
+    checkAuth();
+
+  }
+);
+
+
+/* =========================
+   IMAGE SELECT
+========================= */
+
+document
+  .getElementById("imageFile")
+  .addEventListener("change",function(){
+
+    const file =
+      this.files[0];
+
+    const preview =
+      document.getElementById("imagePreview");
+
+    const uploadStatus =
+      document.getElementById("uploadStatus");
+
+
+    if(!file){
+
+      selectedImageFile=null;
+
+      preview.style.display="none";
+
+      uploadStatus.textContent =
+        "Choose an image from your PC.";
+
+      return;
+    }
+
+
+    if(!file.type.startsWith("image/")){
+
+      alert("Please select an image file.");
+
+      this.value="";
+
+      return;
+    }
+
+
+    if(file.size > 5 * 1024 * 1024){
+
+      alert("Image must be smaller than 5MB.");
+
+      this.value="";
+
+      return;
+    }
+
+
+    selectedImageFile=file;
+
+
+    preview.src =
+      URL.createObjectURL(file);
 
     preview.style.display="block";
 
+
+    uploadStatus.textContent =
+      "Selected: " + file.name;
+
   });
+
+
+/* =========================
+   UPLOAD IMAGE
+========================= */
+
+async function uploadImage(file){
+
+  if(!file) return null;
+
+
+  const fileExtension =
+    file.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+
+  const fileName =
+    Date.now() +
+    "-" +
+    crypto.randomUUID() +
+    "." +
+    fileExtension;
+
+
+  const filePath =
+    fileName;
+
+
+  const { error } =
+    await supabaseClient
+      .storage
+      .from("product-images")
+      .upload(
+        filePath,
+        file,
+        {
+          cacheControl:"3600",
+          upsert:false
+        }
+      );
+
+
+  if(error){
+
+    throw error;
+
+  }
+
+
+  const { data } =
+    supabaseClient
+      .storage
+      .from("product-images")
+      .getPublicUrl(filePath);
+
+
+  return data.publicUrl;
+
+}
 
 
 /* =========================
@@ -569,86 +1025,133 @@ document
     const button =
       document.getElementById("submitBtn");
 
+    const uploadStatus =
+      document.getElementById("uploadStatus");
+
+
     button.disabled=true;
 
 
-    const product = {
-
-      name:
-        document
-          .getElementById("name")
-          .value
-          .trim(),
-
-      category:
-        document
-          .getElementById("category")
-          .value,
-
-      subcategory:
-        document
-          .getElementById("subcategory")
-          .value
-          .trim(),
-
-      price:
-        Number(
-          document
-            .getElementById("price")
-            .value
-        ),
-
-      sale_price:
-        document
-          .getElementById("sale_price")
-          .value
-          ? Number(
-              document
-                .getElementById("sale_price")
-                .value
-            )
-          : null,
-
-      sizes:
-        document
-          .getElementById("sizes")
-          .value
-          .trim() || null,
-
-      colors:
-        document
-          .getElementById("colors")
-          .value
-          .trim() || null,
-
-      stock:
-        Number(
-          document
-            .getElementById("stock")
-            .value
-        ),
-
-      description:
-        document
-          .getElementById("description")
-          .value
-          .trim() || null,
-
-      image_url:
-        document
-          .getElementById("image_url")
-          .value
-          .trim() || null,
-
-      published:
-        document
-          .getElementById("published")
-          .checked
-
-    };
-
-
     try{
+
+      let imageUrl = null;
+
+
+      /*
+        If editing and no new image selected,
+        keep the old image.
+      */
+
+      if(editingId){
+
+        const { data:oldProduct } =
+          await supabaseClient
+            .from("products")
+            .select("image_url")
+            .eq("id",editingId)
+            .single();
+
+
+        imageUrl =
+          oldProduct?.image_url || null;
+
+      }
+
+
+      /*
+        Upload new image if selected
+      */
+
+      if(selectedImageFile){
+
+        uploadStatus.textContent =
+          "Uploading image...";
+
+
+        imageUrl =
+          await uploadImage(
+            selectedImageFile
+          );
+
+
+        uploadStatus.textContent =
+          "✅ Image uploaded successfully.";
+
+      }
+
+
+      const product = {
+
+        name:
+          document
+            .getElementById("name")
+            .value
+            .trim(),
+
+        category:
+          document
+            .getElementById("category")
+            .value,
+
+        subcategory:
+          document
+            .getElementById("subcategory")
+            .value
+            .trim(),
+
+        price:
+          Number(
+            document
+              .getElementById("price")
+              .value
+          ),
+
+        sale_price:
+          document
+            .getElementById("sale_price")
+            .value
+            ? Number(
+                document
+                  .getElementById("sale_price")
+                  .value
+              )
+            : null,
+
+        sizes:
+          document
+            .getElementById("sizes")
+            .value
+            .trim() || null,
+
+        colors:
+          document
+            .getElementById("colors")
+            .value
+            .trim() || null,
+
+        stock:
+          Number(
+            document
+              .getElementById("stock")
+              .value
+          ),
+
+        description:
+          document
+            .getElementById("description")
+            .value
+            .trim() || null,
+
+        image_url:
+          imageUrl,
+
+        published:
+          document
+            .getElementById("published")
+            .checked
+
+      };
+
 
       let result;
 
@@ -673,14 +1176,8 @@ document
 
       if(result.error){
 
-        console.error(result.error);
+        throw result.error;
 
-        showStatus(
-          "Error: " + result.error.message,
-          "error"
-        );
-
-        return;
       }
 
 
@@ -695,6 +1192,15 @@ document
       resetForm();
 
       await loadProducts();
+
+    }catch(error){
+
+      console.error(error);
+
+      showStatus(
+        "Error: " + error.message,
+        "error"
+      );
 
     }finally{
 
@@ -715,11 +1221,21 @@ async function loadProducts(){
     document.getElementById("productsList");
 
 
+  container.innerHTML = `
+    <div class="empty">
+      Loading products...
+    </div>
+  `;
+
+
   const { data,error } =
     await supabaseClient
       .from("products")
       .select("*")
-      .order("created_at",{ascending:false});
+      .order(
+        "created_at",
+        {ascending:false}
+      );
 
 
   if(error){
@@ -902,11 +1418,36 @@ async function editProduct(id){
   document.getElementById("description").value =
     data.description || "";
 
-  document.getElementById("image_url").value =
-    data.image_url || "";
-
   document.getElementById("published").checked =
     data.published;
+
+
+  selectedImageFile=null;
+
+  document.getElementById("imageFile").value="";
+
+
+  const preview =
+    document.getElementById("imagePreview");
+
+
+  if(data.image_url){
+
+    preview.src=data.image_url;
+
+    preview.style.display="block";
+
+    document.getElementById("uploadStatus").textContent =
+      "Current image. Choose a new file to replace it.";
+
+  }else{
+
+    preview.style.display="none";
+
+    document.getElementById("uploadStatus").textContent =
+      "No current image. Choose one from your PC.";
+
+  }
 
 
   document.getElementById("submitBtn").textContent =
@@ -922,23 +1463,6 @@ async function editProduct(id){
     top:0,
     behavior:"smooth"
   });
-
-
-  const preview =
-    document.getElementById("imagePreview");
-
-
-  if(data.image_url){
-
-    preview.src=data.image_url;
-
-    preview.style.display="block";
-
-  }else{
-
-    preview.style.display="none";
-
-  }
 
 }
 
@@ -995,6 +1519,9 @@ function resetForm(){
 
   editingId=null;
 
+  selectedImageFile=null;
+
+
   document
     .getElementById("productForm")
     .reset();
@@ -1010,6 +1537,10 @@ function resetForm(){
 
   document.getElementById("imagePreview").style.display =
     "none";
+
+
+  document.getElementById("uploadStatus").textContent =
+    "Choose an image from your PC.";
 
 }
 
@@ -1034,7 +1565,7 @@ function escapeHTML(value){
    START
 ========================= */
 
-loadProducts();
+checkAuth();
 
 </script>
 
