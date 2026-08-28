@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 
@@ -465,6 +466,7 @@ textarea{
   line-height:1.7;
   color:#475569;
   margin:20px 0;
+  white-space:pre-wrap;
 }
 
 .detail-row{
@@ -1493,13 +1495,6 @@ let cart = [];
 let currentZoom = 1;
 
 
-/* TEMPORARY SELECTED OPTIONS */
-
-let selectedProductSize = "";
-
-let selectedProductColor = "";
-
-
 /* LOAD PRODUCTS */
 
 async function loadProducts(){
@@ -1513,34 +1508,56 @@ async function loadProducts(){
     </div>
   `;
 
+  try{
 
-  const {data,error} =
-    await supabaseClient
-      .from("products")
-      .select("*")
-      .eq("published",true)
-      .order("created_at",{ascending:false});
+    if(
+      typeof supabaseClient === "undefined" ||
+      !supabaseClient
+    ){
+
+      throw new Error(
+        "Supabase client is not available."
+      );
+
+    }
 
 
-  if(error){
+    const {data,error} =
+      await supabaseClient
+        .from("products")
+        .select("*")
+        .eq("published",true)
+        .order("created_at",{ascending:false});
 
-    console.error(error);
+
+    if(error){
+      throw error;
+    }
+
+
+    products = data || [];
+
+    renderProducts();
+
+  }catch(error){
+
+    console.error("Product loading error:",error);
 
     grid.innerHTML = `
       <div class="empty">
-        <h3>Products could not be loaded.</h3>
-        <p>Please try again later.</p>
+
+        <h3>
+          Products could not be loaded.
+        </h3>
+
+        <p>
+          Please refresh the page and try again.
+        </p>
+
       </div>
     `;
 
-    return;
   }
-
-
-  products = data || [];
-
-
-  renderProducts();
 
 }
 
@@ -1620,8 +1637,6 @@ function showSubcategories(category){
   ];
 
 
-  /* NO SUBCATEGORY */
-
   if(subs.length === 0){
 
     area.style.display = "none";
@@ -1632,8 +1647,6 @@ function showSubcategories(category){
   }
 
 
-  /* SHOW AREA */
-
   area.style.display = "block";
 
 
@@ -1643,8 +1656,6 @@ function showSubcategories(category){
 
   buttons.innerHTML = "";
 
-
-  /* ALL BUTTON */
 
   const allButton =
     document.createElement("button");
@@ -1678,8 +1689,6 @@ function showSubcategories(category){
 
   buttons.appendChild(allButton);
 
-
-  /* SUBCATEGORY BUTTONS */
 
   subs.forEach(sub=>{
 
@@ -1789,19 +1798,19 @@ function renderProducts(){
 
       const searchMatch =
 
-        (product.name || "")
+        String(product.name || "")
           .toLowerCase()
           .includes(search)
 
         ||
 
-        (product.category || "")
+        String(product.category || "")
           .toLowerCase()
           .includes(search)
 
         ||
 
-        (product.subcategory || "")
+        String(product.subcategory || "")
           .toLowerCase()
           .includes(search);
 
@@ -1838,7 +1847,6 @@ function renderProducts(){
   grid.innerHTML =
     list.map(product=>{
 
-
       const price =
         product.sale_price != null
         ? Number(product.sale_price)
@@ -1864,7 +1872,7 @@ function renderProducts(){
 
         <div
           class="product"
-          onclick="openProductDetails('${product.id}')"
+          onclick="openProductDetails('${escapeJS(product.id)}')"
         >
 
           <img
@@ -1898,7 +1906,7 @@ function renderProducts(){
 
             <div class="price">
 
-              ${STORE.currency}${price}
+              ${STORE.currency}${formatNumber(price)}
 
               ${
                 oldPrice != null
@@ -1906,7 +1914,7 @@ function renderProducts(){
                 ? `
 
                   <span class="old-price">
-                    ${STORE.currency}${oldPrice}
+                    ${STORE.currency}${formatNumber(oldPrice)}
                   </span>
 
                 `
@@ -1940,7 +1948,7 @@ function renderProducts(){
                 class="btn details-btn"
                 onclick="
                   event.stopPropagation();
-                  openProductDetails('${product.id}')
+                  openProductDetails('${escapeJS(product.id)}')
                 "
               >
                 View Details
@@ -1951,7 +1959,7 @@ function renderProducts(){
                 class="btn"
                 onclick="
                   event.stopPropagation();
-                  openOrder('${product.id}')
+                  openOrder('${escapeJS(product.id)}')
                 "
                 ${stock <= 0 ? "disabled" : ""}
               >
@@ -1994,7 +2002,7 @@ function openProductDetails(productId){
 
   const product =
     products.find(
-      p => p.id === productId
+      p => String(p.id) === String(productId)
     );
 
 
@@ -2032,21 +2040,8 @@ function openProductDetails(productId){
     parseOptions(product.colors);
 
 
-  /*
-    Reset selected options
-  */
-
-  selectedProductSize =
-    "";
-
-  selectedProductColor =
-    "";
-
-
   let optionsHTML = "";
 
-
-  /* SIZE SELECT */
 
   if(sizes.length > 0){
 
@@ -2058,10 +2053,7 @@ function openProductDetails(productId){
           📏 Select Size *
         </label>
 
-        <select
-          id="detailsSize"
-          onchange="selectedProductSize=this.value"
-        >
+        <select id="detailsSize">
 
           <option value="">
             Select Size
@@ -2090,8 +2082,6 @@ function openProductDetails(productId){
   }
 
 
-  /* COLOR SELECT */
-
   if(colors.length > 0){
 
     optionsHTML += `
@@ -2102,10 +2092,7 @@ function openProductDetails(productId){
           🎨 Select Color *
         </label>
 
-        <select
-          id="detailsColor"
-          onchange="selectedProductColor=this.value"
-        >
+        <select id="detailsColor">
 
           <option value="">
             Select Color
@@ -2143,7 +2130,7 @@ function openProductDetails(productId){
         class="details-image"
         src="${escapeHTML(image)}"
         alt="${escapeHTML(product.name || "")}"
-        onclick="openImageZoom('${escapeHTML(image)}')"
+        onclick="openImageZoom('${escapeJS(image)}')"
         onerror="this.src='https://via.placeholder.com/900x900?text=No+Image'"
       >
 
@@ -2172,7 +2159,7 @@ function openProductDetails(productId){
 
         <div class="details-price">
 
-          ${STORE.currency}${price}
+          ${STORE.currency}${formatNumber(price)}
 
           ${
             oldPrice != null
@@ -2180,7 +2167,7 @@ function openProductDetails(productId){
             ? `
 
               <span class="details-old">
-                ${STORE.currency}${oldPrice}
+                ${STORE.currency}${formatNumber(oldPrice)}
               </span>
 
             `
@@ -2210,9 +2197,7 @@ function openProductDetails(productId){
         </div>
 
 
-        ${
-          optionsHTML
-        }
+        ${optionsHTML}
 
 
         ${
@@ -2241,7 +2226,7 @@ function openProductDetails(productId){
 
           <button
             class="btn details-btn"
-            onclick="addToCartFromDetails('${product.id}')"
+            onclick="addToCartFromDetails('${escapeJS(product.id)}')"
             ${stock <= 0 ? "disabled" : ""}
           >
             🛒 Add to Cart
@@ -2250,7 +2235,7 @@ function openProductDetails(productId){
 
           <button
             class="btn"
-            onclick="buyFromDetails('${product.id}')"
+            onclick="buyFromDetails('${escapeJS(product.id)}')"
             ${stock <= 0 ? "disabled" : ""}
           >
             🛍️ Buy Now
@@ -2350,7 +2335,7 @@ function addToCartFromDetails(productId){
 
   const product =
     products.find(
-      p => p.id === productId
+      p => String(p.id) === String(productId)
     );
 
 
@@ -2402,7 +2387,7 @@ function addToCart(
 
   const product =
     products.find(
-      p => p.id === productId
+      p => String(p.id) === String(productId)
     );
 
 
@@ -2426,7 +2411,7 @@ function addToCart(
   const existing =
     cart.find(item =>
 
-      item.id === productId &&
+      String(item.id) === String(productId) &&
 
       item.size === selectedSize &&
 
@@ -2472,7 +2457,6 @@ function addToCart(
 
 
   updateCartCount();
-
 
   closeDetails();
 
@@ -2577,11 +2561,23 @@ function buyFromDetails(productId){
 
   const product =
     products.find(
-      p => p.id === productId
+      p => String(p.id) === String(productId)
     );
 
 
   if(!product){
+    return;
+  }
+
+
+  if(
+    Number(product.stock || 0) <= 0
+  ){
+
+    alert(
+      "This product is out of stock."
+    );
+
     return;
   }
 
@@ -2620,7 +2616,7 @@ function openOrder(
 
   const product =
     products.find(
-      p => p.id === productId
+      p => String(p.id) === String(productId)
     );
 
 
@@ -2673,8 +2669,6 @@ function openOrder(
     parseOptions(product.colors);
 
 
-  /* SIZES */
-
   sizes.forEach(size=>{
 
     sizeSelect.innerHTML += `
@@ -2687,8 +2681,6 @@ function openOrder(
 
   });
 
-
-  /* COLORS */
 
   colors.forEach(color=>{
 
@@ -2704,18 +2696,12 @@ function openOrder(
 
 
   if(selectedSize){
-
-    sizeSelect.value =
-      selectedSize;
-
+    sizeSelect.value = selectedSize;
   }
 
 
   if(selectedColor){
-
-    colorSelect.value =
-      selectedColor;
-
+    colorSelect.value = selectedColor;
   }
 
 
@@ -2752,7 +2738,7 @@ async function submitOrder(event){
 
   const product =
     products.find(
-      p => p.id === productId
+      p => String(p.id) === String(productId)
     );
 
 
@@ -3048,7 +3034,7 @@ function renderCart(){
 
 
             <div>
-              ${STORE.currency}${price}
+              ${STORE.currency}${formatNumber(price)}
               × ${item.quantity}
             </div>
 
@@ -3102,7 +3088,7 @@ function renderCart(){
 
   document.getElementById("cartTotal").textContent =
     STORE.currency +
-    total;
+    formatNumber(total);
 
 }
 
@@ -3380,6 +3366,22 @@ function goProducts(){
 }
 
 
+/* NUMBER FORMAT */
+
+function formatNumber(value){
+
+  const number =
+    Number(value);
+
+  if(!Number.isFinite(number)){
+    return "0";
+  }
+
+  return number.toLocaleString("en-US");
+
+}
+
+
 /* HTML SAFETY */
 
 function escapeHTML(value){
@@ -3399,24 +3401,34 @@ function escapeHTML(value){
 }
 
 
+/* JAVASCRIPT STRING SAFETY */
+
+function escapeJS(value){
+
+  return String(value ?? "")
+
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/\r/g,"\\r")
+    .replace(/\n/g,"\\n");
+
+}
+
+
 /* CLOSE MODALS */
 
 window.addEventListener(
   "click",
   function(event){
 
-
     const detailsModal =
       document.getElementById("detailsModal");
-
 
     const orderModal =
       document.getElementById("orderModal");
 
-
     const cartModal =
       document.getElementById("cartModal");
-
 
     const imageZoomModal =
       document.getElementById("imageZoomModal");
@@ -3496,3 +3508,4 @@ loadProducts();
 </body>
 
 </html>
+```
