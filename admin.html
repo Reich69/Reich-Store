@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -8,11 +7,13 @@
 <title>Reich | Admin Panel</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase.js"></script>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box
+}
 
 body{
   margin:0;
@@ -273,8 +274,167 @@ textarea{
 
 
 /* =========================
-   LOGIN
+   CUSTOMER CHAT
 ========================= */
+
+.chat-layout{
+  display:grid;
+  grid-template-columns:320px 1fr;
+  min-height:500px;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.customer-list{
+  border-right:1px solid #e5e7eb;
+  background:#f8fafc;
+  overflow-y:auto;
+}
+
+.customer-item{
+  padding:15px;
+  border-bottom:1px solid #e5e7eb;
+  cursor:pointer;
+  background:#fff;
+}
+
+.customer-item:hover{
+  background:#f1f5f9;
+}
+
+.customer-item.active{
+  background:#ffe4e6;
+  border-left:4px solid #e11d48;
+}
+
+.customer-name{
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.customer-phone{
+  font-size:13px;
+  color:#64748b;
+}
+
+.customer-preview{
+  font-size:13px;
+  color:#475569;
+  margin-top:6px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.chat-area{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+
+.chat-header{
+  padding:15px 18px;
+  border-bottom:1px solid #e5e7eb;
+  background:#fff;
+}
+
+.chat-header h3{
+  margin:0 0 4px;
+}
+
+.chat-header small{
+  color:#64748b;
+}
+
+.chat-messages{
+  flex:1;
+  padding:20px;
+  overflow-y:auto;
+  background:#f8fafc;
+  min-height:350px;
+  max-height:450px;
+}
+
+.chat-message{
+  margin-bottom:14px;
+  display:flex;
+}
+
+.chat-message.customer{
+  justify-content:flex-start;
+}
+
+.chat-message.admin{
+  justify-content:flex-end;
+}
+
+.message-bubble{
+  max-width:75%;
+  padding:11px 14px;
+  border-radius:14px;
+  line-height:1.5;
+  word-wrap:break-word;
+}
+
+.customer .message-bubble{
+  background:#fff;
+  border:1px solid #e5e7eb;
+}
+
+.admin .message-bubble{
+  background:#e11d48;
+  color:#fff;
+}
+
+.message-time{
+  font-size:11px;
+  opacity:.65;
+  margin-top:5px;
+}
+
+.chat-reply{
+  display:flex;
+  gap:10px;
+  padding:15px;
+  border-top:1px solid #e5e7eb;
+  background:#fff;
+}
+
+.chat-reply textarea{
+  min-height:50px;
+  max-height:120px;
+  resize:none;
+}
+
+.chat-reply button{
+  align-self:flex-end;
+  white-space:nowrap;
+}
+
+.no-customer{
+  padding:30px;
+  text-align:center;
+  color:#64748b;
+}
+
+.chat-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:22px;
+  height:22px;
+  padding:0 6px;
+  border-radius:20px;
+  background:#dc2626;
+  color:#fff;
+  font-size:12px;
+  margin-left:6px;
+}
+
+
+/* LOGIN */
 
 .login-screen{
   min-height:100vh;
@@ -318,263 +478,23 @@ textarea{
 }
 
 
-/* =========================
-   LIVE CHAT
-========================= */
-
-.chat-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin-bottom:18px;
-}
-
-.chat-header h2{
-  margin:0;
-}
-
-.chat-badge{
-  background:#dc2626;
-  color:#fff;
-  min-width:28px;
-  height:28px;
-  padding:0 8px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:13px;
-  font-weight:800;
-}
-
-.chat-layout{
-  display:grid;
-  grid-template-columns:300px 1fr;
-  gap:15px;
-  min-height:600px;
-}
-
-.chat-users{
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  overflow:hidden;
-  background:#f8fafc;
-}
-
-.chat-users-title{
-  padding:15px;
-  background:#111827;
-  color:#fff;
-  font-weight:800;
-}
-
-.chat-user-list{
-  max-height:540px;
-  overflow-y:auto;
-}
-
-.chat-user{
-  padding:14px;
-  border-bottom:1px solid #e5e7eb;
-  background:#fff;
-  cursor:pointer;
-  transition:.15s;
-}
-
-.chat-user:hover{
-  background:#f1f5f9;
-}
-
-.chat-user.active{
-  background:#ffe4e6;
-  border-left:4px solid #e11d48;
-}
-
-.chat-user-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-}
-
-.chat-user-name{
-  font-weight:800;
-  font-size:14px;
-}
-
-.chat-user-time{
-  color:#64748b;
-  font-size:11px;
-}
-
-.chat-user-message{
-  color:#64748b;
-  font-size:12px;
-  margin-top:6px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.unread-badge{
-  background:#e11d48;
-  color:#fff;
-  border-radius:20px;
-  min-width:21px;
-  height:21px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:800;
-  padding:0 5px;
-}
-
-.chat-window{
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  background:#fff;
-}
-
-.chat-window-header{
-  padding:15px 18px;
-  background:#111827;
-  color:#fff;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-
-.chat-customer-name{
-  font-weight:800;
-}
-
-.chat-customer-phone{
-  font-size:12px;
-  color:#cbd5e1;
-  margin-top:3px;
-}
-
-.chat-status{
-  font-size:12px;
-  background:#16a34a;
-  padding:5px 9px;
-  border-radius:20px;
-  font-weight:700;
-}
-
-.chat-messages{
-  flex:1;
-  height:430px;
-  overflow-y:auto;
-  padding:18px;
-  background:#f8fafc;
-}
-
-.chat-empty{
-  height:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#64748b;
-}
-
-.message-row{
-  display:flex;
-  margin-bottom:12px;
-}
-
-.message-row.customer{
-  justify-content:flex-start;
-}
-
-.message-row.admin{
-  justify-content:flex-end;
-}
-
-.message-bubble{
-  max-width:75%;
-  padding:10px 13px;
-  border-radius:13px;
-  font-size:14px;
-  line-height:1.5;
-  word-break:break-word;
-}
-
-.message-row.customer .message-bubble{
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-bottom-left-radius:4px;
-}
-
-.message-row.admin .message-bubble{
-  background:#e11d48;
-  color:#fff;
-  border-bottom-right-radius:4px;
-}
-
-.message-time{
-  font-size:10px;
-  margin-top:4px;
-  opacity:.65;
-}
-
-.chat-reply{
-  padding:12px;
-  border-top:1px solid #e5e7eb;
-  background:#fff;
-}
-
-.chat-reply-form{
-  display:flex;
-  gap:10px;
-  align-items:flex-end;
-}
-
-.chat-reply textarea{
-  min-height:55px;
-  max-height:130px;
-  resize:none;
-  margin:0;
-  flex:1;
-}
-
-.chat-send{
-  height:55px;
-  min-width:100px;
-}
-
-.chat-info{
-  padding:12px;
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-  border-radius:10px;
-  color:#64748b;
-  font-size:13px;
-  margin-bottom:15px;
-}
-
-.chat-refresh{
-  background:#475569;
-  padding:8px 12px;
-  border:0;
-  color:#fff;
-  border-radius:7px;
-  font-weight:700;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
+/* RESPONSIVE */
 
 @media(max-width:900px){
+
+  .chat-layout{
+    grid-template-columns:1fr;
+  }
+
+  .customer-list{
+    border-right:0;
+    border-bottom:1px solid #e5e7eb;
+    max-height:220px;
+  }
+
+}
+
+@media(max-width:800px){
 
   .form-grid{
     grid-template-columns:1fr;
@@ -586,18 +506,6 @@ textarea{
 
   .product-list{
     grid-template-columns:repeat(2,1fr);
-  }
-
-  .chat-layout{
-    grid-template-columns:1fr;
-  }
-
-  .chat-users{
-    min-height:180px;
-  }
-
-  .chat-user-list{
-    max-height:220px;
   }
 
 }
@@ -624,36 +532,21 @@ textarea{
     text-align:center;
   }
 
-  .chat-header{
-    align-items:flex-start;
-  }
-
-  .chat-layout{
-    min-height:500px;
-  }
-
-  .chat-messages{
-    height:380px;
-  }
-
-  .chat-reply-form{
+  .chat-reply{
     flex-direction:column;
   }
 
-  .chat-send{
+  .chat-reply button{
     width:100%;
   }
 
-  .message-bubble{
-    max-width:88%;
-  }
-
 }
-</style>
 
+</style>
 </head>
 
 <body>
+
 
 <!-- =========================
      LOGIN SCREEN
@@ -663,49 +556,48 @@ textarea{
 
   <div class="login-box">
 
-```
-<h1>🔐 Reich Admin</h1>
+    <h1>🔐 Reich Admin</h1>
 
-<p>Sign in to manage your store</p>
+    <p>Sign in to manage your store</p>
 
-<div id="loginStatus" class="status">
-  Please login.
-</div>
+    <div id="loginStatus" class="status">
+      Please login.
+    </div>
 
-<form id="loginForm">
+    <form id="loginForm">
 
-  <label>Email</label>
+      <label>Email</label>
 
-  <input
-    id="loginEmail"
-    type="email"
-    required
-    placeholder="Admin email"
-  >
+      <input
+        id="loginEmail"
+        type="email"
+        required
+        placeholder="Admin email"
+      >
 
-  <label>Password</label>
+      <label>Password</label>
 
-  <input
-    id="loginPassword"
-    type="password"
-    required
-    placeholder="Admin password"
-  >
+      <input
+        id="loginPassword"
+        type="password"
+        required
+        placeholder="Admin password"
+      >
 
-  <button
-    class="btn login-btn"
-    id="loginBtn"
-    type="submit"
-  >
-    Login
-  </button>
+      <button
+        class="btn login-btn"
+        id="loginBtn"
+        type="submit"
+      >
+        Login
+      </button>
 
-</form>
-```
+    </form>
 
   </div>
 
 </div>
+
 
 <!-- =========================
      ADMIN APP
@@ -717,175 +609,131 @@ textarea{
 
   <div class="header-inner">
 
-```
-<h1>Reich Admin</h1>
+    <h1>Reich Admin</h1>
 
-<div class="header-actions">
+    <div class="header-actions">
 
-  <a
-    class="view-store"
-    href="index.html"
-    target="_blank"
-  >
-    View Store
-  </a>
+      <a
+        class="view-store"
+        href="index.html"
+        target="_blank"
+      >
+        View Store
+      </a>
 
-  <button
-    class="logout"
-    onclick="logout()"
-  >
-    Logout
-  </button>
+      <button
+        class="logout"
+        onclick="logout()"
+      >
+        Logout
+      </button>
 
-</div>
-```
+    </div>
 
   </div>
 
 </header>
 
+
 <div class="container">
 
+
 <!-- =========================
-     LIVE CUSTOMER CHAT
+     CUSTOMER MESSAGES
 ========================= -->
 
 <div class="card">
 
-  <div class="chat-header">
+  <h2>
+    💬 Customer Service
+    <span
+      id="unreadBadge"
+      class="chat-badge"
+      style="display:none"
+    >
+      0
+    </span>
+  </h2>
 
-```
-<h2>💬 Customer Live Chat</h2>
-
-<div
-  id="unreadCount"
-  class="chat-badge"
-  style="display:none"
->
-  0
-</div>
-```
-
-  </div>
-
-  <div class="chat-info">
-    ⚡ Customer-এর message এখানে realtime-এ আসবে।
-    একজন customer select করে সরাসরি reply করতে পারবে।
+  <div
+    id="chatStatus"
+    class="status"
+  >
+    Customer messages loading...
   </div>
 
   <div class="chat-layout">
 
-```
-<!-- CUSTOMER LIST -->
+    <!-- CUSTOMER LIST -->
 
-<div class="chat-users">
-
-  <div class="chat-users-title">
-    👥 Customers
-  </div>
-
-  <div
-    id="chatUserList"
-    class="chat-user-list"
-  >
-
-    <div class="empty">
-      No conversations yet.
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- CHAT WINDOW -->
-
-<div class="chat-window">
-
-  <div
-    class="chat-window-header"
-    id="chatWindowHeader"
-  >
-
-    <div>
-
-      <div
-        id="chatCustomerName"
-        class="chat-customer-name"
-      >
-        Select a customer
-      </div>
-
-      <div
-        id="chatCustomerPhone"
-        class="chat-customer-phone"
-      >
-        —
-      </div>
-
-    </div>
-
-    <div class="chat-status">
-      LIVE
-    </div>
-
-  </div>
-
-
-  <div
-    id="chatMessages"
-    class="chat-messages"
-  >
-
-    <div class="chat-empty">
-
-      <div>
-        <div style="font-size:40px">
-          💬
-        </div>
-
-        <div>
-          Select a customer to start chatting.
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="chat-reply">
-
-    <form
-      id="chatReplyForm"
-      class="chat-reply-form"
+    <div
+      id="customerList"
+      class="customer-list"
     >
 
-      <textarea
-        id="chatReplyInput"
-        placeholder="Type your reply..."
-        disabled
-      ></textarea>
+      <div class="no-customer">
+        Loading customers...
+      </div>
 
-      <button
-        class="btn chat-send"
-        id="chatSendBtn"
-        type="submit"
-        disabled
+    </div>
+
+
+    <!-- CHAT AREA -->
+
+    <div class="chat-area">
+
+      <div
+        id="chatHeader"
+        class="chat-header"
       >
-        Send
-      </button>
 
-    </form>
+        <h3>
+          Select a customer
+        </h3>
+
+        <small>
+          Customer conversation will appear here.
+        </small>
+
+      </div>
+
+
+      <div
+        id="chatMessages"
+        class="chat-messages"
+      >
+
+        <div class="no-customer">
+          👈 Select a customer to start conversation.
+        </div>
+
+      </div>
+
+
+      <div class="chat-reply">
+
+        <textarea
+          id="replyInput"
+          placeholder="Type your reply..."
+          disabled
+        ></textarea>
+
+        <button
+          id="replyBtn"
+          class="btn"
+          disabled
+        >
+          Send
+        </button>
+
+      </div>
+
+    </div>
 
   </div>
 
 </div>
-```
 
-  </div>
-
-</div>
 
 <!-- =========================
      ADD PRODUCT
@@ -901,218 +749,218 @@ textarea{
 
   <form id="productForm">
 
-```
-<div class="form-grid">
+    <div class="form-grid">
 
-  <div>
+      <div>
 
-    <label>Product Name *</label>
+        <label>Product Name *</label>
 
-    <input
-      id="name"
-      type="text"
-      required
-      placeholder="Premium T-Shirt"
-    >
+        <input
+          id="name"
+          type="text"
+          required
+          placeholder="Premium T-Shirt"
+        >
 
-  </div>
-
-
-  <div>
-
-    <label>Category *</label>
-
-    <select id="category" required>
-
-      <option value="">
-        Select Category
-      </option>
-
-      <option value="Clothing">
-        Clothing
-      </option>
-
-      <option value="Electronics">
-        Electronics
-      </option>
-
-      <option value="Shoes">
-        Shoes
-      </option>
-
-      <option value="Men">
-        Men
-      </option>
-
-      <option value="Women">
-        Women
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <div>
-
-    <label>Subcategory *</label>
-
-    <input
-      id="subcategory"
-      type="text"
-      required
-      placeholder="T-Shirt"
-    >
-
-  </div>
-
-
-  <div>
-
-    <label>Price *</label>
-
-    <input
-      id="price"
-      type="number"
-      min="0"
-      step="0.01"
-      required
-      placeholder="799"
-    >
-
-  </div>
-
-
-  <div>
-
-    <label>Sale Price</label>
-
-    <input
-      id="sale_price"
-      type="number"
-      min="0"
-      step="0.01"
-      placeholder="599"
-    >
-
-  </div>
-
-
-  <div>
-
-    <label>Stock *</label>
-
-    <input
-      id="stock"
-      type="number"
-      min="0"
-      value="0"
-      required
-    >
-
-  </div>
-
-
-  <div>
-
-    <label>Sizes</label>
-
-    <input
-      id="sizes"
-      type="text"
-      placeholder="S, M, L, XL"
-    >
-
-  </div>
-
-
-  <div>
-
-    <label>Colors</label>
-
-    <input
-      id="colors"
-      type="text"
-      placeholder="Black, White, Red"
-    >
-
-  </div>
-
-
-  <div class="full">
-
-    <label>Description</label>
-
-    <textarea
-      id="description"
-      placeholder="Product description..."
-    ></textarea>
-
-  </div>
-
-
-  <div class="full">
-
-    <label>Product Image</label>
-
-    <div class="file-box">
-
-      <input
-        id="imageFile"
-        type="file"
-        accept="image/*"
-      >
-
-      <div
-        id="uploadStatus"
-        class="upload-status"
-      >
-        Choose an image from your PC.
       </div>
 
-      <img
-        id="imagePreview"
-        class="image-preview"
-        alt="Image Preview"
-      >
+
+      <div>
+
+        <label>Category *</label>
+
+        <select id="category" required>
+
+          <option value="">
+            Select Category
+          </option>
+
+          <option value="Clothing">
+            Clothing
+          </option>
+
+          <option value="Electronics">
+            Electronics
+          </option>
+
+          <option value="Shoes">
+            Shoes
+          </option>
+
+          <option value="Men">
+            Men
+          </option>
+
+          <option value="Women">
+            Women
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div>
+
+        <label>Subcategory *</label>
+
+        <input
+          id="subcategory"
+          type="text"
+          required
+          placeholder="T-Shirt"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Price *</label>
+
+        <input
+          id="price"
+          type="number"
+          min="0"
+          step="0.01"
+          required
+          placeholder="799"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Sale Price</label>
+
+        <input
+          id="sale_price"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="599"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Stock *</label>
+
+        <input
+          id="stock"
+          type="number"
+          min="0"
+          value="0"
+          required
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Sizes</label>
+
+        <input
+          id="sizes"
+          type="text"
+          placeholder="S, M, L, XL"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>Colors</label>
+
+        <input
+          id="colors"
+          type="text"
+          placeholder="Black, White, Red"
+        >
+
+      </div>
+
+
+      <div class="full">
+
+        <label>Description</label>
+
+        <textarea
+          id="description"
+          placeholder="Product description..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="full">
+
+        <label>Product Image</label>
+
+        <div class="file-box">
+
+          <input
+            id="imageFile"
+            type="file"
+            accept="image/*"
+          >
+
+          <div
+            id="uploadStatus"
+            class="upload-status"
+          >
+            Choose an image from your PC.
+          </div>
+
+          <img
+            id="imagePreview"
+            class="image-preview"
+            alt="Image Preview"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <label class="checkbox">
+
+          <input
+            id="published"
+            type="checkbox"
+            checked
+          >
+
+          Published
+
+        </label>
+
+      </div>
 
     </div>
 
-  </div>
 
+    <br>
 
-  <div>
-
-    <label class="checkbox">
-
-      <input
-        id="published"
-        type="checkbox"
-        checked
-      >
-
-      Published
-
-    </label>
-
-  </div>
-
-</div>
-
-<br>
-
-<button
-  class="btn"
-  id="submitBtn"
-  type="submit"
->
-  Add Product
-</button>
-```
+    <button
+      class="btn"
+      id="submitBtn"
+      type="submit"
+    >
+      Add Product
+    </button>
 
   </form>
 
 </div>
+
 
 <!-- =========================
      PRODUCTS
@@ -1127,11 +975,9 @@ textarea{
     class="product-list"
   >
 
-```
-<div class="empty">
-  Loading products...
-</div>
-```
+    <div class="empty">
+      Loading products...
+    </div>
 
   </div>
 
@@ -1140,6 +986,7 @@ textarea{
 </div>
 
 </div>
+
 
 <script>
 
@@ -1150,8 +997,8 @@ textarea{
 let editingId = null;
 let selectedImageFile = null;
 
-let conversations = [];
 let selectedCustomerId = null;
+let chatMessagesData = [];
 let chatRealtimeChannel = null;
 
 
@@ -1180,6 +1027,23 @@ function showStatus(message,type=""){
 
   const box =
     document.getElementById("status");
+
+  box.textContent = message;
+
+  box.className =
+    "status " + type;
+
+}
+
+
+/* =========================
+   CHAT STATUS
+========================= */
+
+function showChatStatus(message,type=""){
+
+  const box =
+    document.getElementById("chatStatus");
 
   box.textContent = message;
 
@@ -1269,6 +1133,7 @@ async function checkAuth(){
   const { data } =
     await supabaseClient.auth.getSession();
 
+
   const session =
     data.session;
 
@@ -1285,9 +1150,9 @@ async function checkAuth(){
 
     loadProducts();
 
-    loadConversations();
+    loadCustomerMessages();
 
-    subscribeToChat();
+    startChatRealtime();
 
   }else{
 
@@ -1315,8 +1180,6 @@ async function logout(){
     await supabaseClient
       .removeChannel(chatRealtimeChannel);
 
-    chatRealtimeChannel=null;
-
   }
 
   await supabaseClient.auth.signOut();
@@ -1337,6 +1200,596 @@ supabaseClient.auth.onAuthStateChange(
 
   }
 );
+
+
+/* =========================
+   CUSTOMER MESSAGES
+========================= */
+
+async function loadCustomerMessages(){
+
+  const list =
+    document.getElementById("customerList");
+
+
+  list.innerHTML = `
+    <div class="no-customer">
+      Loading customers...
+    </div>
+  `;
+
+
+  const { data,error } =
+    await supabaseClient
+      .from("customer_messages")
+      .select("*")
+      .order(
+        "created_at",
+        {ascending:true}
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    list.innerHTML = `
+      <div class="no-customer">
+        ❌ Could not load messages.
+        <br><br>
+        ${escapeHTML(error.message)}
+      </div>
+    `;
+
+    showChatStatus(
+      "Chat error: " + error.message,
+      "error"
+    );
+
+    return;
+  }
+
+
+  chatMessagesData = data || [];
+
+  renderCustomerList();
+
+  updateUnreadBadge();
+
+  showChatStatus(
+    chatMessagesData.length
+      ? "Customer messages loaded."
+      : "No customer messages yet.",
+    chatMessagesData.length
+      ? "success"
+      : ""
+  );
+
+
+  if(
+    selectedCustomerId &&
+    chatMessagesData.some(
+      m => String(m.id) === String(selectedCustomerId)
+    )
+  ){
+
+    renderChat(selectedCustomerId);
+
+  }
+
+}
+
+
+/* =========================
+   CUSTOMER LIST
+========================= */
+
+function renderCustomerList(){
+
+  const list =
+    document.getElementById("customerList");
+
+
+  if(!chatMessagesData.length){
+
+    list.innerHTML = `
+      <div class="no-customer">
+        💬 No customer messages yet.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  /*
+    Group messages by phone number.
+  */
+
+  const groups = {};
+
+
+  chatMessagesData.forEach(message => {
+
+    const key =
+      message.phone || message.name || "unknown";
+
+
+    if(!groups[key]){
+
+      groups[key]=[];
+
+    }
+
+
+    groups[key].push(message);
+
+  });
+
+
+  const customers =
+    Object.values(groups)
+      .map(messages => {
+
+        const last =
+          messages[messages.length-1];
+
+
+        return {
+          key:
+            last.phone ||
+            last.name ||
+            "unknown",
+
+          name:
+            last.name ||
+            "Customer",
+
+          phone:
+            last.phone ||
+            "",
+
+          lastMessage:
+            last.message ||
+            "",
+
+          messages:messages
+
+        };
+
+      });
+
+
+  list.innerHTML =
+    customers.map(customer => {
+
+      const active =
+        selectedCustomerId === customer.key
+        ? "active"
+        : "";
+
+
+      return `
+
+        <div
+          class="customer-item ${active}"
+          onclick="selectCustomer('${escapeAttribute(customer.key)}')"
+        >
+
+          <div class="customer-name">
+            👤 ${escapeHTML(customer.name)}
+          </div>
+
+          <div class="customer-phone">
+            ${escapeHTML(customer.phone)}
+          </div>
+
+          <div class="customer-preview">
+            ${escapeHTML(customer.lastMessage)}
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================
+   SELECT CUSTOMER
+========================= */
+
+function selectCustomer(customerKey){
+
+  selectedCustomerId =
+    customerKey;
+
+
+  renderCustomerList();
+
+  renderChat(customerKey);
+
+}
+
+
+/* =========================
+   RENDER CHAT
+========================= */
+
+function renderChat(customerKey){
+
+  const messages =
+    chatMessagesData.filter(
+      message =>
+        String(
+          message.phone ||
+          message.name ||
+          "unknown"
+        ) === String(customerKey)
+    );
+
+
+  const header =
+    document.getElementById("chatHeader");
+
+  const chat =
+    document.getElementById("chatMessages");
+
+  const reply =
+    document.getElementById("replyInput");
+
+  const replyButton =
+    document.getElementById("replyBtn");
+
+
+  if(!messages.length){
+
+    header.innerHTML = `
+      <h3>Select a customer</h3>
+    `;
+
+    chat.innerHTML = `
+      <div class="no-customer">
+        No messages.
+      </div>
+    `;
+
+    reply.disabled=true;
+
+    replyButton.disabled=true;
+
+    return;
+
+  }
+
+
+  const customer =
+    messages[0];
+
+
+  header.innerHTML = `
+
+    <h3>
+      👤 ${escapeHTML(customer.name || "Customer")}
+    </h3>
+
+    <small>
+      📱 ${escapeHTML(customer.phone || "")}
+    </small>
+
+  `;
+
+
+  chat.innerHTML =
+    messages.map(message => {
+
+      /*
+        If reply is filled, show it as admin message.
+      */
+
+      let html = `
+
+        <div class="chat-message customer">
+
+          <div class="message-bubble">
+
+            ${escapeHTML(message.message)}
+
+            <div class="message-time">
+              ${formatDate(message.created_at)}
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      if(message.reply){
+
+        html += `
+
+          <div class="chat-message admin">
+
+            <div class="message-bubble">
+
+              ${escapeHTML(message.reply)}
+
+              <div class="message-time">
+                Admin • ${formatDate(message.replied_at || message.created_at)}
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+
+      return html;
+
+    }).join("");
+
+
+  reply.disabled=false;
+
+  replyButton.disabled=false;
+
+
+  chat.scrollTop =
+    chat.scrollHeight;
+
+}
+
+
+/* =========================
+   SEND REPLY
+========================= */
+
+document
+  .getElementById("replyBtn")
+  .addEventListener("click",sendReply);
+
+
+document
+  .getElementById("replyInput")
+  .addEventListener("keydown",function(event){
+
+    if(
+      event.key === "Enter" &&
+      !event.shiftKey
+    ){
+
+      event.preventDefault();
+
+      sendReply();
+
+    }
+
+  });
+
+
+async function sendReply(){
+
+  if(!selectedCustomerId){
+
+    alert("Please select a customer first.");
+
+    return;
+
+  }
+
+
+  const input =
+    document.getElementById("replyInput");
+
+  const button =
+    document.getElementById("replyBtn");
+
+
+  const reply =
+    input.value.trim();
+
+
+  if(!reply){
+
+    return;
+
+  }
+
+
+  const messages =
+    chatMessagesData.filter(
+      message =>
+        String(
+          message.phone ||
+          message.name ||
+          "unknown"
+        ) === String(selectedCustomerId)
+    );
+
+
+  if(!messages.length){
+
+    return;
+
+  }
+
+
+  /*
+    For now we reply to the latest customer message.
+  */
+
+  const latest =
+    messages[messages.length-1];
+
+
+  button.disabled=true;
+
+  button.textContent="Sending...";
+
+
+  try{
+
+    const { error } =
+      await supabaseClient
+        .from("customer_messages")
+        .update({
+
+          reply:reply,
+
+          replied_at:
+            new Date().toISOString()
+
+        })
+        .eq("id",latest.id);
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    input.value="";
+
+
+    showChatStatus(
+      "✅ Reply sent successfully!",
+      "success"
+    );
+
+
+    await loadCustomerMessages();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showChatStatus(
+      "Reply failed: " + error.message,
+      "error"
+    );
+
+  }finally{
+
+    button.disabled=false;
+
+    button.textContent="Send";
+
+  }
+
+}
+
+
+/* =========================
+   REALTIME CHAT
+========================= */
+
+function startChatRealtime(){
+
+  if(chatRealtimeChannel){
+
+    return;
+
+  }
+
+
+  chatRealtimeChannel =
+    supabaseClient
+      .channel("customer-messages-live")
+      .on(
+        "postgres_changes",
+        {
+          event:"*",
+          schema:"public",
+          table:"customer_messages"
+        },
+        function(){
+
+          loadCustomerMessages();
+
+        }
+      )
+      .subscribe();
+
+}
+
+
+/* =========================
+   UNREAD BADGE
+========================= */
+
+function updateUnreadBadge(){
+
+  const badge =
+    document.getElementById("unreadBadge");
+
+
+  /*
+    Messages which have no reply
+    are counted as waiting messages.
+  */
+
+  const count =
+    chatMessagesData.filter(
+      message =>
+        !message.reply
+    ).length;
+
+
+  if(count > 0){
+
+    badge.style.display="inline-flex";
+
+    badge.textContent =
+      count > 99
+      ? "99+"
+      : count;
+
+  }else{
+
+    badge.style.display="none";
+
+  }
+
+}
+
+
+/* =========================
+   DATE FORMAT
+========================= */
+
+function formatDate(date){
+
+  if(!date) return "";
+
+
+  try{
+
+    return new Date(date)
+      .toLocaleString(
+        "en-BD",
+        {
+          dateStyle:"short",
+          timeStyle:"short"
+        }
+      );
+
+  }catch(error){
+
+    return "";
+
+  }
+
+}
 
 
 /* =========================
@@ -1402,7 +1855,7 @@ document
     uploadStatus.textContent =
       "Selected: " + file.name;
 
-});
+  });
 
 
 /* =========================
@@ -1744,7 +2197,6 @@ async function loadProducts(){
 
             <div class="meta">
               ${escapeHTML(product.category)}
-
               ${
                 product.subcategory
                 ? " • " +
@@ -1782,6 +2234,7 @@ async function loadProducts(){
               }
 
             </div>
+
 
             <div class="actions">
 
@@ -1991,774 +2444,6 @@ function resetForm(){
 }
 
 
-/* =====================================================
-   LIVE CHAT SYSTEM
-===================================================== */
-
-
-/* =========================
-   LOAD CONVERSATIONS
-========================= */
-
-async function loadConversations(){
-
-  const list =
-    document.getElementById("chatUserList");
-
-
-  list.innerHTML = `
-    <div class="empty">
-      Loading conversations...
-    </div>
-  `;
-
-
-  /*
-    We read all messages and create
-    customer conversations from them.
-  */
-
-  const { data,error } =
-    await supabaseClient
-      .from("customer_messages")
-      .select("*")
-      .order(
-        "created_at",
-        {ascending:false}
-      );
-
-
-  if(error){
-
-    console.error(error);
-
-    list.innerHTML = `
-      <div class="empty">
-        Chat table is not ready yet.
-        <br><br>
-        ${escapeHTML(error.message)}
-      </div>
-    `;
-
-    return;
-  }
-
-
-  if(!data || data.length===0){
-
-    conversations=[];
-
-    list.innerHTML = `
-      <div class="empty">
-        No conversations yet.
-        <br><br>
-        Customer message করলে এখানে দেখা যাবে।
-      </div>
-    `;
-
-    updateUnreadCount();
-
-    return;
-  }
-
-
-  /*
-    Group messages by customer.
-    Customer identity is based on name + phone.
-  */
-
-  const map = new Map();
-
-
-  data.forEach(message=>{
-
-    const key =
-      (
-        message.name || "Customer"
-      ) +
-      "|" +
-      (
-        message.phone || ""
-      );
-
-
-    if(!map.has(key)){
-
-      map.set(key,{
-        key:key,
-        name:message.name || "Customer",
-        phone:message.phone || "",
-        messages:[],
-        lastMessage:message,
-        unread:0
-      });
-
-    }
-
-
-    const customer =
-      map.get(key);
-
-
-    customer.messages.push(message);
-
-
-    if(
-      message.status !== "Read" &&
-      message.sender !== "admin"
-    ){
-
-      customer.unread++;
-
-    }
-
-
-    /*
-      The query is newest first,
-      so first message is the latest.
-    */
-
-    if(
-      new Date(message.created_at) >
-      new Date(customer.lastMessage.created_at)
-    ){
-
-      customer.lastMessage=message;
-
-    }
-
-  });
-
-
-  conversations =
-    Array.from(map.values());
-
-
-  renderConversationList();
-
-  updateUnreadCount();
-
-}
-
-
-/* =========================
-   RENDER CUSTOMER LIST
-========================= */
-
-function renderConversationList(){
-
-  const list =
-    document.getElementById("chatUserList");
-
-
-  if(conversations.length===0){
-
-    list.innerHTML = `
-      <div class="empty">
-        No conversations yet.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  list.innerHTML =
-    conversations.map(customer=>{
-
-      const active =
-        selectedCustomerId === customer.key
-        ? "active"
-        : "";
-
-
-      const lastMessage =
-        customer.lastMessage?.message ||
-        "";
-
-
-      const time =
-        customer.lastMessage?.created_at
-        ? formatChatTime(
-            customer.lastMessage.created_at
-          )
-        : "";
-
-
-      return `
-
-        <div
-          class="chat-user ${active}"
-          onclick="selectCustomer('${escapeJS(customer.key)}')"
-        >
-
-          <div class="chat-user-top">
-
-            <div class="chat-user-name">
-
-              ${escapeHTML(customer.name)}
-
-            </div>
-
-            ${
-              customer.unread > 0
-              ? `
-                <div class="unread-badge">
-                  ${customer.unread}
-                </div>
-              `
-              : ""
-            }
-
-          </div>
-
-          <div class="chat-user-time">
-            ${escapeHTML(time)}
-          </div>
-
-          <div class="chat-user-message">
-            ${escapeHTML(lastMessage)}
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =========================
-   SELECT CUSTOMER
-========================= */
-
-async function selectCustomer(key){
-
-  selectedCustomerId=key;
-
-
-  const customer =
-    conversations.find(
-      item => item.key === key
-    );
-
-
-  if(!customer) return;
-
-
-  document
-    .getElementById("chatCustomerName")
-    .textContent =
-      customer.name;
-
-
-  document
-    .getElementById("chatCustomerPhone")
-    .textContent =
-      customer.phone || "No phone number";
-
-
-  document
-    .getElementById("chatReplyInput")
-    .disabled=false;
-
-
-  document
-    .getElementById("chatSendBtn")
-    .disabled=false;
-
-
-  renderConversationList();
-
-  await loadSelectedMessages();
-
-
-  /*
-    Mark customer messages as Read.
-  */
-
-  await markCustomerMessagesRead();
-
-  await loadConversations();
-
-
-  /*
-    Keep selected customer selected
-    after reloading conversation list.
-  */
-
-  const selected =
-    conversations.find(
-      item => item.key === key
-    );
-
-
-  if(selected){
-
-    selectedCustomerId=key;
-
-    renderConversationList();
-
-  }
-
-}
-
-
-/* =========================
-   LOAD SELECTED MESSAGES
-========================= */
-
-async function loadSelectedMessages(){
-
-  if(!selectedCustomerId) return;
-
-
-  const customer =
-    conversations.find(
-      item => item.key === selectedCustomerId
-    );
-
-
-  if(!customer) return;
-
-
-  const messages =
-    customer.messages
-      .slice()
-      .sort(
-        (a,b)=>
-          new Date(a.created_at) -
-          new Date(b.created_at)
-      );
-
-
-  renderMessages(messages);
-
-}
-
-
-/* =========================
-   RENDER MESSAGES
-========================= */
-
-function renderMessages(messages){
-
-  const box =
-    document.getElementById("chatMessages");
-
-
-  if(!messages || messages.length===0){
-
-    box.innerHTML = `
-      <div class="chat-empty">
-        No messages yet.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  box.innerHTML =
-    messages.map(message=>{
-
-      const isAdmin =
-        message.sender === "admin";
-
-
-      return `
-
-        <div
-          class="message-row ${
-            isAdmin
-            ? "admin"
-            : "customer"
-          }"
-        >
-
-          <div class="message-bubble">
-
-            <div>
-              ${escapeHTML(message.message)}
-            </div>
-
-            <div class="message-time">
-              ${isAdmin ? "You" : escapeHTML(message.name || "Customer")}
-              •
-              ${formatChatTime(message.created_at)}
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-
-  box.scrollTop =
-    box.scrollHeight;
-
-}
-
-
-/* =========================
-   MARK AS READ
-========================= */
-
-async function markCustomerMessagesRead(){
-
-  if(!selectedCustomerId) return;
-
-
-  const customer =
-    conversations.find(
-      item => item.key === selectedCustomerId
-    );
-
-
-  if(!customer) return;
-
-
-  const name =
-    customer.name;
-
-
-  const phone =
-    customer.phone;
-
-
-  let query =
-    supabaseClient
-      .from("customer_messages")
-      .update({
-        status:"Read"
-      })
-      .eq("name",name);
-
-
-  if(phone){
-
-    query =
-      query.eq("phone",phone);
-
-  }
-
-
-  const {error} =
-    await query;
-
-
-  if(error){
-
-    console.error(
-      "Could not mark messages as read:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================
-   SEND ADMIN REPLY
-========================= */
-
-document
-  .getElementById("chatReplyForm")
-  .addEventListener(
-    "submit",
-    async function(event){
-
-      event.preventDefault();
-
-
-      if(!selectedCustomerId){
-
-        alert(
-          "Please select a customer first."
-        );
-
-        return;
-      }
-
-
-      const input =
-        document.getElementById("chatReplyInput");
-
-      const button =
-        document.getElementById("chatSendBtn");
-
-
-      const message =
-        input.value.trim();
-
-
-      if(!message) return;
-
-
-      const customer =
-        conversations.find(
-          item => item.key === selectedCustomerId
-        );
-
-
-      if(!customer) return;
-
-
-      button.disabled=true;
-
-      button.textContent="Sending...";
-
-
-      try{
-
-        const messageData = {
-
-          name:customer.name,
-
-          phone:
-            customer.phone || null,
-
-          message:message,
-
-          status:"Read",
-
-          sender:"admin"
-
-        };
-
-
-        const {error} =
-          await supabaseClient
-            .from("customer_messages")
-            .insert([
-              messageData
-            ]);
-
-
-        if(error){
-
-          throw error;
-
-        }
-
-
-        input.value="";
-
-
-        await loadConversations();
-
-
-        selectedCustomerId=
-          customer.key;
-
-
-        await loadSelectedMessages();
-
-
-        renderConversationList();
-
-
-      }catch(error){
-
-        console.error(error);
-
-        alert(
-          "Reply পাঠাতে সমস্যা হয়েছে: " +
-          error.message
-        );
-
-      }finally{
-
-        button.disabled=false;
-
-        button.textContent="Send";
-
-      }
-
-    }
-  );
-
-
-/* =========================
-   REALTIME CHAT
-========================= */
-
-function subscribeToChat(){
-
-  if(chatRealtimeChannel){
-
-    supabaseClient
-      .removeChannel(
-        chatRealtimeChannel
-      );
-
-  }
-
-
-  chatRealtimeChannel =
-    supabaseClient
-      .channel(
-        "reich-customer-chat"
-      )
-      .on(
-        "postgres_changes",
-        {
-          event:"*",
-          schema:"public",
-          table:"customer_messages"
-        },
-        async function(payload){
-
-          console.log(
-            "Realtime chat update:",
-            payload
-          );
-
-
-          await loadConversations();
-
-
-          /*
-            If a customer is currently open,
-            refresh their messages.
-          */
-
-          if(selectedCustomerId){
-
-            const currentKey =
-              selectedCustomerId;
-
-            const customer =
-              conversations.find(
-                item => item.key === currentKey
-              );
-
-
-            if(customer){
-
-              selectedCustomerId =
-                currentKey;
-
-              document
-                .getElementById("chatCustomerName")
-                .textContent =
-                  customer.name;
-
-
-              document
-                .getElementById("chatCustomerPhone")
-                .textContent =
-                  customer.phone ||
-                  "No phone number";
-
-
-              await loadSelectedMessages();
-
-              renderConversationList();
-
-            }
-
-          }
-
-        }
-      )
-      .subscribe(
-        function(status){
-
-          console.log(
-            "Chat realtime status:",
-            status
-          );
-
-        }
-      );
-
-}
-
-
-/* =========================
-   UNREAD COUNT
-========================= */
-
-function updateUnreadCount(){
-
-  const badge =
-    document.getElementById("unreadCount");
-
-
-  const total =
-    conversations.reduce(
-      (sum,item)=>
-        sum + Number(item.unread || 0),
-      0
-    );
-
-
-  if(total > 0){
-
-    badge.textContent =
-      total > 99
-      ? "99+"
-      : total;
-
-    badge.style.display="flex";
-
-  }else{
-
-    badge.style.display="none";
-
-  }
-
-}
-
-
-/* =========================
-   CHAT TIME
-========================= */
-
-function formatChatTime(value){
-
-  if(!value) return "";
-
-
-  const date =
-    new Date(value);
-
-
-  return date.toLocaleString(
-    "en-BD",
-    {
-      day:"2-digit",
-      month:"short",
-      hour:"2-digit",
-      minute:"2-digit"
-    }
-  );
-
-}
-
-
-/* =========================
-   JAVASCRIPT STRING ESCAPE
-========================= */
-
-function escapeJS(value){
-
-  return String(value ?? "")
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
-    .replace(/"/g,'\\"')
-    .replace(/\n/g,"\\n")
-    .replace(/\r/g,"\\r");
-
-}
-
-
 /* =========================
    ESCAPE HTML
 ========================= */
@@ -2771,6 +2456,15 @@ function escapeHTML(value){
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+  return String(value ?? "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
 
 }
 
